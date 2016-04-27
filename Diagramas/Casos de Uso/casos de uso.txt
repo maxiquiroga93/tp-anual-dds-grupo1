@@ -1,19 +1,16 @@
 @startuml
 left to right direction
-:Usuario:->:Admin:
+:Usuario:-|>:Admin:
 
 rectangle Centro_de_Informacion{
-:Usuario:->(Login)
-(Login)->(Realizar Consulta) :include
-(Realizar Consulta)-->(Buscar POI):extends
-(Realizar Consulta)-->(Consultar Cercania):extends
-(Realizar Consulta)-->(Consultar Disponibilidad):extends
-(Buscar POI)-->(Mostrar Resultados y \nAlmacenar Datos Estadisticos):include
-(Consultar Cercania)-->(Mostrar Resultados y \nAlmacenar Datos Estadisticos):include
-(Consultar Disponibilidad)-->(Mostrar Resultados y \nAlmacenar Datos Estadisticos):include
+:Usuario:-(Buscar POI)
+(Buscar POI)<..(Obtener Informacion POI):extends
+(Buscar POI)..>(Visualizar Resultados):include
+(Obtener Informacion POI).>(Visualizar Resultados):include
+(Buscar POI)..>(Almacenar Estadisticas\n de Consulta):include
 
-:Admin:->(Cargar POI)
-:Admin:->(Consultar Estadisticas)
+:Admin:-(Cargar POI)
+:Admin:-(Consultar Estadisticas)
 
 }
 
