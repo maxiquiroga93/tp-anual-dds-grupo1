@@ -19,5 +19,7 @@ public class ParadaColectivo extends TipoPOI {
 		this.name = name;
 	}
 	
-	
+	public boolean disponible(){
+		return true;
+	}
 }

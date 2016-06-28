@@ -17,7 +17,9 @@ public class POI {
 	String pais;
 	Float latitud;
 	Float longitud;
-	TipoPOI tipo;
+	int cercania; //define cuando otro punto es cercano.
+	String tipo; //este atributo hay que ver si nos sirve porque
+				//las subclases tienen el nombre del tipo, de por si.
 	String comuna;
 	
 	public infoPOI obtenerInformarcion(){
@@ -153,4 +155,11 @@ public class POI {
 		this.comuna = comuna;
 	}
 	
+	public int getCercania(){
+		return cercania;
+	}
+	
+	public void setCecania(int valor){
+		this.cercania=valor;
+	}
 }
