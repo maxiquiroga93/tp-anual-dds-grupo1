@@ -1,7 +1,8 @@
+import java.sql.Time;
 
 public class RegistroBusqueda {
 
-	datosdeBusqueda string;
-	ID_terminal int;
-	TimestampBusqueda Time;
+	String datosdeBusqueda;
+	int ID_terminal;
+	Time TimestampBusqueda;
 }

@@ -2,11 +2,11 @@
 public class DB_POI {
 
 	
-	public ArrayList<POI> filtrarPOIs(datosDeBusqueda string){
+	public ArrayList<POI> filtrarPOIs(String datosDeBusqueda){
 		
 	}
 	
-	public void agregarPOI(poi POI){
+	public void agregarPOI(POI poi){
 		
 	}
 }

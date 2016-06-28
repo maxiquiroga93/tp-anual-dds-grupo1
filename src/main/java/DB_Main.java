@@ -5,19 +5,19 @@ public class DB_Main {
 
 	
 	
-	public void agregarRegistroBusquedas(datosDeBusqueda string, ID_terminal string){
+	public void agregarRegistroBusquedas(String datosDeBusqueda, String ID_terminal){
 		
 	}
 	
-	public ArrayList<Estadistinca> consultarEstadisticas(criterioConsulta string){
+	public ArrayList<Estadistinca> consultarEstadisticas(String criterioConsulta){
 		
 	}
 	
-	public ArrayList<POI> filtrarPOIs(datosDeBusqueda string){
+	public ArrayList<POI> filtrarPOIs(String datosDeBusqueda){
 		
 	}
 	
-	public void agregarPOI(poi POI) {
+	public void agregarPOI(POI poi) {
 		
 	}
 	
