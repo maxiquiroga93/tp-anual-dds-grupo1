@@ -1,12 +1,13 @@
+import java.util.ArrayList;
 
 public class DB_HistorialBusquedas {
 
 	
-	public void agregarHistorialBusqueda(datosDeBusqueda string, ID_terminal:String){
+	public void agregarHistorialBusqueda(String datosDeBusqueda ,String ID_terminal){
 		
 	}
 	
-	public List<Estadistica> consultarEstadistica(criterioConsulta string){
+	public ArrayList<Estadistica> consultarEstadistica(String criterioConsulta){
 		
 	}
 }

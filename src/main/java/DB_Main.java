@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public class DB_Main {
 
@@ -7,11 +9,11 @@ public class DB_Main {
 		
 	}
 	
-	public List<Estadistinca> consultarEstadisticas(criterioConsulta string){
+	public ArrayList<Estadistinca> consultarEstadisticas(criterioConsulta string){
 		
 	}
 	
-	public List<POI> filtrarPOIs(datosDeBusqueda string){
+	public ArrayList<POI> filtrarPOIs(datosDeBusqueda string){
 		
 	}
 	

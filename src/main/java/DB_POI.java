@@ -2,7 +2,7 @@
 public class DB_POI {
 
 	
-	public List<POI> filtrarPOIs(datosDeBusqueda string){
+	public ArrayList<POI> filtrarPOIs(datosDeBusqueda string){
 		
 	}
 	

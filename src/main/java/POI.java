@@ -1,20 +1,21 @@
 
 public class POI {
 
-	callePrincipal string;
-	calleLateral string;
-	numeracion int;
-	piso int;
-	departamento string;
-	unidad string;
-	codigoPostal int;
-	localidad string;
-	barrio string;
-	provincia string;
-	pais string;
-	latitud Float;
-	longitud Float;
-	tipo string;
+	String callePrincipal;
+	String calleLateral ;
+	int numeracion;
+	int piso;
+	String departamento;
+	String unidad;
+	int codigoPostal;
+	String localidad;
+	String barrio;
+	String provincia;
+	String pais;
+	Float latitud;
+	Float longitud;
+	String tipo;
+	String comuna;
 	
 	public infoPOI obtenerInformarcion(){
 		

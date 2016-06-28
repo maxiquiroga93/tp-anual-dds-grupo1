@@ -1,14 +1,16 @@
+import java.util.ArrayList;
+
 
 public class administrador {
 
 	
 	
 	
-	public List<estadistinca> obtenerEstadistincas(){
+	public ArrayList<estadistica> obtenerEstadistincas(){
 		
 	}
 	
-	public void cargarPOI(poi POI){
+	public void cargarPOI(POI poi){
 		
 	}
 }

@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 
 public class Buscador {
 
 	
 	
 	// TO DO
-	public List<POI> buscarPOI (datosDeBusqueda string){
+	public ArrayList<POI> buscarPOI(String datosDeBusqueda){
 		
 	}
 	// TO DO	
