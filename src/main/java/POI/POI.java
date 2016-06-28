@@ -17,7 +17,7 @@ public class POI {
 	String pais;
 	Float latitud;
 	Float longitud;
-	String tipo;
+	TipoPOI tipo;
 	String comuna;
 	
 	public infoPOI obtenerInformarcion(){
