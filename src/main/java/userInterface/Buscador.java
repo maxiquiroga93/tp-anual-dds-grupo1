@@ -8,11 +8,11 @@ public class Buscador {
 
 	
 	
-	// TO DO
+	// TODO
 	public ArrayList<POI> buscarPOI(String datosDeBusqueda){
 		
 	}
-	// TO DO	
+	// TODO	
 	public void suspenderPantalla(){
 		
 	}
