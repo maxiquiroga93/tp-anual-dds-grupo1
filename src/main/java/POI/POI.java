@@ -51,11 +51,14 @@ public abstract class POI {
     }  
 
 
-	boolean estaCerca(POI poi){
+	
+	// Se le pregunta a un POI si es cercano.
+	boolean esCercano(POI poi){
 		
-		
-		
+	if (this.Ubicacion.distanceTo(poi.Ubicacion) < this.getCercania())
 		return true;
+	else
+		return false;
 	}
 	
 	

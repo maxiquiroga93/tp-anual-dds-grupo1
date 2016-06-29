@@ -2,14 +2,14 @@ package POI;
 
 public class Rubro {
 
-	int distancia;
+	int cercania;
 
-	public int getDistancia() {
-		return distancia;
+	public int getCercania() {
+		return cercania;
 	}
 
-	public void setDistancia(int distancia) {
-		this.distancia = distancia;
+	public void setCercania(int distancia) {
+		this.cercania = distancia;
 	}
 	
 

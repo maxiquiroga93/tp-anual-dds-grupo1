@@ -19,7 +19,14 @@ public class CGP extends POI {
 		this.name = name;
 	}
 	
-	
+	// Se le pregunta a un POI si es cercano.
+	boolean esCercano(POI poi){
+		
+	if (this.getComuna() == poi.getComuna())
+		return true;
+	else
+		return false;
+	}
 	
 	
 }
