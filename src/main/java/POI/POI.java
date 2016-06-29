@@ -15,7 +15,7 @@ public class POI {
 	String barrio;
 	String provincia;
 	String pais;
-	 GeoLocation Ubicacion;
+	GeoLocation Ubicacion;
 //	TipoPOI tipo;
 	String comuna;
 	int cercania = 5; //define cuando otro punto es cercano.
@@ -23,6 +23,19 @@ public class POI {
 				//las subclases tienen el nombre del tipo, de por si.
 	
 
+	
+	
+	// TODO falta detallar mas parametros y restricciones
+	public POI factoryPOI(double latitud, double longitud, String tipo){
+		
+		POI poi = new POI();
+		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		poi.setTipo(tipo);
+		
+		
+		return poi;
+	}
+	
 	
 
 	
@@ -52,11 +65,14 @@ public class POI {
     }  
 
 
-	boolean estaCerca(POI poi){
+	
+	// Se le pregunta a un POI si es cercano.
+	boolean esCercano(POI poi){
 		
-		
-		
+	if (this.Ubicacion.distanceTo(poi.Ubicacion) < this.getCercania())
 		return true;
+	else
+		return false;
 	}
 	
 	

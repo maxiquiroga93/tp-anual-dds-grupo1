@@ -1,7 +1,7 @@
 package DB;
 
 import java.util.ArrayList;
-
+import POI.POI;
 
 public class DB_Main {
 
@@ -11,13 +11,13 @@ public class DB_Main {
 		
 	}
 	
-	public ArrayList<Estadistinca> consultarEstadisticas(String criterioConsulta){
+/*	public ArrayList<Estadistinca> consultarEstadisticas(String criterioConsulta){
 		
 	}
 	
 	public ArrayList<POI> filtrarPOIs(String datosDeBusqueda){
 		
-	}
+	}*/
 	
 	public void agregarPOI(POI poi) {
 		
