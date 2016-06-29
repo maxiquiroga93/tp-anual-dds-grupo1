@@ -2,15 +2,15 @@ package POI;
 
 public class ParadaColectivo extends POI {
 
-	int distancia = 1;
+	int cercania = 1; //esta distancia es en referencia a qué?
 	String name = "paradaColectivo";
 	
 	
 	public int getDistancia() {
-		return distancia;
+		return cercania;
 	}
 	public void setDistancia(int distancia) {
-		this.distancia = distancia;
+		this.cercania = distancia;
 	}
 	public String getName() {
 		return name;
@@ -19,7 +19,7 @@ public class ParadaColectivo extends POI {
 		this.name = name;
 	}
 	
-	public boolean disponible(){
+	public boolean disponible(){//funcion para saber si la parada de colectivo está disponible
 		return true;
 	}
 }

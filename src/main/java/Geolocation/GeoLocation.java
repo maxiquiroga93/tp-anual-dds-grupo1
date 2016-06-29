@@ -15,6 +15,8 @@
 package Geolocation;
 
 public class GeoLocation {
+	
+	public static double RADIUS = 6371010;
 
 	private double radLat;  // latitude in radians
 	private double radLon;  // longitude in radians
@@ -107,10 +109,10 @@ public class GeoLocation {
 	 * @return the distance, measured in the same unit as the radius
 	 * argument.
 	 */
-	public double distanceTo(GeoLocation location, double radius) {
+	public double distanceTo(GeoLocation location) {
 		return Math.acos(Math.sin(radLat) * Math.sin(location.radLat) +
 				Math.cos(radLat) * Math.cos(location.radLat) *
-				Math.cos(radLon - location.radLon)) * radius;
+				Math.cos(radLon - location.radLon)) * RADIUS;
 	}
 
 	/**
@@ -145,13 +147,13 @@ public class GeoLocation {
 	 * array element.</li>
 	 * </ul>
 	 */
-	public GeoLocation[] boundingCoordinates(double distance, double radius) {
+	public GeoLocation[] boundingCoordinates(double distance) {
 
-		if (radius < 0d || distance < 0d)
+		if (RADIUS < 0d || distance < 0d)
 			throw new IllegalArgumentException();
 
 		// angular distance in radians on a great circle
-		double radDist = distance / radius;
+		double radDist = distance / RADIUS;
 
 		double minLat = radLat - radDist;
 		double maxLat = radLat + radDist;
