@@ -18,7 +18,9 @@ public abstract class POI {
 	GeoLocation Ubicacion;
 //	TipoPOI tipo;
 	String comuna;
-	int distancia = 5;
+	int cercania = 5; //define cuando otro punto es cercano.
+	String tipo; //este atributo hay que ver si nos sirve porque
+				//las subclases tienen el nombre del tipo, de por si.
 	
 
 	
@@ -153,6 +155,9 @@ public abstract class POI {
 		this.Ubicacion.setDegLon(longitud);
 	}
 
+//	public void setTipo(TipoPOI tipo) {
+//		this.tipo = tipo;
+//	}
 
 	public String getComuna() {
 		return comuna;
@@ -161,7 +166,15 @@ public abstract class POI {
 	public void setComuna(String comuna) {
 		this.comuna = comuna;
 	}
+
+	public int getCercania(){
+		return cercania;
+	}
 	
+	public void setCecania(int valor){
+		this.cercania=valor;
+	}
+		
 	public POI getPOI() {
 		return this;
 	}
