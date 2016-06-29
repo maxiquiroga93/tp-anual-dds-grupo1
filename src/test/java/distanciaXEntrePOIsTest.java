@@ -1,4 +1,3 @@
-package pruebas;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +11,8 @@ public class distanciaXEntrePOIsTest {
 	
 	@Before
 	public void init() {
-		POI poiUno = POI.construirPOI(-34.5664823, -58.43407810000002);
-		POI poiDos = POI.construirPOI(-34.5658341, -58.43519549999996);
+		 poiUno = POI.construirPOI(-34.5664823, -58.43407810000002);
+		 poiDos = POI.construirPOI(-34.5658341, -58.43519549999996);
 		
 		
 	}
