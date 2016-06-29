@@ -9,7 +9,7 @@ public class DB_HistorialBusquedas {
 		
 	}
 	
-	public ArrayList<Estadistica> consultarEstadistica(String criterioConsulta){
+/*	public ArrayList<Estadistica> consultarEstadistica(String criterioConsulta){
 		
-	}
+	}*/
 }

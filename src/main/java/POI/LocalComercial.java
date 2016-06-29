@@ -1,5 +1,7 @@
 package POI;
 
+import Geolocation.GeoLocation;
+
 public class LocalComercial extends POI {
 
 	String name = "LocalComercial";
@@ -16,6 +18,21 @@ public class LocalComercial extends POI {
 		this.name = name;
 	}
 	
-	//TODO builder debe crear el rubro y agregar el nuevo LocalComercial a la
-	// lista de "tpoi" en la clase TipoPOI
+	public POI ConstructorLocalComercial(double latitud, double longitud, Rubro rubro){
+		
+		LocalComercial poi = new LocalComercial();
+		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		poi.setRubro(rubro);
+		
+		
+		return poi;
+	}
+	public Rubro getRubro() {
+		return rubro;
+	}
+	public void setRubro(Rubro rubro) {
+		this.rubro = rubro;
+	}
+	
+	
 }
