@@ -1,6 +1,8 @@
 package POI;
 
-public class POI {
+import Geolocation.GeoLocation;
+
+public abstract class POI {
 
 	String callePrincipal;
 	String calleLateral ;
@@ -13,27 +15,27 @@ public class POI {
 	String barrio;
 	String provincia;
 	String pais;
-	double latitud;
-	double longitud;
-	TipoPOI tipo;
+	GeoLocation Ubicacion;
+//	TipoPOI tipo;
 	String comuna;
+	int distancia = 5;
 	
 
 	
 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
-		double lat1 = this.latitud;
-		double lng1 = this.longitud;
-		double lat2 = unPOI.latitud;
-		double lng2 = unPOI.longitud;
+		double lat1 = this.Ubicacion.getLatitudeInDegrees();
+		double lng1 = this.Ubicacion.getLongitudeInDegrees();
+		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
+		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
 		
 		return (distanciaCoord(lat1,lng1,lat2,lng2)*1000 < x);
 	}
 	
 	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {  
         //double radioTierra = 3958.75;//en millas  
-        double radioTierra = 6371;//en kilómetros  
+        double radioTierra = 6371;//en kilï¿½metros  
         double dLat = Math.toRadians(lat2 - lat1);  
         double dLng = Math.toRadians(lng2 - lng1);  
         double sindLat = Math.sin(dLat / 2);  
@@ -136,28 +138,21 @@ public class POI {
 	}
 
 	public double getLatitud() {
-		return latitud;
+		return Ubicacion.getLatitudeInDegrees();
 	}
 
 	public void setLatitud(double latitud) {
-		this.latitud = latitud;
+		this.Ubicacion.setDegLat(latitud);
 	}
 
 	public double getLongitud() {
-		return longitud;
+		return Ubicacion.getLongitudeInDegrees();
 	}
 
 	public void setLongitud(double longitud) {
-		this.longitud = longitud;
+		this.Ubicacion.setDegLon(longitud);
 	}
 
-	public TipoPOI getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoPOI tipo) {
-		this.tipo = tipo;
-	}
 
 	public String getComuna() {
 		return comuna;

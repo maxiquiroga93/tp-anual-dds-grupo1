@@ -1,6 +1,6 @@
 package POI;
 
-public class ParadaColectivo extends TipoPOI {
+public class ParadaColectivo extends POI {
 
 	int distancia = 1;
 	String name = "paradaColectivo";
