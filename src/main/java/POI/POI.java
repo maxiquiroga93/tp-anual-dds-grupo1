@@ -51,6 +51,14 @@ public abstract class POI {
     }  
 
 
+	boolean estaCerca(POI poi){
+		
+		
+		
+		return true;
+	}
+	
+	
 	public String getCallePrincipal() {
 		return callePrincipal;
 	}
