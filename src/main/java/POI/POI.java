@@ -168,17 +168,16 @@ public class POI {
 	public void setComuna(String comuna) {
 		this.comuna = comuna;
 	}
-	
-<<<<<<< HEAD
+
 	public int getCercania(){
 		return cercania;
 	}
 	
 	public void setCecania(int valor){
 		this.cercania=valor;
-=======
+	}
+		
 	public POI getPOI() {
 		return this;
->>>>>>> 1fec5651c6f9b2159abb58dd961515d85bb0b822
 	}
 }
