@@ -4,13 +4,14 @@ public class LocalComercial extends POI {
 
 	String name = "LocalComercial";
 	Rubro rubro; 
+	int cercania = 0;
 	
 	
 	public int getDistancia() {
 		return rubro.getDistancia();
 	}
 	public void setDistancia(int distancia) {
-		this.distancia = distancia;
+		this.cercania = distancia;
 	}
 	public String getName() {
 		return name;

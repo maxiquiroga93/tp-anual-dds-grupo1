@@ -2,15 +2,15 @@ package POI;
 
 public class CGP extends POI {
 
-	int distancia = 0;
+	int cercania = 0;
 	String name = "CGP";
 	
 	
 	public int getDistancia() {
-		return distancia;
+		return cercania;
 	}
 	public void setDistancia(int distancia) {
-		this.distancia = distancia;
+		this.cercania = distancia;
 	}
 	public String getName() {
 		return name;
