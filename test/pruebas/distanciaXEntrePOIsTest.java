@@ -1,25 +1,20 @@
 package pruebas;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import POI.POI;
 
+import Geolocation.GeoLocation;
 
 public class distanciaXEntrePOIsTest {
-	private POI poiUno ;
-	private POI poiDos;
+	public POI poiUno ;
+	public POI poiDos;
+	
 	@Before
 	public void init() {
-		POI poiUno = new POI();
-		POI poiDos = new POI();
+		POI poiUno = POI.construirPOI(-34.5664823, -58.43407810000002);
+		POI poiDos = POI.construirPOI(-34.5658341, -58.43519549999996);
 		
-		poiUno.setLatitud(-34.5664823);
-		poiUno.setLongitud(-58.43407810000002) ;
-		
-		
-		poiDos.setLatitud(-34.5658341);
-		poiDos.setLongitud(-58.43519549999996) ;
 		
 	}
 	@Test
@@ -27,7 +22,8 @@ public class distanciaXEntrePOIsTest {
 	{
 		
 		
-		Assert.assertTrue(poiUno.estaXMetrosDePOI(2000000,poiDos));
-	}
+		Assert.assertEquals(20000, poiUno.estaXMetrosDePOI(2000000,poiDos));
+		}
+	
 
 }
