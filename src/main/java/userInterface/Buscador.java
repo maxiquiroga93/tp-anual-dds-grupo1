@@ -2,6 +2,7 @@ package userInterface;
 
 
 import java.util.ArrayList;
+import Geolocation.GeoLocation;
 import POI.POI;
 
 public class Buscador {
@@ -18,5 +19,14 @@ public class Buscador {
 	public void suspenderPantalla(){
 		
 	}
-
+	
+	// Calculo de cercania
+	public ArrayList<POI> calculoCercania(){
+		
+		
+		
+		
+		
+		return null;
+	}
 }

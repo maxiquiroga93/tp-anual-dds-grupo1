@@ -23,20 +23,6 @@ public class POI {
 				//las subclases tienen el nombre del tipo, de por si.
 	
 
-	
-	
-	// TODO falta detallar mas parametros y restricciones
-	public POI factoryPOI(double latitud, double longitud, String tipo){
-		
-		POI poi = new POI();
-		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
-		poi.setTipo(tipo);
-		
-		
-		return poi;
-	}
-	
-	
 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
