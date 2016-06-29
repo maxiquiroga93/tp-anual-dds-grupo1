@@ -1,6 +1,8 @@
 package POI;
 
-public class POI {
+import Geolocation.GeoLocation;
+
+public abstract class POI {
 
 	String callePrincipal;
 	String calleLateral ;
@@ -13,22 +15,22 @@ public class POI {
 	String barrio;
 	String provincia;
 	String pais;
-	Float latitud;
-	Float longitud;
-	int cercania; //define cuando otro punto es cercano.
+	GeoLocation Ubicacion;
+//	TipoPOI tipo;
+	String comuna;
+	int cercania = 5; //define cuando otro punto es cercano.
 	String tipo; //este atributo hay que ver si nos sirve porque
 				//las subclases tienen el nombre del tipo, de por si.
-	String comuna;
 	
 
 	
 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
-		double lat1 = this.latitud;
-		double lng1 = this.longitud;
-		double lat2 = unPOI.latitud;
-		double lng2 = unPOI.longitud;
+		double lat1 = this.Ubicacion.getLatitudeInDegrees();
+		double lng1 = this.Ubicacion.getLongitudeInDegrees();
+		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
+		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
 		
 		return (distanciaCoord(lat1,lng1,lat2,lng2)*1000 < x);
 	}
@@ -138,28 +140,24 @@ public class POI {
 	}
 
 	public double getLatitud() {
-		return latitud;
+		return Ubicacion.getLatitudeInDegrees();
 	}
 
 	public void setLatitud(double latitud) {
-		this.latitud = latitud;
+		this.Ubicacion.setDegLat(latitud);
 	}
 
 	public double getLongitud() {
-		return longitud;
+		return Ubicacion.getLongitudeInDegrees();
 	}
 
 	public void setLongitud(double longitud) {
-		this.longitud = longitud;
+		this.Ubicacion.setDegLon(longitud);
 	}
 
-	public TipoPOI getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoPOI tipo) {
-		this.tipo = tipo;
-	}
+//	public void setTipo(TipoPOI tipo) {
+//		this.tipo = tipo;
+//	}
 
 	public String getComuna() {
 		return comuna;

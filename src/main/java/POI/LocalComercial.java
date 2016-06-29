@@ -1,6 +1,6 @@
 package POI;
 
-public class LocalComercial extends TipoPOI {
+public class LocalComercial extends POI {
 
 	String name = "LocalComercial";
 	Rubro rubro; 

@@ -1,6 +1,6 @@
 package POI;
 
-public class CGP extends TipoPOI {
+public class CGP extends POI {
 
 	int distancia = 0;
 	String name = "CGP";
