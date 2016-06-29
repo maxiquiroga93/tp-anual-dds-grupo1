@@ -1,0 +1,50 @@
+package POI;
+
+import java.util.Calendar;
+
+public class Banco extends POI {
+	
+	String name = "Banco";
+	
+	public boolean disponible(String servicio){
+		if(servicio == "cajero" || servicio == ""){
+			return true; //el cajero automatico siempre esta disponible
+						//y si no pongo nada pide que devuelva si el banco tiene algun servicio
+						// disponible. Como el cajero siempre está disponible entonces es true.
+		}else{
+			int dia = obtenerDia(); //obtengo el nro del dia de la semana
+			if(1<=dia && dia <=5){
+				return compararHora(); //si es de lunes a viernes, comparo la hora
+			}else{
+				return false; //sino, falso.
+			}
+		}
+	}
+	
+	public int obtenerDia(){
+		int dia =Calendar.DAY_OF_WEEK; //obtengo el nro de dia de la semana
+										//ej: lunes = 1, martes = 2, etc
+		return dia;
+	}
+	
+	public boolean compararHora(){
+		int horaInicio=10;
+		int horaFin=15;
+		if(horaInicio <= Calendar.HOUR_OF_DAY && Calendar.HOUR_OF_DAY < horaFin){
+			return true; //si la hora actual esta entre 10 y 15 es true 
+						//leer HOUR_OF_DAY antes de tocar los operadores de comparacion (?
+		}else{
+			return false; //sino es false
+		}
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String nombre){
+		this.name=nombre;
+	}
+	
+
+}

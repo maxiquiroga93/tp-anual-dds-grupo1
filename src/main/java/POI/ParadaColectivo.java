@@ -2,7 +2,7 @@ package POI;
 
 public class ParadaColectivo extends POI {
 
-	int distancia = 1;
+	int distancia = 1; //esta distancia es en referencia a qué?
 	String name = "paradaColectivo";
 	
 	
@@ -19,7 +19,7 @@ public class ParadaColectivo extends POI {
 		this.name = name;
 	}
 	
-	public boolean disponible(){
+	public boolean disponible(){//funcion para saber si la parada de colectivo está disponible
 		return true;
 	}
 }
