@@ -26,15 +26,16 @@ public class POI {
 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
-		double lat1 = this.Ubicacion.getLatitudeInDegrees();
-		double lng1 = this.Ubicacion.getLongitudeInDegrees();
-		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
-		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
 		
-		return (distanciaCoord(lat1,lng1,lat2,lng2)*1000 < x);
+		
+		return (distanciaCoordDosPOIs(this,unPOI)*1000 < x);
 	}
 	
-	public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {  
+	public static double distanciaCoordDosPOIs(POI unPOI,POI segundoPOI) {  
+		double lat1 = segundoPOI.Ubicacion.getLatitudeInDegrees();
+		double lng1 = segundoPOI.Ubicacion.getLongitudeInDegrees();
+		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
+		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
         //double radioTierra = 3958.75;//en millas  
         double radioTierra = 6371;//en kil�metros  
         double dLat = Math.toRadians(lat2 - lat1);  
@@ -188,20 +189,32 @@ public class POI {
 	public POI getPOI() {
 		return this;
 	}
+	
 
+	public GeoLocation getUbicacion() {
+		return Ubicacion;
+	}
 
-
+	public void setUbicacion(GeoLocation ubicacion) {
+		Ubicacion = ubicacion;
+	}
 
 	public String getTipo() {
 		return tipo;
 	}
 
-
-
-
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public void setCercania(int cercania) {
+		this.cercania = cercania;
+	}
 	
+	public static POI construirPOI(double latitud,double longitud){
+		POI unPOI = new POI();
+		unPOI.Ubicacion = GeoLocation.fromDegrees(latitud,longitud);
+		return unPOI;
+	}
 	
 }

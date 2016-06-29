@@ -4,6 +4,7 @@ package pruebas;
 import POI.POI;
 
 
+import Geolocation.GeoLocation;
 public class worckspace{
 	private POI poiUno ;
 	private POI poiDos;
@@ -12,17 +13,11 @@ public static void main(String[] args) {
 		System.out.println(distanciaCoord(-34.5664823,-58.43407810000002,-34.5658341,-58.43519549999996)*1000<150);
 		
 		
-			POI poiUno = new POI();
-			POI poiDos = new POI();
+			POI poiUno = POI.construirPOI(-34.5664823, -58.43407810000002);
+			POI poiDos = POI.construirPOI(-34.5658341, -58.43519549999996);
 			
-			poiUno.setLatitud(-34.5664823);
-			poiUno.setLongitud(-58.43407810000002) ;
-			
-			
-			poiDos.setLatitud(-34.5658341);
-			poiDos.setLongitud(-58.43519549999996) ;
-			System.out.println(poiUno.estaXMetrosDePOI(2000,poiDos));
-			System.out.println(distanciaCoord(poiUno.getLongitud(),poiUno.getLongitud(),poiUno.getLongitud(),poiUno.getLongitud())*1000);
+			System.out.println(poiUno.estaXMetrosDePOI(125,poiDos));
+			System.out.println(poiUno.distanciaCoordDosPOIs(poiUno,poiDos)*1000);
 		
 	 }
 public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {  
