@@ -14,7 +14,8 @@ public class Banco extends POI {
 						// disponible. Como el cajero siempre está disponible entonces es true.
 		}else{
 			int dia = obtenerDia(); //obtengo el nro del dia de la semana
-			if(1<=dia && dia <=5){
+			if((Calendar.MONDAY <= dia) && (dia <=Calendar.FRIDAY)){
+				dia = 0;
 				return compararHora(); //si es de lunes a viernes, comparo la hora
 			}else{
 				return false; //sino, falso.
@@ -23,15 +24,17 @@ public class Banco extends POI {
 	}
 	
 	public int obtenerDia(){
-		int dia =Calendar.DAY_OF_WEEK; //obtengo el nro de dia de la semana
-										//ej: lunes = 1, martes = 2, etc
+		 Calendar calendario = Calendar.getInstance();
+		 int dia = calendario.get(Calendar.DAY_OF_WEEK);//obtengo el nro de dia de la semana
+				 										//ej: lunes = 1, martes = 2, etc
 		return dia;
 	}
 	
 	public boolean compararHora(){
 		int horaInicio=10;
 		int horaFin=15;
-		if(horaInicio <= Calendar.HOUR_OF_DAY && Calendar.HOUR_OF_DAY < horaFin){
+		Calendar calendario = Calendar.getInstance();
+		if(horaInicio <= calendario.get(Calendar.HOUR_OF_DAY) && calendario.get(Calendar.HOUR_OF_DAY) < horaFin){
 			return true; //si la hora actual esta entre 10 y 15 es true 
 						//leer HOUR_OF_DAY antes de tocar los operadores de comparacion (?
 		}else{
@@ -39,7 +42,7 @@ public class Banco extends POI {
 		}
 	}
 	
-public POI ConstructorBanco(double latitud, double longitud, String nombre){
+public static POI ConstructorBanco(String nombre, double latitud, double longitud){
 		
 		POI poi = new Banco();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);

@@ -1,5 +1,7 @@
+//import POI.CGP;
 
-import POI.CGP;
+/*
+>>>>>>> dc3a0e0260eff8794ac1fc9845568576c963849b
 import POI.POI;
 
 
@@ -48,3 +50,4 @@ public void setPoiDos(POI poiDos) {
 
 }
 
+*/

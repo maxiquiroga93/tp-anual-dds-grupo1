@@ -13,8 +13,8 @@ public class distanciaXEntrePOIsTest {
 	
 	@Before
 	public void init() {
-		 poiUno = CGP.ConstructorCGP(-34.5664823, -58.43407810000002, "poiUno");
-		 poiDos = CGP.ConstructorCGP(-34.5658341, -58.43519549999996, "poiDos");
+		 poiUno = CGP.ConstructorCGP("poiUno", -34.5664823, -58.43407810000002);
+		 poiDos = CGP.ConstructorCGP("poiDos", -34.5658341, -58.43519549999996);
 	}
 	
 	/*
