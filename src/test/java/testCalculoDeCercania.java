@@ -49,7 +49,7 @@ public class testCalculoDeCercania {
 		//Localizado a ~5 cuadras
 		cgp = CGP.ConstructorCGP("cgp",-34.590785, -58.435354);
 		cgp.setComuna(1);
-		Assert.assertFalse(cgp.esCercano(POIreferencia));
+		Assert.assertTrue(cgp.esCercano(POIreferencia));
 	}	
 	
 	
@@ -60,7 +60,7 @@ public class testCalculoDeCercania {
 	@Test
 	public void testcercaniaLocalFalso() {
 		//Definimos el limite de cercania en 2 cuadras
-		rubro.setCercania(2);	
+		rubro.setCercania(200);	
 		//Localizado a ~5 cuadras
 		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
 		Assert.assertFalse(local.esCercano(POIreferencia));
@@ -68,11 +68,11 @@ public class testCalculoDeCercania {
 	
 	@Test
 	public void testcercaniaLocalVerdadero() {
-		//Definimos el limite de cercania en 2 cuadras
-		rubro.setCercania(10);	
+		//Definimos el limite de cercania en 10 cuadras
+		rubro.setCercania(1000);	
 		//Localizado a ~5 cuadras
 		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
-		Assert.assertFalse(local.esCercano(POIreferencia));
+		Assert.assertTrue(local.esCercano(POIreferencia));
 	}
 	//--------------------------------------------------------------------------------------------------------	
 		//PARADA DE COLECTIVO
@@ -91,7 +91,7 @@ public class testCalculoDeCercania {
 		//El limite de cercania es de 1 cuadra
 		//Localizado a ~1/2 cuadra
 		parada = ParadaColectivo.ConstructorParadaColectivo("Parada",-34.593945, -58.430648);
-		Assert.assertFalse(parada.esCercano(POIreferencia));
+		Assert.assertTrue(parada.esCercano(POIreferencia));
 	}
 	
 	//--------------------------------------------------------------------------------------------------------	
@@ -111,7 +111,7 @@ public class testCalculoDeCercania {
 		//El limite de cercania es de 5 cuadras
 		//Localizado a ~1/2 cuadra
 		banco = Banco.ConstructorBanco("Banco",-34.590785, -58.435354);
-		Assert.assertFalse(banco.esCercano(POIreferencia));
+		Assert.assertTrue(banco.esCercano(POIreferencia));
 	}
 
 }

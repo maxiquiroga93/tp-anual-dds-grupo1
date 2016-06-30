@@ -19,7 +19,7 @@ public abstract class POI {
 	GeoLocation Ubicacion;
 //	TipoPOI tipo;
 	int comuna;
-	int cercania = 5; //define cuando otro punto es cercano.
+	int cercania = 500; //define cuando otro punto es cercano.
 	String tipo; //este atributo hay que ver si nos sirve porque
 				//las subclases tienen el nombre del tipo, de por si.
 	
@@ -55,11 +55,13 @@ public abstract class POI {
 	
 	// Se le pregunta a un POI si es cercano.
 	public boolean esCercano(POI poi){
-		
-	if (this.Ubicacion.distanceTo(poi.Ubicacion) < this.getCercania())
-		return true;
-	else
+	double distancia = this.Ubicacion.distanceTo(poi.Ubicacion);
+	int tcercania = this.getCercania();
+	int retval = Double.compare(distancia, tcercania)
+	if (retval > 0)
 		return false;
+	else
+		return true;
 	}
 	
 	
