@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 public class Banco extends POI {
 	
-	String name = "Banco";
 	
 	public boolean disponible(String servicio){
 		if(servicio == "cajero" || servicio == ""){
@@ -38,13 +37,7 @@ public class Banco extends POI {
 		}
 	}
 	
-	public String getName(){
-		return this.name;
-	}
-	
-	public void setName(String nombre){
-		this.name=nombre;
-	}
+
 	
 
 }

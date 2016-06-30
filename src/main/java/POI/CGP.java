@@ -5,7 +5,6 @@ import Geolocation.GeoLocation;
 public class CGP extends POI {
 
 	int cercania = 0;
-	String name = "CGP";
 	
 	
 	public int getDistancia() {
@@ -14,12 +13,7 @@ public class CGP extends POI {
 	public void setDistancia(int distancia) {
 		this.cercania = distancia;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	
 	// Se le pregunta a un POI si es cercano.
 	boolean esCercano(POI poi){
@@ -34,7 +28,7 @@ public class CGP extends POI {
 		
 		POI poi = new CGP();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
-		
+		poi.setNombre(nombre);
 		
 		return poi;
 	}

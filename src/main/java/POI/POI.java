@@ -4,6 +4,7 @@ import Geolocation.GeoLocation;
 
 public abstract class POI {
 
+	String nombre;
 	String callePrincipal;
 	String calleLateral ;
 	int numeracion;
@@ -62,6 +63,14 @@ public abstract class POI {
 	}
 	
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public String getCallePrincipal() {
 		return callePrincipal;
 	}

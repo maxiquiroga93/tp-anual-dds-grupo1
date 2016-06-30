@@ -4,24 +4,19 @@ import Geolocation.GeoLocation;
 
 public class LocalComercial extends POI {
 
-	String name = "LocalComercial";
 	Rubro rubro; 
 	
 	
 	public int getDistancia() {
 		return rubro.getCercania();
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	
-	public POI ConstructorLocalComercial(double latitud, double longitud, Rubro rubro){
+	public POI ConstructorLocalComercial(String nombre, double latitud, double longitud, Rubro rubro){
 		
 		LocalComercial poi = new LocalComercial();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		poi.setNombre(nombre);
 		poi.setRubro(rubro);
 		
 		
