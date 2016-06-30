@@ -2,7 +2,7 @@ package POI;
 
 import Geolocation.GeoLocation;
 
-public class POI {
+public abstract class POI {
 
 	String callePrincipal;
 	String calleLateral ;
@@ -209,12 +209,6 @@ public class POI {
 
 	public void setCercania(int cercania) {
 		this.cercania = cercania;
-	}
-	
-	public static POI construirPOI(double latitud,double longitud){
-		POI unPOI = new POI();
-		unPOI.Ubicacion = GeoLocation.fromDegrees(latitud,longitud);
-		return unPOI;
 	}
 	
 }
