@@ -75,7 +75,7 @@ public class testDisponibilidades {
 	LocalComercial local;
 	@Before
 	public void inicializarLocal(){
-		Rubro rubro = new Rubro();
+		Rubro rubro = new Rubro("supermercado");
 		 local = (LocalComercial) LocalComercial.ConstructorLocalComercial("coto", 23, 51, rubro);
 		local.dias.add(5); //Modificando estos parametros se puede testear todo. No time for writing all :(
 		local.horas.add(2);
