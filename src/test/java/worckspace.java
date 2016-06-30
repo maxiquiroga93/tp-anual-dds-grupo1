@@ -1,4 +1,4 @@
-
+/*
 import POI.POI;
 
 
@@ -47,3 +47,4 @@ public void setPoiDos(POI poiDos) {
 
 }
 
+*/
