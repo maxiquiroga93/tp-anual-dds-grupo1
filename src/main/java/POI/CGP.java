@@ -20,12 +20,13 @@ public class CGP extends POI {
 	}
 	
 	public boolean disponible(String servicio){
+		Calendar calendario = Calendar.getInstance();
 		Iterator<nodoServicioCGP> iterador = Servicios.iterator();
 		while(iterador.hasNext()){
 			nodoServicioCGP nodo = iterador.next(); //Agarro el proximo nodo
 			if (nodo.nombre==servicio || ""==servicio){ //busco un nodo especifico o recorro todo con ""
-				if(nodo.listaDias.contains(Calendar.DAY_OF_WEEK)){ //chequear si el dia esta en la lista de dias disponibles
-					if(nodo.horaInicio<= Calendar.HOUR_OF_DAY && Calendar.HOUR_OF_DAY < nodo.horaFin){ //chequear que el horario actual este disponible
+				if(nodo.listaDias.contains(calendario.get(Calendar.DAY_OF_WEEK))){ //chequear si el dia esta en la lista de dias disponibles
+					if(nodo.horaInicio<= calendario.get(Calendar.HOUR_OF_DAY) && calendario.get(Calendar.HOUR_OF_DAY) < nodo.horaFin){ //chequear que el horario actual este disponible
 						return true;
 					}
 				}
