@@ -227,28 +227,6 @@ public abstract class POI {
 		this.cercania = cercania;
 	}
 	
-	public ArrayList<POI> getPOIs(String textoLibre){
-		String busqueda = textoLibre.toLowerCase();
-		ArrayList<POI> resultado = new ArrayList<POI>();
-		if(isColectivo(busqueda)){
-			//Traigo ParadaColectivo por busqueda
-			resultado = DB_Server.getAllParadasColectivoByLinea(busqueda);
-		} else if (isRubro(busqueda)){
-			//Si encuentra un rubro = textoLibre
-			//Busca todos los POI con ese rubro
-			resultado = DB_Server.getAllLocalesByRubro(busqueda);
-		} else if (isServicio(busqueda)){
-			//Si encuentra un servicio = textoLibre
-			//Buca todos los POI con con servicio LIKE '%busqueda%'
-			resultado = DB_Server.getAllCGPsByServicio(busqueda);
-		} else {
-			//Traigo todos los POI que tengan nombre LIKE '%busqueda%'
-			resultado = DB_Server.getAllPOIByNombre(busqueda);
-		}
-		
-		return resultado;
-	}
-	
 	public boolean determinarCercaniaPOI(GeoLocation ubicacion){
 		double lat1 = this.Ubicacion.getLatitudeInDegrees();
 		double lng1 = this.Ubicacion.getLongitudeInDegrees();
@@ -257,29 +235,5 @@ public abstract class POI {
 		double distancia = distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
 
 		return (this.cercania > distancia);
-	}
-	
-	public boolean isColectivo(String str){
-		// Agregar si encuentra algun colectivo con ese str
-		if(isNumeric(str))
-			return true;
-		
-		return false;
-	}
-	
-	public boolean isRubro(String str){
-		return false;
-	}
-	
-	public boolean isServicio(String str){
-		return false;
-	}
-	
-	public boolean isNumeric(String str) {
-	    try {
-	        Integer.parseInt(str);
-	        return true;
-	    } catch (NumberFormatException nfe) {}
-	    return false;
 	}
 }

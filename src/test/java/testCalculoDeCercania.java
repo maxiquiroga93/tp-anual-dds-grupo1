@@ -25,7 +25,7 @@ public class testCalculoDeCercania {
 	public void init() {
 		// Definimos un POI de referencia contra el cual medir distancias
 		POIreferencia = CGP.ConstructorCGP("POIreferencia",-34.594269, -58.430131);
-		rubro = new Rubro();
+		rubro = new Rubro("rubro");
 		
 	}
 	//--------------------------------------------------------------------------------------------------------	
@@ -71,7 +71,9 @@ public class testCalculoDeCercania {
 		//Definimos el limite de cercania en 10 cuadras
 		rubro.setCercania(1000);	
 		//Localizado a ~5 cuadras
-		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
+		//-34.594269, -58.430131
+		//local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
+		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.432254,rubro);
 		Assert.assertTrue(local.esCercano(POIreferencia));
 	}
 	//--------------------------------------------------------------------------------------------------------	
@@ -110,7 +112,8 @@ public class testCalculoDeCercania {
 	public void testcercaniaBancoVerdadero() {
 		//El limite de cercania es de 5 cuadras
 		//Localizado a ~1/2 cuadra
-		banco = Banco.ConstructorBanco("Banco",-34.590785, -58.435354);
+		//banco = Banco.ConstructorBanco("Banco",-34.590785, -58.435354); original
+		banco = Banco.ConstructorBanco("Banco",-34.592985, -58.430154);
 		Assert.assertTrue(banco.esCercano(POIreferencia));
 	}
 
