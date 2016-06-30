@@ -2,6 +2,8 @@ package POI;
 
 import java.util.Calendar;
 
+import Geolocation.GeoLocation;
+
 public class Banco extends POI {
 	
 	
@@ -37,6 +39,14 @@ public class Banco extends POI {
 		}
 	}
 	
+public POI ConstructorBanco(double latitud, double longitud, String nombre){
+		
+		POI poi = new Banco();
+		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		poi.setNombre(nombre);
+		
+		return poi;
+	}
 
 	
 
