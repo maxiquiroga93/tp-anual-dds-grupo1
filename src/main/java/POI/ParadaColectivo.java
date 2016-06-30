@@ -4,7 +4,7 @@ import Geolocation.GeoLocation;
 
 public class ParadaColectivo extends POI {
 
-	int cercania = 1; //esta distancia es en referencia a qué?
+	int cercania = 100; //esta distancia es en referencia a qué?
 	
 	
 	public int getDistancia() {

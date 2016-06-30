@@ -1,9 +1,17 @@
 package POI;
 
 public class Rubro {
+	private String nombre;
+	private int cercania;
 
-	int cercania;
-
+	public Rubro(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public String getNombre(){
+		return this.nombre;
+	}
+	
 	public int getCercania() {
 		return cercania;
 	}

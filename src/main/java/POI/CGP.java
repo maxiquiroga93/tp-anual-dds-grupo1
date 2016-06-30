@@ -7,7 +7,8 @@ import java.util.Iterator;
 import Geolocation.GeoLocation;
 
 public class CGP extends POI {
-	int cercania = 0;
+
+
 	public static ArrayList <nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
 	
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin){
@@ -44,9 +45,12 @@ public class CGP extends POI {
 
 	
 	// Se le pregunta a un POI si es cercano.
+	@Override
 	public boolean esCercano(POI poi){
-		
-	if (this.getComuna() == poi.getComuna())
+
+	Integer comuna1 = this.getComuna();
+	int comuna2 = poi.getComuna();
+	if (comuna1.equals(comuna2))
 		return true;
 	else
 		return false;
