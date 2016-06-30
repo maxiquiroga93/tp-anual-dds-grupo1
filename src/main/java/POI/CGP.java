@@ -24,7 +24,7 @@ public class CGP extends POI {
 		return false;
 	}
 	
-	public POI ConstructorCGP(double latitud, double longitud, String nombre){
+	public static POI ConstructorCGP(String nombre,double latitud, double longitud){
 		
 		POI poi = new CGP();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
