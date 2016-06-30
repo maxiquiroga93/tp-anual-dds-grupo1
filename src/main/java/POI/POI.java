@@ -63,7 +63,7 @@ public abstract class POI {
 	public boolean esCercano(POI poi){
 	double distancia = this.Ubicacion.distanceTo(poi.Ubicacion);
 	int tcercania = this.getCercania();
-	int retval = Double.compare(distancia, tcercania)
+	int retval = Double.compare(distancia, tcercania);
 	if (retval > 0)
 		return false;
 	else
