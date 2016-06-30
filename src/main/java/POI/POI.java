@@ -1,5 +1,8 @@
 package POI;
 
+import java.util.ArrayList;
+
+import DB.DB_Server;
 import Geolocation.GeoLocation;
 
 public abstract class POI {
@@ -27,9 +30,23 @@ public abstract class POI {
 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
-		
-		
 		return (distanciaCoordDosPOIs(this,unPOI)*1000 < x);
+	}
+	
+	public static double distanciaEntreDosPuntos(double lat1, double lng1, 
+			double lat2, double lng2){
+		//double radioTierra = 3958.75;//en millas
+		double radioTierra = 6371;//en kil�metros
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLng = Math.toRadians(lng2 - lng1);
+        double sindLat = Math.sin(dLat / 2);
+        double sindLng = Math.sin(dLng / 2);
+        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)  
+                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));  
+        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
+        double distancia = radioTierra * va2;
+
+        return distancia;
 	}
 	
 	public static double distanciaCoordDosPOIs(POI unPOI,POI segundoPOI) {  
@@ -37,19 +54,8 @@ public abstract class POI {
 		double lng1 = segundoPOI.Ubicacion.getLongitudeInDegrees();
 		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
 		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
-        //double radioTierra = 3958.75;//en millas  
-        double radioTierra = 6371;//en kil�metros  
-        double dLat = Math.toRadians(lat2 - lat1);  
-        double dLng = Math.toRadians(lng2 - lng1);  
-        double sindLat = Math.sin(dLat / 2);  
-        double sindLng = Math.sin(dLng / 2);  
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)  
-                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));  
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
-        double distancia = radioTierra * va2;  
-   
-        return distancia;  
-    }  
+		return distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
+	}
 
 
 	
@@ -201,7 +207,6 @@ public abstract class POI {
 		return this;
 	}
 	
-
 	public GeoLocation getUbicacion() {
 		return Ubicacion;
 	}
@@ -222,4 +227,59 @@ public abstract class POI {
 		this.cercania = cercania;
 	}
 	
+	public ArrayList<POI> getPOIs(String textoLibre){
+		String busqueda = textoLibre.toLowerCase();
+		ArrayList<POI> resultado = new ArrayList<POI>();
+		if(isColectivo(busqueda)){
+			//Traigo ParadaColectivo por busqueda
+			resultado = DB_Server.getAllParadasColectivoByLinea(busqueda);
+		} else if (isRubro(busqueda)){
+			//Si encuentra un rubro = textoLibre
+			//Busca todos los POI con ese rubro
+			resultado = DB_Server.getAllLocalesByRubro(busqueda);
+		} else if (isServicio(busqueda)){
+			//Si encuentra un servicio = textoLibre
+			//Buca todos los POI con con servicio LIKE '%busqueda%'
+			resultado = DB_Server.getAllCGPsByServicio(busqueda);
+		} else {
+			//Traigo todos los POI que tengan nombre LIKE '%busqueda%'
+			resultado = DB_Server.getAllPOIByNombre(busqueda);
+		}
+		
+		return resultado;
+	}
+	
+	public boolean determinarCercaniaPOI(GeoLocation ubicacion){
+		double lat1 = this.Ubicacion.getLatitudeInDegrees();
+		double lng1 = this.Ubicacion.getLongitudeInDegrees();
+		double lat2 = ubicacion.getLatitudeInDegrees();
+		double lng2 = ubicacion.getLongitudeInDegrees();
+		double distancia = distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
+
+		return (this.cercania > distancia);
+	}
+	
+	public boolean isColectivo(String str){
+		// Agregar si encuentra algun colectivo con ese str
+		if(isNumeric(str))
+			return true;
+		
+		return false;
+	}
+	
+	public boolean isRubro(String str){
+		return false;
+	}
+	
+	public boolean isServicio(String str){
+		return false;
+	}
+	
+	public boolean isNumeric(String str) {
+	    try {
+	        Integer.parseInt(str);
+	        return true;
+	    } catch (NumberFormatException nfe) {}
+	    return false;
+	}
 }

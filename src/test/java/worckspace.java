@@ -1,4 +1,7 @@
+//import POI.CGP;
+
 /*
+>>>>>>> dc3a0e0260eff8794ac1fc9845568576c963849b
 import POI.POI;
 
 
@@ -11,8 +14,8 @@ public static void main(String[] args) {
 		System.out.println(distanciaCoord(-34.5664823,-58.43407810000002,-34.5658341,-58.43519549999996)*1000<150);
 		
 		
-			POI poiUno = POI.construirPOI(-34.5664823, -58.43407810000002);
-			POI poiDos = POI.construirPOI(-34.5658341, -58.43519549999996);
+			POI poiUno = CGP.ConstructorCGP(-34.5664823, -58.43407810000002, "poiUno");
+			POI poiDos = CGP.ConstructorCGP(-34.5658341, -58.43519549999996, "poiDos");
 			
 			System.out.println(poiUno.estaXMetrosDePOI(125,poiDos));
 			System.out.println(poiUno.distanciaCoordDosPOIs(poiUno,poiDos)*1000);
