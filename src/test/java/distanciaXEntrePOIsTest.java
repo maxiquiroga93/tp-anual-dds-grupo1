@@ -3,7 +3,6 @@ import org.junit.Before;
 import org.junit.Test;
 import POI.POI;
 
-import Geolocation.GeoLocation;
 
 public class distanciaXEntrePOIsTest {
 	public POI poiUno ;
@@ -21,7 +20,7 @@ public class distanciaXEntrePOIsTest {
 	{
 		
 		
-		Assert.assertEquals(20000, poiUno.estaXMetrosDePOI(2000000,poiDos));
+		Assert.assertTrue(poiUno.estaXMetrosDePOI(2000000,poiDos));
 		}
 	
 
