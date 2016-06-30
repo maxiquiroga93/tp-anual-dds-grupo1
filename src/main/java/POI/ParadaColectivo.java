@@ -19,7 +19,7 @@ public class ParadaColectivo extends POI {
 		return true;
 	}
 	
-	public POI ConstructorParadaColectivo(double latitud, double longitud, String nombre){
+	public static POI ConstructorParadaColectivo(double latitud, double longitud, String nombre){
 		
 		ParadaColectivo poi = new ParadaColectivo();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
