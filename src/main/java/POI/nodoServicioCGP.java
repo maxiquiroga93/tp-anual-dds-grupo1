@@ -25,4 +25,8 @@ public class nodoServicioCGP {
 		this.horaInicio=inicio;
 		this.horaFin = fin;
 	}
+
+	public boolean contiene(String busqueda) {
+		return this.nombre.contains(busqueda);
+	}
 }

@@ -64,5 +64,14 @@ public class CGP extends POI {
 		
 		return poi;
 	}
+
+	public boolean contieneServicio(String busqueda) {
+		// TODO Auto-generated method stub
+		for(nodoServicioCGP servicio : this.Servicios){
+			if(servicio.contiene(busqueda))
+				return true;
+		}
+		return false;
+	}
 	
 }

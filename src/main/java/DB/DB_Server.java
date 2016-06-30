@@ -45,7 +45,7 @@ public class DB_Server {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
 			if(poi.getTipo().equals("CGP")){
-				if(((CGP)poi).Servicios.contains(busqueda))
+				if(((CGP)poi).contieneServicio(busqueda))
 					respuesta.add(poi);
 			}
 		}
@@ -56,7 +56,8 @@ public class DB_Server {
 		// TODO Auto-generated method stub
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1 || poi.getNombre().contains(busqueda))
+			//if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1 || poi.getNombre().contains(busqueda))
+			if(poi.getNombre().contains(busqueda))
 				respuesta.add(poi);
 		}
 		return respuesta;

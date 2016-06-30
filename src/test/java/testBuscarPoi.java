@@ -66,9 +66,9 @@ public class testBuscarPoi {
 	
 	@Test
 	public void testBuscarPorNombre(){
-		String nombre = "cgp";
+		String nombre = "cgpUno";
 		Assert.assertNotNull(poiController.getPOIs(nombre));
-		Assert.assertTrue(poiController.getPOIs(nombre).size() == 2);
+		Assert.assertTrue(poiController.getPOIs(nombre).size() == 1);
 	}
 	
 	@Test
