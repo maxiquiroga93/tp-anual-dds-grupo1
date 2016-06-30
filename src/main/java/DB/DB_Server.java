@@ -33,16 +33,13 @@ public class DB_Server {
 
 	public static ArrayList<POI> getAllLocalesByRubro(String busqueda) {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
-		ArrayList<LocalComercial> locales = new ArrayList<LocalComercial>();
 		for(POI poi : listadoPOI){
 			if(poi.getTipo().equals("LocalComercial")){
-				locales.add((LocalComercial) poi);
-				for(LocalComercial local : locales ){
-					if(local.getRubro().equals(busqueda))
-						respuesta.add(local);
+				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(busqueda)){
+					respuesta.add(poi);
 				}
 			}
-		}
+		}		
 		return respuesta;
 	}
 
@@ -78,7 +75,7 @@ public class DB_Server {
 	public static boolean existeRubro(String str) {
 		for(POI poi : listadoPOI){
 			if(poi.getTipo().equals("LocalComercial")){
-				if(((LocalComercial)poi).getRubro().getNombre().equals(str))
+				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(str))
 					return true;
 			}
 		}
