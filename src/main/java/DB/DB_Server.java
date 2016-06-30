@@ -7,8 +7,6 @@ import POI.CGP;
 import POI.LocalComercial;
 import POI.POI;
 import POI.POIcontroller;
-import POI.ParadaColectivo;
-import POI.Rubro;
  
 public class DB_Server {
 
@@ -58,7 +56,7 @@ public class DB_Server {
 		// TODO Auto-generated method stub
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1)
+			if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1 || poi.getNombre().contains(busqueda))
 				respuesta.add(poi);
 		}
 		return respuesta;
