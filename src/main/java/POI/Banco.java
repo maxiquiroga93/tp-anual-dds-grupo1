@@ -39,7 +39,7 @@ public class Banco extends POI {
 		}
 	}
 	
-public POI ConstructorBanco(double latitud, double longitud, String nombre){
+public static POI ConstructorBanco(String nombre, double latitud, double longitud){
 		
 		POI poi = new Banco();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);

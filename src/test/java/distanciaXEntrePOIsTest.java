@@ -1,4 +1,4 @@
-import org.junit.Assert;
+/*import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import POI.POI;
@@ -25,3 +25,4 @@ public class distanciaXEntrePOIsTest {
 	
 
 }
+*/

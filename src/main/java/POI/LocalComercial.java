@@ -17,7 +17,7 @@ public class LocalComercial extends POI {
 	}
 
 	
-	public POI ConstructorLocalComercial(String nombre, double latitud, double longitud, Rubro rubro){
+	public static POI ConstructorLocalComercial(String nombre, double latitud, double longitud, Rubro rubro){
 		
 		LocalComercial poi = new LocalComercial();
 		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
