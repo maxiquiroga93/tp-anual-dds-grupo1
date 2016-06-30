@@ -23,6 +23,7 @@ public class testBuscarPoi {
 		POI cgpDos = CGP.ConstructorCGP("cgpDos",-34.5658341, -58.43519549999996);
 		POI localUno = LocalComercial.ConstructorLocalComercial("localUno", -34.5658341, -58.43519549999996, unRubro);
 		POI localDos = LocalComercial.ConstructorLocalComercial("localDos", -34.5658341, -58.43519549999996, unRubro);
+		POI localTres = LocalComercial.ConstructorLocalComercial("localTres", -34.5658341, -58.43519549999996, unRubro);
 		POI pColUno = ParadaColectivo.ConstructorParadaColectivo("114",-34.5658341, -58.43519549999996);
 		POI pColDos = ParadaColectivo.ConstructorParadaColectivo("114",-34.5658341, -58.43519549999996);
 		POI pColTres = ParadaColectivo.ConstructorParadaColectivo("107",-34.5658341, -58.43519549999996);
@@ -32,6 +33,7 @@ public class testBuscarPoi {
 		cgpDos.setTipo("CGP");
 		localUno.setTipo("LocalComercial");
 		localDos.setTipo("LocalComercial");
+		localTres.setTipo("LocalComercial");
 		pColUno.setTipo("ParadaColectivo");
 		pColDos.setTipo("ParadaColectivo");
 		pColTres.setTipo("ParadaColectivo");
@@ -40,7 +42,8 @@ public class testBuscarPoi {
 		server.getListado().add(cgpUno);
 		server.getListado().add(cgpDos);
 		server.getListado().add(localUno);
-		server.getListado().add(localDos); 
+		server.getListado().add(localDos);
+		server.getListado().add(localTres);
 		server.getListado().add(pColUno);
 		server.getListado().add(pColDos); 
 		server.getListado().add(pColTres); 
@@ -51,11 +54,25 @@ public class testBuscarPoi {
 	public void testBuscarColectivo(){
 		String linea = "114";
 		Assert.assertNotNull(poiController.getPOIs(linea));
+		Assert.assertTrue(poiController.getPOIs(linea).size() == 2);
 	}
 	
 	@Test
 	public void testBuscarPorRubro(){
-		String linea = "unRubro";
-		Assert.assertNotNull(poiController.getPOIs(linea));
+		String rubro = "unRubro";
+		Assert.assertNotNull(poiController.getPOIs(rubro));
+		Assert.assertTrue(poiController.getPOIs(rubro).size() == 3);
+	}
+	
+	@Test
+	public void testBuscarPorNombre(){
+		String nombre = "cgp";
+		Assert.assertNotNull(poiController.getPOIs(nombre));
+	}
+	
+	@Test
+	public void testBuscarPorServicio(){
+		String servicio = "servicio";
+		Assert.assertNotNull(poiController.getPOIs(servicio));
 	}
 }
