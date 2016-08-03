@@ -40,6 +40,18 @@ public class DB_Server {
 		}		
 		return respuesta;
 	}
+	
+	public static ArrayList<POI> getAllLocalesByEtiqueta(String busqueda) {
+		ArrayList<POI> respuesta = new ArrayList<POI>();
+		for(POI poi : listadoPOI){
+			if(poi.buscarEtiqueta(busqueda)){
+				
+					respuesta.add(poi);
+				
+			}
+		}		
+		return respuesta;
+	}
 
 	public static ArrayList<POI> getAllCGPsByServicio(String busqueda) {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
@@ -52,16 +64,7 @@ public class DB_Server {
 		return respuesta;
 	}
 
-	public static ArrayList<POI> getAllPOIByNombre(String busqueda) {
-		// TODO Auto-generated method stub
-		ArrayList<POI> respuesta = new ArrayList<POI>();
-		for(POI poi : listadoPOI){
-			//if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1 || poi.getNombre().contains(busqueda))
-			if(poi.getNombre().contains(busqueda))
-				respuesta.add(poi);
-		}
-		return respuesta;
-	}
+	
 
 	public static boolean existeLinea(String str) {
 		for(POI poi : listadoPOI){
@@ -75,6 +78,16 @@ public class DB_Server {
 		for(POI poi : listadoPOI){
 			if(poi.getTipo().equals("LocalComercial")){
 				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(str))
+					return true;
+			}
+		}
+		return false;
+	}
+	/*busca en las etiquetas que tiene cada poi en una lista de pois*/
+	public static boolean existeConEtiquetaNombre(String str) {
+		for(POI poi : listadoPOI){
+			if(poi.buscarEtiqueta(str)){
+				
 					return true;
 			}
 		}

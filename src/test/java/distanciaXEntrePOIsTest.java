@@ -27,9 +27,5 @@ public class distanciaXEntrePOIsTest {
 		Assert.assertTrue(poiUno.estaXMetrosDePOI(2000000,poiDos));
 	}
 	
-	@Test
-	public void testRapiditoComoVos_Gil(){
-		DB_Server server = new DB_Server();
-		server.getAllLocalesByRubro("unStringGato");
-	}
+	
 }

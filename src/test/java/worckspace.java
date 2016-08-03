@@ -1,13 +1,37 @@
 //import POI.CGP;
 
-/*
->>>>>>> dc3a0e0260eff8794ac1fc9845568576c963849b
+
+import POI.Banco;
+//import POI.FlyweightFactoryEtiqueta;
 import POI.POI;
-
-
-import Geolocation.GeoLocation;
 public class worckspace{
-	private POI poiUno ;
+	
+	
+	public static void main(String[] args){
+		
+		POI unBanco =Banco.ConstructorBanco("unBanco",11,11);
+		
+		String[] listaNombres={"a","b","a"};
+		
+		unBanco.setEtiquetas(listaNombres);
+		
+		/*imprimir por searado*/
+		System.out.println(unBanco.getEtiqueta(0));
+		System.out.println(unBanco.getEtiqueta(2));
+		/*imprimir todo*/
+		String[] list =unBanco.getEtiquetas();
+		for (int i = 0; i < list.length; i++){
+			System.out.println(list[i]);
+			}
+		System.out.println(unBanco.buscarEtiqueta("d"));
+	
+		
+		
+	}
+		
+}
+	
+/*	private POI poiUno ;
 	private POI poiDos;
 public static void main(String[] args) {
 	

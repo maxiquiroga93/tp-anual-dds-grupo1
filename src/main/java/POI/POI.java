@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import DB.DB_Server;
 import Geolocation.GeoLocation;
+import POI.FlyweightFactoryEtiqueta;
+import POI.Etiqueta;
 
 public abstract class POI {
 
@@ -25,6 +27,7 @@ public abstract class POI {
 	int cercania = 500; //define cuando otro punto es cercano.
 	String tipo; //este atributo hay que ver si nos sirve porque
 				//las subclases tienen el nombre del tipo, de por si.
+	Etiqueta[] etiquetas;//pueden ser varias y se crean a travez de FlyweightFactoryEtiqueta.listarEtiquetas(String etiquetas[])
 	
 
 
@@ -226,6 +229,39 @@ public abstract class POI {
 	public void setCercania(int cercania) {
 		this.cercania = cercania;
 	}
+	public void setEtiquetas(String nombres[]) {
+		this.etiquetas = new Etiqueta[nombres.length];
+		for (int i = 0; i < nombres.length; i++){
+		this.etiquetas[i] = FlyweightFactoryEtiqueta.getEtiqueta(nombres[i]);
+		}
+	}
+	
+	
+	public String[] getEtiquetas() {
+		String[] nombres= new String[etiquetas.length];
+		for (int i = 0; i < etiquetas.length; i++){
+			nombres[i]=etiquetas[i].nombre;
+			}
+			   return nombres;
+	}
+	public String getEtiqueta(int num) {
+		
+		
+			   return etiquetas[num].nombre;
+	}
+	
+	public Boolean buscarEtiqueta(String etiquetaNombre) {
+		
+		for (int i = 0; i < etiquetas.length; i++){
+			if(etiquetaNombre==this.etiquetas[i].nombre){
+				return true;
+			}			
+			}
+		return false;
+		
+		   
+}
+	
 	
 	public boolean determinarCercaniaPOI(GeoLocation ubicacion){
 		double lat1 = this.Ubicacion.getLatitudeInDegrees();
