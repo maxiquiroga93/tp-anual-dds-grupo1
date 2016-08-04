@@ -9,25 +9,32 @@ import Geolocation.GeoLocation;
 
 public class CGP extends POI {
 
-	public ArrayList <nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
-	
-	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin){
+	public ArrayList<nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
+
+	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
 		nodoServicioCGP nuevoNodo = new nodoServicioCGP();
-		nuevoNodo.nombre=nombre;
+		nuevoNodo.nombre = nombre;
 		nuevoNodo.listaDias = dias;
-		nuevoNodo.horaInicio=horaInicio;
+		nuevoNodo.horaInicio = horaInicio;
 		nuevoNodo.horaFin = horaFin;
 		Servicios.add(nuevoNodo);
 	}
-	
-	public boolean disponible(String servicio){
+
+	public boolean disponible(String servicio) {
 		Calendar calendario = Calendar.getInstance();
 		Iterator<nodoServicioCGP> iterador = Servicios.iterator();
-		while(iterador.hasNext()){
-			nodoServicioCGP nodo = iterador.next(); //Agarro el proximo nodo
-			if (nodo.getName()==servicio || ""==servicio){ //busco un nodo especifico o recorro todo con ""
-				if(nodo.listaDias.contains(calendario.get(Calendar.DAY_OF_WEEK))){ //chequear si el dia esta en la lista de dias disponibles
-					if(nodo.horaInicio<= calendario.get(Calendar.HOUR_OF_DAY) && calendario.get(Calendar.HOUR_OF_DAY) < nodo.horaFin){ //chequear que el horario actual este disponible
+		while (iterador.hasNext()) {
+			// Agarro el proximo nodo, busco un nodo especifico o recorro todo
+			// con ""
+			nodoServicioCGP nodo = iterador.next();
+			if (nodo.getName() == servicio || "" == servicio) {
+
+				if (nodo.listaDias.contains(calendario.get(Calendar.DAY_OF_WEEK))) {
+					// chequear si el dia esta en la lista de dias disponibles
+					// que el horario actual este disponible
+					if (nodo.horaInicio <= calendario.get(Calendar.HOUR_OF_DAY)
+							&& calendario.get(Calendar.HOUR_OF_DAY) < nodo.horaFin) { // chequear
+
 						return true;
 					}
 				}
@@ -35,46 +42,46 @@ public class CGP extends POI {
 		}
 		return false;
 	}
-	
+
 	public int getDistancia() {
 		return cercania;
 	}
-	
+
 	public void setDistancia(int distancia) {
 		this.cercania = distancia;
 	}
-	
+
 	// Se le pregunta a un POI si es cercano.
 	@Override
-	public boolean esCercano(POI poi){
+	public boolean esCercano(POI poi) {
 
-	Integer comuna1 = this.getComuna();
-	int comuna2 = poi.getComuna();
-	if (comuna1.equals(comuna2))
-		return true;
-	else
-		return false;
+		Integer comuna1 = this.getComuna();
+		int comuna2 = poi.getComuna();
+		if (comuna1.equals(comuna2))
+			return true;
+		else
+			return false;
 	}
-	
-	public CGP(String nombre,double latitud, double longitud){
+
+	public CGP(String nombre, double latitud, double longitud) {
 		this.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
 		this.setNombre(nombre);
 	}
 
 	public boolean contieneServicio(String busqueda) {
-		for(nodoServicioCGP servicio : this.Servicios){
-			if(servicio.contiene(busqueda))
+		for (nodoServicioCGP servicio : this.Servicios) {
+			if (servicio.contiene(busqueda))
 				return true;
 		}
 		return false;
 	}
-	
+
 	@Override
-	public void setDatos(POI_DTO dto){
+	public void setDatos(POI_DTO dto) {
 		super.setDatos(dto);
-		for(nodoServicioCGP servicio : dto.getServicios()){
-				this.agregarServicio(servicio.getName(), 
-						servicio.getListaDias(), servicio.getHoraInicio(), servicio.getHoraFin());
+		for (nodoServicioCGP servicio : dto.getServicios()) {
+			this.agregarServicio(servicio.getName(), servicio.getListaDias(), servicio.getHoraInicio(),
+					servicio.getHoraFin());
 		}
 	}
 
@@ -85,6 +92,5 @@ public class CGP extends POI {
 	public void setServicio(nodoServicioCGP servicio) {
 		Servicios.add(servicio);
 	}
-	
-	
+
 }

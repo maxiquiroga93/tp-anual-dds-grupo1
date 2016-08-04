@@ -17,14 +17,16 @@ public class POIcontroller {
 			//Si encuentra un rubro = textoLibre
 			//Busca todos los POI con ese rubro
 			resultado = DB_Server.getAllLocalesByRubro(busqueda);
+		} else if (isEtiqueta(busqueda)){
+			//Si encuentra una etiqueta entre la lista de cada POI 
+			//Busca todos los POI con esa etiqueta
+			resultado = DB_Server.getAllLocalesByEtiqueta(busqueda);
+		
 		} else if (isServicio(busqueda)){
 			//Si encuentra un servicio = textoLibre
 			//Buca todos los POI con con servicio LIKE '%busqueda%'
 			resultado = DB_Server.getAllCGPsByServicio(busqueda);
-		} else {
-			//Traigo todos los POI que tengan nombre LIKE '%busqueda%'
-			resultado = DB_Server.getAllPOIByNombre(busqueda);
-		}
+		} 
 		
 		return resultado;
 	}
@@ -40,6 +42,10 @@ public class POIcontroller {
 	private boolean isRubro(String str){
 		return (DB_Server.existeRubro(str));
 	}
+	public boolean isEtiqueta(String str){
+	return DB_Server.existeConEtiquetaNombre(str);
+	}
+	
 	
 	private boolean isServicio(String str){
 		return (DB_Server.existeServicio(str));

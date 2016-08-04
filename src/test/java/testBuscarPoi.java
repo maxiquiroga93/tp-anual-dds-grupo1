@@ -40,6 +40,19 @@ public class testBuscarPoi {
 		pColTres.setTipo(TiposPOI.PARADA_COLECTIVO);
 		pColCuatro.setTipo(TiposPOI.PARADA_COLECTIVO);
 		
+		String[] listaEtiquetaNombres1={"a","b","c"};
+		String[] listaEtiquetaNombres2={"a","e"};
+		String[] listaEtiquetaNombres3={"d"};
+		cgpUno.setEtiquetas(listaEtiquetaNombres1);
+		cgpDos.setEtiquetas(listaEtiquetaNombres1);
+		localUno.setEtiquetas(listaEtiquetaNombres1);
+		localDos.setEtiquetas(listaEtiquetaNombres2);
+		localTres.setEtiquetas(listaEtiquetaNombres2);
+		pColUno.setEtiquetas(listaEtiquetaNombres2);
+		pColDos.setEtiquetas(listaEtiquetaNombres2);
+		pColTres.setEtiquetas(listaEtiquetaNombres2);
+		pColCuatro.setEtiquetas(listaEtiquetaNombres3);
+		
 		server.getListado().add(cgpUno);
 		server.getListado().add(cgpDos);
 		server.getListado().add(localUno);
@@ -64,14 +77,14 @@ public class testBuscarPoi {
 		Assert.assertNotNull(poiController.getPOIs(rubro));
 		Assert.assertTrue(poiController.getPOIs(rubro).size() == 3);
 	}
-	
 	@Test
-	public void testBuscarPorNombre(){
-		String nombre = "cgpUno";
-		Assert.assertNotNull(poiController.getPOIs(nombre));
-		Assert.assertTrue(poiController.getPOIs(nombre).size() == 1);
+	public void testBuscarPorEtiquetaNombre(){
+		String etiquetaNombre = "a";
+		Assert.assertNotNull(poiController.getPOIs(etiquetaNombre));
+		Assert.assertTrue(poiController.getPOIs(etiquetaNombre).size() == 8);
 	}
 	
+
 	@Test
 	public void testBuscarPorServicio(){
 		String servicio = "servicio";

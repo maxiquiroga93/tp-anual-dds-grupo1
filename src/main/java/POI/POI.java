@@ -2,13 +2,15 @@ package POI;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import POI.FlyweightFactoryEtiqueta;
+import POI.Etiqueta;
 
 public abstract class POI {
 
 	Long id;
 	String nombre;
 	String callePrincipal;
-	String calleLateral ;
+	String calleLateral;
 	int numeracion;
 	int piso;
 	String departamento;
@@ -21,51 +23,54 @@ public abstract class POI {
 	GeoLocation Ubicacion;
 	// TipoPOI tipo;
 	int comuna;
-	//define cuando otro punto es cercano.
+	// define cuando otro punto es cercano.
 	int cercania = 500;
-	//este atributo hay que ver si nos sirve porque
-	//las subclases tienen el nombre del tipo, de por si.
-	TiposPOI tipo; 
-	
-	public boolean estaXMetrosDePOI(double x, POI unPOI){
-		return (distanciaCoordDosPOIs(this,unPOI)*1000 < x);
-	}
-	
-	public static double distanciaEntreDosPuntos(double lat1, double lng1, 
-			double lat2, double lng2){
-		//double radioTierra = 3958.75;//en millas
-		double radioTierra = 6371;//en kil�metros
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLng = Math.toRadians(lng2 - lng1);
-        double sindLat = Math.sin(dLat / 2);
-        double sindLng = Math.sin(dLng / 2);
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)  
-                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));  
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));  
-        double distancia = radioTierra * va2;
+	// este atributo hay que ver si nos sirve porque
+	// las subclases tienen el nombre del tipo, de por si.
+	TiposPOI tipo;
 
-        return distancia;
+	// pueden ser varias y se crean a travez de
+	// FlyweightFactoryEtiqueta.listarEtiquetas(String etiquetas[])
+	Etiqueta[] etiquetas;
+
+	public boolean estaXMetrosDePOI(double x, POI unPOI) {
+		return (distanciaCoordDosPOIs(this, unPOI) * 1000 < x);
 	}
-	
-	public static double distanciaCoordDosPOIs(POI unPOI,POI segundoPOI) {  
+
+	public static double distanciaEntreDosPuntos(double lat1, double lng1, double lat2, double lng2) {
+		// double radioTierra = 3958.75;//en millas
+		double radioTierra = 6371;// en kil�metros
+		double dLat = Math.toRadians(lat2 - lat1);
+		double dLng = Math.toRadians(lng2 - lng1);
+		double sindLat = Math.sin(dLat / 2);
+		double sindLng = Math.sin(dLng / 2);
+		double va1 = Math.pow(sindLat, 2)
+				+ Math.pow(sindLng, 2) * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
+		double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
+		double distancia = radioTierra * va2;
+
+		return distancia;
+	}
+
+	public static double distanciaCoordDosPOIs(POI unPOI, POI segundoPOI) {
 		double lat1 = segundoPOI.Ubicacion.getLatitudeInDegrees();
 		double lng1 = segundoPOI.Ubicacion.getLongitudeInDegrees();
 		double lat2 = unPOI.Ubicacion.getLatitudeInDegrees();
 		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
-		return distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
+		return distanciaEntreDosPuntos(lat1, lng1, lat2, lng2);
 	}
-	
+
 	// Se le pregunta a un POI si es cercano.
-	public boolean esCercano(POI poi){
-	double distancia = this.Ubicacion.distanceTo(poi.Ubicacion);
-	int tcercania = this.getCercania();
-	int retval = Double.compare(distancia, tcercania);
-	if (retval > 0)
-		return false;
-	else
-		return true;
+	public boolean esCercano(POI poi) {
+		double distancia = this.Ubicacion.distanceTo(poi.Ubicacion);
+		int tcercania = this.getCercania();
+		int retval = Double.compare(distancia, tcercania);
+		if (retval > 0)
+			return false;
+		else
+			return true;
 	}
-		
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -186,18 +191,18 @@ public abstract class POI {
 		this.comuna = comuna;
 	}
 
-	public int getCercania(){
+	public int getCercania() {
 		return cercania;
 	}
-	
-	public void setCecania(int valor){
-		this.cercania=valor;
+
+	public void setCecania(int valor) {
+		this.cercania = valor;
 	}
-		
+
 	public POI getPOI() {
 		return this;
 	}
-	
+
 	public GeoLocation getUbicacion() {
 		return Ubicacion;
 	}
@@ -217,7 +222,38 @@ public abstract class POI {
 	public void setCercania(int cercania) {
 		this.cercania = cercania;
 	}
-	
+
+	public void setEtiquetas(String nombres[]) {
+		this.etiquetas = new Etiqueta[nombres.length];
+		for (int i = 0; i < nombres.length; i++) {
+			this.etiquetas[i] = FlyweightFactoryEtiqueta.getEtiqueta(nombres[i]);
+		}
+	}
+
+	public String[] getEtiquetas() {
+		String[] nombres = new String[etiquetas.length];
+		for (int i = 0; i < etiquetas.length; i++) {
+			nombres[i] = etiquetas[i].nombre;
+		}
+		return nombres;
+	}
+
+	public String getEtiqueta(int num) {
+
+		return etiquetas[num].nombre;
+	}
+
+	public Boolean buscarEtiqueta(String etiquetaNombre) {
+
+		for (int i = 0; i < etiquetas.length; i++) {
+			if (etiquetaNombre == this.etiquetas[i].nombre) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -225,18 +261,18 @@ public abstract class POI {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public boolean determinarCercaniaPOI(GeoLocation ubicacion){
+
+	public boolean determinarCercaniaPOI(GeoLocation ubicacion) {
 		double lat1 = this.Ubicacion.getLatitudeInDegrees();
 		double lng1 = this.Ubicacion.getLongitudeInDegrees();
 		double lat2 = ubicacion.getLatitudeInDegrees();
 		double lng2 = ubicacion.getLongitudeInDegrees();
-		double distancia = distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
+		double distancia = distanciaEntreDosPuntos(lat1, lng1, lat2, lng2);
 
 		return (this.cercania > distancia);
 	}
-	
-	public void setDatos(POI_DTO dto){
+
+	public void setDatos(POI_DTO dto) {
 		this.setCallePrincipal(dto.getCallePrincipal());
 		this.setCalleLateral(dto.getCalleLateral());
 		this.setNumeracion(dto.getNumeracion());

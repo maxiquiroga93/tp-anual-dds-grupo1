@@ -40,11 +40,21 @@ public class DB_Server {
 		}		
 		return respuesta;
 	}
+	
+	public static ArrayList<POI> getAllLocalesByEtiqueta(String busqueda) {
+		ArrayList<POI> respuesta = new ArrayList<POI>();
+		for(POI poi : listadoPOI){
+			if(poi.buscarEtiqueta(busqueda)){
+				respuesta.add(poi);
+			}
+		}		
+		return respuesta;
+	}
 
 	public static ArrayList<POI> getAllCGPsByServicio(String busqueda) {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			if(poi.getTipo().equals(TiposPOI.CGP)){
+			if(poi.getTipo().equals("CGP")){
 				if(((CGP)poi).contieneServicio(busqueda))
 					respuesta.add(poi);
 			}
@@ -52,14 +62,7 @@ public class DB_Server {
 		return respuesta;
 	}
 
-	public static ArrayList<POI> getAllPOIByNombre(String busqueda) {
-		ArrayList<POI> respuesta = new ArrayList<POI>();
-		for(POI poi : listadoPOI){
-			if(poi.getNombre().toLowerCase().contains(busqueda))
-				respuesta.add(poi);
-		}
-		return respuesta;
-	}
+	
 
 	public static boolean existeLinea(String str) {
 		for(POI poi : listadoPOI){
@@ -73,6 +76,17 @@ public class DB_Server {
 		for(POI poi : listadoPOI){
 			if(poi.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)){
 				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(str))
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	/*busca en las etiquetas que tiene cada poi en una lista de pois*/
+	public static boolean existeConEtiquetaNombre(String str) {
+		for(POI poi : listadoPOI){
+			if(poi.buscarEtiqueta(str)){
+				
 					return true;
 			}
 		}
