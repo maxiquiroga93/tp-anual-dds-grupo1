@@ -1,5 +1,3 @@
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +22,7 @@ public class testCalculoDeCercania {
 	@Before
 	public void init() {
 		// Definimos un POI de referencia contra el cual medir distancias
-		POIreferencia = CGP.ConstructorCGP("POIreferencia",-34.594269, -58.430131);
+		POIreferencia = new CGP("POIreferencia",-34.594269, -58.430131);
 		rubro = new Rubro("rubro");
 		
 	}
@@ -37,7 +35,7 @@ public class testCalculoDeCercania {
 		// LAs comunas deben ser distintas para que esten lejos los poi
 		POIreferencia.setComuna(1);
 		//Localizado a ~5 cuadras
-		cgp = CGP.ConstructorCGP("cgp",-34.590785, -58.435354);
+		cgp = new CGP("cgp",-34.590785, -58.435354);
 		cgp.setComuna(20);
 		Assert.assertFalse(cgp.esCercano(POIreferencia));
 	}
@@ -47,7 +45,7 @@ public class testCalculoDeCercania {
 		// LAs comunas deben ser distintas para que esten cerca los poi
 		POIreferencia.setComuna(1);
 		//Localizado a ~5 cuadras
-		cgp = CGP.ConstructorCGP("cgp",-34.590785, -58.435354);
+		cgp = new CGP("cgp",-34.590785, -58.435354);
 		cgp.setComuna(1);
 		Assert.assertTrue(cgp.esCercano(POIreferencia));
 	}	
@@ -62,7 +60,7 @@ public class testCalculoDeCercania {
 		//Definimos el limite de cercania en 2 cuadras
 		rubro.setCercania(200);	
 		//Localizado a ~5 cuadras
-		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
+		local = new LocalComercial("Local",-34.590785, -58.435354,rubro);
 		Assert.assertFalse(local.esCercano(POIreferencia));
 	}
 	
@@ -72,8 +70,8 @@ public class testCalculoDeCercania {
 		rubro.setCercania(1000);	
 		//Localizado a ~5 cuadras
 		//-34.594269, -58.430131
-		//local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.435354,rubro);
-		local = LocalComercial.ConstructorLocalComercial("Local",-34.590785, -58.432254,rubro);
+		//local = new LocalComercial("Local",-34.590785, -58.435354,rubro);
+		local = new LocalComercial("Local",-34.590785, -58.432254,rubro);
 		Assert.assertTrue(local.esCercano(POIreferencia));
 	}
 	//--------------------------------------------------------------------------------------------------------	
@@ -84,7 +82,7 @@ public class testCalculoDeCercania {
 	public void testcercaniaParadaFalso() {
 		//El limite de cercania es de 1 cuadra	
 		//Localizado a ~5 cuadras
-		parada = ParadaColectivo.ConstructorParadaColectivo("Parada",-34.590785, -58.435354);
+		parada = new ParadaColectivo("Parada",-34.590785, -58.435354);
 		Assert.assertFalse(parada.esCercano(POIreferencia));
 	}
 	
@@ -92,7 +90,7 @@ public class testCalculoDeCercania {
 	public void testcercaniaParadaVerdadero() {
 		//El limite de cercania es de 1 cuadra
 		//Localizado a ~1/2 cuadra
-		parada = ParadaColectivo.ConstructorParadaColectivo("Parada",-34.593945, -58.430648);
+		parada = new ParadaColectivo("Parada",-34.593945, -58.430648);
 		Assert.assertTrue(parada.esCercano(POIreferencia));
 	}
 	
@@ -104,7 +102,7 @@ public class testCalculoDeCercania {
 	public void testcercaniaBancoFalso() {
 		//El limite de cercania es de 7 cuadras	
 		//Localizado a ~5 cuadras
-		banco = Banco.ConstructorBanco("Banco",-34.589586, -58.437212);
+		banco = new Banco("Banco",-34.589586, -58.437212);
 		Assert.assertFalse(banco.esCercano(POIreferencia));
 	}
 
@@ -112,8 +110,8 @@ public class testCalculoDeCercania {
 	public void testcercaniaBancoVerdadero() {
 		//El limite de cercania es de 5 cuadras
 		//Localizado a ~1/2 cuadra
-		//banco = Banco.ConstructorBanco("Banco",-34.590785, -58.435354); original
-		banco = Banco.ConstructorBanco("Banco",-34.592985, -58.430154);
+		//banco = new Banco("Banco",-34.590785, -58.435354); original
+		banco = new Banco("Banco",-34.592985, -58.430154);
 		Assert.assertTrue(banco.esCercano(POIreferencia));
 	}
 

@@ -2,11 +2,11 @@ package DB;
 
 import java.util.ArrayList;
 
-import Helpers.LevenshteinDistance;
 import POI.CGP;
 import POI.LocalComercial;
 import POI.POI;
 import POI.POIcontroller;
+import POI.TiposPOI;
  
 public class DB_Server {
 
@@ -17,7 +17,7 @@ public class DB_Server {
 	}
 	
 	public ArrayList<POI> getListado(){
-		return this.listadoPOI;
+		return DB_Server.listadoPOI;
 	}
 	
 	public static ArrayList<POI> getAllParadasColectivoByLinea(String busqueda) {
@@ -32,7 +32,7 @@ public class DB_Server {
 	public static ArrayList<POI> getAllLocalesByRubro(String busqueda) {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			if(poi.getTipo().equals("LocalComercial")){
+			if(poi.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)){
 				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(busqueda)){
 					respuesta.add(poi);
 				}
@@ -44,7 +44,7 @@ public class DB_Server {
 	public static ArrayList<POI> getAllCGPsByServicio(String busqueda) {
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			if(poi.getTipo().equals("CGP")){
+			if(poi.getTipo().equals(TiposPOI.CGP)){
 				if(((CGP)poi).contieneServicio(busqueda))
 					respuesta.add(poi);
 			}
@@ -53,11 +53,9 @@ public class DB_Server {
 	}
 
 	public static ArrayList<POI> getAllPOIByNombre(String busqueda) {
-		// TODO Auto-generated method stub
 		ArrayList<POI> respuesta = new ArrayList<POI>();
 		for(POI poi : listadoPOI){
-			//if(LevenshteinDistance.computeLevenshteinDistance(busqueda, poi.getNombre()) < 1 || poi.getNombre().contains(busqueda))
-			if(poi.getNombre().contains(busqueda))
+			if(poi.getNombre().toLowerCase().contains(busqueda))
 				respuesta.add(poi);
 		}
 		return respuesta;
@@ -73,7 +71,7 @@ public class DB_Server {
 
 	public static boolean existeRubro(String str) {
 		for(POI poi : listadoPOI){
-			if(poi.getTipo().equals("LocalComercial")){
+			if(poi.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)){
 				if(((LocalComercial)poi).getRubro().getNombre().toLowerCase().equals(str))
 					return true;
 			}
@@ -83,7 +81,7 @@ public class DB_Server {
 
 	public static boolean existeServicio(String str) {
 		for(POI poi : listadoPOI){
-			if(poi.getTipo().equals("CGP")){
+			if(poi.getTipo().equals(TiposPOI.CGP)){
 				if(((CGP)poi).Servicios.contains(str))
 					return true;
 			}
@@ -91,4 +89,25 @@ public class DB_Server {
 		return false;
 	}
 
+	public static boolean eliminarPOI(Long id){
+
+		return listadoPOI.remove(id);
+	}
+
+	public static boolean agregarPOI(POI nuevoPOI) {
+		try{
+			listadoPOI.add(nuevoPOI);
+			return true;
+		} catch(Exception ex){
+			return false;
+		}
+	}
+
+	public static POI getPOIbyId(Long id) {
+		for(POI poi : listadoPOI){
+			if(poi.getId().equals(id))
+				return poi;
+		}
+		return null;
+	}
 }

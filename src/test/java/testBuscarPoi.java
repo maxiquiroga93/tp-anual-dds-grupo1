@@ -9,6 +9,7 @@ import POI.POI;
 import POI.POIcontroller;
 import POI.ParadaColectivo;
 import POI.Rubro;
+import POI.TiposPOI;
 
 public class testBuscarPoi {
 	private POIcontroller poiController;
@@ -19,25 +20,25 @@ public class testBuscarPoi {
 		server = new DB_Server();
 		
 		Rubro unRubro = new Rubro("unRubro");
-		POI cgpUno = CGP.ConstructorCGP("cgpUno",-34.5664823, -58.43407810000002);
-		POI cgpDos = CGP.ConstructorCGP("cgpDos",-34.5658341, -58.43519549999996);
-		POI localUno = LocalComercial.ConstructorLocalComercial("localUno", -34.5658341, -58.43519549999996, unRubro);
-		POI localDos = LocalComercial.ConstructorLocalComercial("localDos", -34.5658341, -58.43519549999996, unRubro);
-		POI localTres = LocalComercial.ConstructorLocalComercial("localTres", -34.5658341, -58.43519549999996, unRubro);
-		POI pColUno = ParadaColectivo.ConstructorParadaColectivo("114",-34.5658341, -58.43519549999996);
-		POI pColDos = ParadaColectivo.ConstructorParadaColectivo("114",-34.5658341, -58.43519549999996);
-		POI pColTres = ParadaColectivo.ConstructorParadaColectivo("107",-34.5658341, -58.43519549999996);
-		POI pColCuatro = ParadaColectivo.ConstructorParadaColectivo("35",-34.5658341, -58.43519549999996);
+		POI cgpUno = new CGP("cgpUno",-34.5664823, -58.43407810000002);
+		POI cgpDos = new CGP("cgpDos",-34.5658341, -58.43519549999996);
+		POI localUno = new LocalComercial("localUno", -34.5658341, -58.43519549999996, unRubro);
+		POI localDos = new LocalComercial("localDos", -34.5658341, -58.43519549999996, unRubro);
+		POI localTres = new LocalComercial("localTres", -34.5658341, -58.43519549999996, unRubro);
+		POI pColUno = new ParadaColectivo("114",-34.5658341, -58.43519549999996);
+		POI pColDos = new ParadaColectivo("114",-34.5658341, -58.43519549999996);
+		POI pColTres = new ParadaColectivo("107",-34.5658341, -58.43519549999996);
+		POI pColCuatro = new ParadaColectivo("35",-34.5658341, -58.43519549999996);
 		
-		cgpUno.setTipo("CGP");
-		cgpDos.setTipo("CGP");
-		localUno.setTipo("LocalComercial");
-		localDos.setTipo("LocalComercial");
-		localTres.setTipo("LocalComercial");
-		pColUno.setTipo("ParadaColectivo");
-		pColDos.setTipo("ParadaColectivo");
-		pColTres.setTipo("ParadaColectivo");
-		pColCuatro.setTipo("ParadaColectivo");
+		cgpUno.setTipo(TiposPOI.CGP);
+		cgpDos.setTipo(TiposPOI.CGP);
+		localUno.setTipo(TiposPOI.LOCAL_COMERCIAL);
+		localDos.setTipo(TiposPOI.LOCAL_COMERCIAL);
+		localTres.setTipo(TiposPOI.LOCAL_COMERCIAL);
+		pColUno.setTipo(TiposPOI.PARADA_COLECTIVO);
+		pColDos.setTipo(TiposPOI.PARADA_COLECTIVO);
+		pColTres.setTipo(TiposPOI.PARADA_COLECTIVO);
+		pColCuatro.setTipo(TiposPOI.PARADA_COLECTIVO);
 		
 		server.getListado().add(cgpUno);
 		server.getListado().add(cgpDos);

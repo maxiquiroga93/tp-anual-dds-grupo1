@@ -1,7 +1,5 @@
 package DB;
 
-import java.util.ArrayList;
-
 public class DB_HistorialBusquedas {
 
 	

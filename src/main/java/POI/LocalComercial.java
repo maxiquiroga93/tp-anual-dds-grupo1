@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 
+import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 
 public class LocalComercial extends POI {
@@ -15,23 +16,35 @@ public class LocalComercial extends POI {
 	public int getDistancia() {
 		return rubro.getCercania();
 	}
-
 	
-	public static POI ConstructorLocalComercial(String nombre, double latitud, double longitud, Rubro rubro){
-		
-		LocalComercial poi = new LocalComercial();
-		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
-		poi.setNombre(nombre);
-		poi.setRubro(rubro);
-		
-		
-		return poi;
+	public LocalComercial(String nombre, double latitud, double longitud, Rubro rubro){
+		this.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		this.setNombre(nombre);
+		this.setRubro(rubro);
 	}
+	
 	public Rubro getRubro() {
 		return rubro;
 	}
+	
 	public void setRubro(Rubro rubro) {
 		this.rubro = rubro;
+	}
+	
+	public ArrayList<Integer> getDias(){
+		return this.dias;
+	}
+
+	public ArrayList<Integer> getHoras(){
+		return this.horas;
+	}
+	
+	public void setDias(ArrayList<Integer> diasDisponibles){
+		this.dias = diasDisponibles;
+	}
+
+	public void setHoras(ArrayList<Integer> horasDisponibles){
+		this.horas = horasDisponibles;
 	}
 	
 	public boolean disponible(){
@@ -52,5 +65,16 @@ public class LocalComercial extends POI {
 		return false;
 		
 	}
+	
+	public void setDatos(POI_DTO dto,boolean esNuevo){
+		super.setDatos(dto);
+		this.setDias(dto.getDias());
+		this.setHoras(dto.getHoras());
+		
+		if(!esNuevo){
+			this.setRubro(dto.getRubro());
+		}
+	}
+	
 	
 }

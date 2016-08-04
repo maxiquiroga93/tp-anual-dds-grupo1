@@ -16,7 +16,7 @@ public class testDisponibilidades {
 	/// --------------------BANCO----------------------------
 	@Before
 	public void inicializarBanco(){
-		banco = (Banco) Banco.ConstructorBanco("macro", 36, 53);
+		banco = new Banco("macro", 36, 53);
 	}
 	
 	@Test
@@ -43,12 +43,12 @@ public class testDisponibilidades {
 	
 	@Before
 	public void inicializarCGP(){
-		cgp = (CGP) CGP.ConstructorCGP("mataderos", 23, 44);
+		cgp = new CGP("mataderos", 23, 44);
 		nodoServicioCGP nuevoNodo = new nodoServicioCGP();
 		nuevoNodo.setName("rentas");
 		nuevoNodo.agregarDia(5); //Cambiando estos parametros probas todos los casos.
 		nuevoNodo.setHoras(2,3);//el horario mas grande de los cgp es de 9 a 18
-		CGP.Servicios.add(nuevoNodo);
+		cgp.setServicio(nuevoNodo);
 	}
 	
 	@Test
@@ -76,7 +76,7 @@ public class testDisponibilidades {
 	@Before
 	public void inicializarLocal(){
 		Rubro rubro = new Rubro("supermercado");
-		 local = (LocalComercial) LocalComercial.ConstructorLocalComercial("coto", 23, 51, rubro);
+		 local = new LocalComercial("coto", 23, 51, rubro);
 		local.dias.add(5); //Modificando estos parametros se puede testear todo. No time for writing all :(
 		local.horas.add(2);
 		local.horas.add(5);
@@ -92,7 +92,7 @@ public class testDisponibilidades {
 	 ParadaColectivo parada;
 	 @Before
 	 public void inicializarParada(){
-		 parada = (ParadaColectivo) ParadaColectivo.ConstructorParadaColectivo("55", 31, 13);
+		 parada = new ParadaColectivo("55", 31, 13);
 	 }
 	 
 	@Test

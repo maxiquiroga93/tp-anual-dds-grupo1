@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 
+import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 
 public class CGP extends POI {
 
-
-	public static ArrayList <nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
+	public ArrayList <nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
 	
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin){
 		nodoServicioCGP nuevoNodo = new nodoServicioCGP();
@@ -25,7 +25,7 @@ public class CGP extends POI {
 		Iterator<nodoServicioCGP> iterador = Servicios.iterator();
 		while(iterador.hasNext()){
 			nodoServicioCGP nodo = iterador.next(); //Agarro el proximo nodo
-			if (nodo.nombre==servicio || ""==servicio){ //busco un nodo especifico o recorro todo con ""
+			if (nodo.getName()==servicio || ""==servicio){ //busco un nodo especifico o recorro todo con ""
 				if(nodo.listaDias.contains(calendario.get(Calendar.DAY_OF_WEEK))){ //chequear si el dia esta en la lista de dias disponibles
 					if(nodo.horaInicio<= calendario.get(Calendar.HOUR_OF_DAY) && calendario.get(Calendar.HOUR_OF_DAY) < nodo.horaFin){ //chequear que el horario actual este disponible
 						return true;
@@ -39,10 +39,10 @@ public class CGP extends POI {
 	public int getDistancia() {
 		return cercania;
 	}
+	
 	public void setDistancia(int distancia) {
 		this.cercania = distancia;
 	}
-
 	
 	// Se le pregunta a un POI si es cercano.
 	@Override
@@ -56,22 +56,35 @@ public class CGP extends POI {
 		return false;
 	}
 	
-	public static POI ConstructorCGP(String nombre,double latitud, double longitud){
-		
-		POI poi = new CGP();
-		poi.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
-		poi.setNombre(nombre);
-		
-		return poi;
+	public CGP(String nombre,double latitud, double longitud){
+		this.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
+		this.setNombre(nombre);
 	}
 
 	public boolean contieneServicio(String busqueda) {
-		// TODO Auto-generated method stub
 		for(nodoServicioCGP servicio : this.Servicios){
 			if(servicio.contiene(busqueda))
 				return true;
 		}
 		return false;
 	}
+	
+	@Override
+	public void setDatos(POI_DTO dto){
+		super.setDatos(dto);
+		for(nodoServicioCGP servicio : dto.getServicios()){
+				this.agregarServicio(servicio.getName(), 
+						servicio.getListaDias(), servicio.getHoraInicio(), servicio.getHoraFin());
+		}
+	}
+
+	public ArrayList<nodoServicioCGP> getServicios() {
+		return Servicios;
+	}
+
+	public void setServicio(nodoServicioCGP servicio) {
+		Servicios.add(servicio);
+	}
+	
 	
 }

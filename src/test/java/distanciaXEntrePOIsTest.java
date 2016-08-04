@@ -2,10 +2,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import DB.DB_Server;
 import POI.CGP;
 import POI.POI;
-
 
 public class distanciaXEntrePOIsTest {
 	public POI poiUno ;
@@ -13,8 +11,8 @@ public class distanciaXEntrePOIsTest {
 	
 	@Before
 	public void init() {
-		 poiUno = CGP.ConstructorCGP("poiUno", -34.5664823, -58.43407810000002);
-		 poiDos = CGP.ConstructorCGP("poiDos", -34.5658341, -58.43519549999996);
+		 poiUno = new CGP("poiUno", -34.601186, -58.383225);
+		 poiDos = new CGP("poiDos", -34.602405, -58.385875);
 	}
 	
 	/*
@@ -24,12 +22,7 @@ public class distanciaXEntrePOIsTest {
 	@Test
 	public void testeodistanciavenora3()
 	{
-		Assert.assertTrue(poiUno.estaXMetrosDePOI(2000000,poiDos));
+		Assert.assertTrue(poiUno.estaXMetrosDePOI(280,poiDos));
 	}
-	
-	@Test
-	public void testRapiditoComoVos_Gil(){
-		DB_Server server = new DB_Server();
-		server.getAllLocalesByRubro("unStringGato");
-	}
+
 }

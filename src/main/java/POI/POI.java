@@ -1,12 +1,11 @@
 package POI;
 
-import java.util.ArrayList;
-
-import DB.DB_Server;
+import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 
 public abstract class POI {
 
+	Long id;
 	String nombre;
 	String callePrincipal;
 	String calleLateral ;
@@ -20,14 +19,13 @@ public abstract class POI {
 	String provincia;
 	String pais;
 	GeoLocation Ubicacion;
-//	TipoPOI tipo;
+	// TipoPOI tipo;
 	int comuna;
-	int cercania = 500; //define cuando otro punto es cercano.
-	String tipo; //este atributo hay que ver si nos sirve porque
-				//las subclases tienen el nombre del tipo, de por si.
-	
-
-
+	//define cuando otro punto es cercano.
+	int cercania = 500;
+	//este atributo hay que ver si nos sirve porque
+	//las subclases tienen el nombre del tipo, de por si.
+	TiposPOI tipo; 
 	
 	public boolean estaXMetrosDePOI(double x, POI unPOI){
 		return (distanciaCoordDosPOIs(this,unPOI)*1000 < x);
@@ -56,8 +54,6 @@ public abstract class POI {
 		double lng2 = unPOI.Ubicacion.getLongitudeInDegrees();
 		return distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
 	}
-
-
 	
 	// Se le pregunta a un POI si es cercano.
 	public boolean esCercano(POI poi){
@@ -69,8 +65,7 @@ public abstract class POI {
 	else
 		return true;
 	}
-	
-	
+		
 	public String getNombre() {
 		return nombre;
 	}
@@ -183,10 +178,6 @@ public abstract class POI {
 		this.Ubicacion.setDegLon(longitud);
 	}
 
-//	public void setTipo(TipoPOI tipo) {
-//		this.tipo = tipo;
-//	}
-
 	public int getComuna() {
 		return comuna;
 	}
@@ -215,16 +206,24 @@ public abstract class POI {
 		Ubicacion = ubicacion;
 	}
 
-	public String getTipo() {
+	public TiposPOI getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TiposPOI tipo) {
 		this.tipo = tipo;
 	}
 
 	public void setCercania(int cercania) {
 		this.cercania = cercania;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public boolean determinarCercaniaPOI(GeoLocation ubicacion){
@@ -235,5 +234,20 @@ public abstract class POI {
 		double distancia = distanciaEntreDosPuntos(lat1,lng1,lat2,lng2);
 
 		return (this.cercania > distancia);
+	}
+	
+	public void setDatos(POI_DTO dto){
+		this.setCallePrincipal(dto.getCallePrincipal());
+		this.setCalleLateral(dto.getCalleLateral());
+		this.setNumeracion(dto.getNumeracion());
+		this.setPiso(dto.getPiso());
+		this.setDepartamento(dto.getDepartamento());
+		this.setUnidad(dto.getUnidad());
+		this.setCodigoPostal(dto.getCodigoPostal());
+		this.setLocalidad(dto.getLocalidad());
+		this.setBarrio(dto.getBarrio());
+		this.setProvincia(dto.getProvincia());
+		this.setPais(dto.getPais());
+		this.setComuna(dto.getComuna());
 	}
 }

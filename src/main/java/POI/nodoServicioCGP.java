@@ -21,6 +21,10 @@ public class nodoServicioCGP {
 		listaDias.add(numero);
 	}
 	
+	public ArrayList<Integer> getListaDias(){
+		return this.listaDias;
+	}
+	
 	public void setHoras(int inicio, int fin){
 		this.horaInicio=inicio;
 		this.horaFin = fin;
@@ -28,5 +32,13 @@ public class nodoServicioCGP {
 
 	public boolean contiene(String busqueda) {
 		return this.nombre.contains(busqueda);
+	}
+	
+	public int getHoraInicio(){
+		return this.horaInicio;
+	}
+
+	public int getHoraFin(){
+		return this.horaFin;
 	}
 }

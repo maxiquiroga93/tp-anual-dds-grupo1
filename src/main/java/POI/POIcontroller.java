@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import DB.DB_Server;
 
 public class POIcontroller {
+	
 	public ArrayList<POI> getPOIs(String textoLibre){
+		
 		String busqueda = textoLibre.toLowerCase();
 		ArrayList<POI> resultado = new ArrayList<POI>();
+		
 		if(isColectivo(busqueda)){
 			//Traigo ParadaColectivo por busqueda
 			resultado = DB_Server.getAllParadasColectivoByLinea(busqueda);
@@ -46,7 +49,10 @@ public class POIcontroller {
 	    try {
 	        Integer.parseInt(str);
 	        return true;
-	    } catch (NumberFormatException nfe) {}
-	    return false;
+	    } catch (NumberFormatException nfe) {
+	    	return false;
+	    }
 	}
+
+	
 }
