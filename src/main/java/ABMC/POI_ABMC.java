@@ -1,6 +1,13 @@
 package ABMC;
 
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import DB.DB_Server;
 import POI.Banco;
@@ -88,6 +95,7 @@ public class POI_ABMC {
 		}
 	}
 */
+	
 	private boolean isColectivo(String str){
 		// Agregar si encuentra algun colectivo con ese str
 		if(isNumeric(str) && DB_Server.existeLinea(str)){
@@ -99,16 +107,16 @@ public class POI_ABMC {
 	private boolean isRubro(String str){
 		return (DB_Server.existeRubro(str));
 	}
+	
 	public boolean isEtiqueta(String str){
 		return DB_Server.existeConEtiquetaNombre(str);
 	}
-
 
 	private boolean isServicio(String str){
 		return (DB_Server.existeServicio(str));
 	}
 
-	public static boolean isNumeric(String str) {
+	public boolean isNumeric(String str) {
 		try {
 			Integer.parseInt(str);
 			return true;
@@ -117,6 +125,10 @@ public class POI_ABMC {
 		}
 	}
 
-
+	public List<Banco> getBancos(String url){
+		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos"), Charset.forName("UTF-8")));
+		JSONObject json = jsonArray.getJSONObject(0);
+		return null;
+	}
 
 }
