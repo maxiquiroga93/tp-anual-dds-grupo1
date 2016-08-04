@@ -1,10 +1,42 @@
 //import POI.CGP;
 
-import POI.Banco;
+//import POI.Banco;
 //import POI.FlyweightFactoryEtiqueta;
-import POI.POI;
+//import POI.POI;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 
 public class worckspace {
+	public static void main(String[] args) throws IOException {
+
+		URL url = new  URL("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos");
+		   try (InputStream is = url.openStream();
+		        JsonReader rdr = Json.createReader(is)) {
+		        JsonObject obj = rdr.readObject();
+		        JsonArray results = obj.getJsonArray("data");
+		        for (JsonObject result : results.getValuesAs(JsonObject.class)) {
+		        	System.out.print(result.getJsonObject("banco"));
+		        	
+		        	/*  System.out.print(result.getJsonObject("from").getString("name"));
+		            System.out.print(": ");
+		            System.out.println(result.getString("message", ""));
+		            System.out.println("-----------");*/
+		        }
+		   }
+
+} 
+
+}
+
+/*public class worckspace {
 
 	public static void main(String[] args) {
 
@@ -14,19 +46,22 @@ public class worckspace {
 
 		unBanco.setEtiquetas(listaNombres);
 
-		/* imprimir por searado */
+		/* imprimir por searado *//*
 		System.out.println(unBanco.getEtiqueta(0));
 		System.out.println(unBanco.getEtiqueta(2));
-		/* imprimir todo */
+		/* imprimir todo *//*
 		String[] list = unBanco.getEtiquetas();
 		for (int i = 0; i < list.length; i++) {
 			System.out.println(list[i]);
 		}
 		System.out.println(unBanco.buscarEtiqueta("d"));
 
-	}
+	}*/
+	
 
-}
+
+
+	
 
 /*
  * private POI poiUno ; private POI poiDos; public static void main(String[]

@@ -81,19 +81,19 @@ public class POI_ABMC {
 		return resultado;
 	}
 	
-	public ArrayList<POI> busquedaExterna(String cadena1, String cadena2, TiposPOI tipo){
+/*	public ArrayList<POI> busquedaExterna(String cadena1, String cadena2, TiposPOI tipo){
 		if(tipo.equals(TiposPOI.CGP)){
 			//ACA ADENTRO SE HACE LA BUSQUEDA DE CGP Y BANCO CON LA API, NO SE COMO SE HACE.
 			
 		}
 	}
-
+*/
 	private boolean isColectivo(String str){
 		// Agregar si encuentra algun colectivo con ese str
-		if(isNumeric(str) && DB_Server.existeLinea(str))
+		if(isNumeric(str) && DB_Server.existeLinea(str)){
 			return true;
-
-		return false;
+		}else{
+		return false;}
 	}
 
 	private boolean isRubro(String str){
