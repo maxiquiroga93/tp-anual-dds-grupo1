@@ -2,21 +2,21 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ABMC.POI_ABMC;
 import DB.DB_Server;
 import POI.CGP;
 import POI.LocalComercial;
 import POI.POI;
-import POI.POIcontroller;
 import POI.ParadaColectivo;
 import POI.Rubro;
 import POI.TiposPOI;
 
 public class testBuscarPoi {
-	private POIcontroller poiController;
+	private POI_ABMC poiController;
 	private DB_Server server;
 	@Before
 	public void init(){
-		poiController = new POIcontroller();
+		poiController = new POI_ABMC();
 		server = new DB_Server();
 		
 		Rubro unRubro = new Rubro("unRubro");

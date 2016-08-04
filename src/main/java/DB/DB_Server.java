@@ -2,10 +2,10 @@ package DB;
 
 import java.util.ArrayList;
 
+import ABMC.POI_ABMC;
 import POI.CGP;
 import POI.LocalComercial;
 import POI.POI;
-import POI.POIcontroller;
 import POI.TiposPOI;
  
 public class DB_Server {
@@ -66,7 +66,7 @@ public class DB_Server {
 
 	public static boolean existeLinea(String str) {
 		for(POI poi : listadoPOI){
-			if(POIcontroller.isNumeric(str) && poi.getNombre().equals(str));
+			if(POI_ABMC.isNumeric(str) && poi.getNombre().equals(str));
 				return true;
 		}
 		return false;
