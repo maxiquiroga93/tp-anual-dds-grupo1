@@ -137,21 +137,26 @@ public class POI_ABMC {
 			JSONObject objetoInterno = jsonArray.getJSONObject(i);
 
 			// obtengo los componentes y sus valores.
-			String[] nombres = JSONObject.getNames(objetoInterno);
-			Map<String, String> valores = new HashMap<String, String>();
-			for (String nombre : nombres) {
-				//Evito los servicios ya que no me sirven por ahora
-				if(nombre != "servicios"){
-					String valor = objetoInterno.getString(nombre);
-					valores.put(nombre, valor);
-				}
+//					String valor = objetoInterno.getString(nombre);
+					System.out.println("banco: " + objetoInterno.getString("banco"));
+					System.out.println("sucursal: " + objetoInterno.getString("sucursal"));
+					System.out.println("gerente: " + objetoInterno.getString("gerente"));
+					System.out.println("x: " + objetoInterno.getDouble("x"));
+					System.out.println("y: " + objetoInterno.getDouble("y"));
+					System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
+					
+					Banco nuevoBanco = new Banco(objetoInterno.getString("banco"),objetoInterno.getDouble("x"),
+							objetoInterno.getDouble("y"));
+					
+					listadoBancos.add(nuevoBanco);
+
 			}
 			// Creo POI y lo guardo en el listado que devuelvo
 			// nombre, latitud y longitud.
-			Banco banco = new Banco(valores.get("banco"), Long.parseLong(valores.get("x")),
-					Long.parseLong(valores.get("y")));
-			listadoBancos.add(banco);
-		}
+//			Banco banco = new Banco(valores.get("banco"), Long.parseLong(valores.get("x")),
+//					Long.parseLong(valores.get("y")));
+//			listadoBancos.add(banco);
+
 
 		return listadoBancos;
 	}

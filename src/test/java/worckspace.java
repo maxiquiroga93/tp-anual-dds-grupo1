@@ -3,9 +3,15 @@
 //import POI.Banco;
 //import POI.FlyweightFactoryEtiqueta;
 //import POI.POI;
+import ABMC.POI_ABMC;
+import ABMC.POI_DTO;
+import POI.Banco;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -13,13 +19,23 @@ import org.json.JSONObject;
 
 public class worckspace {
 	public static void main(String[] args) throws IOException {
-		JSONArray jsonArray = new JSONArray(
-				IOUtils.toString(new URL("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos"),
-						Charset.forName("UTF-8")));
-		JSONObject json = jsonArray.getJSONObject(0);
-		String unString = "data";
-		JSONArray results = json.getJSONArray(unString);
-		int index = 0;
+	 try {
+		 POI_ABMC poi_abmc = new POI_ABMC();
+		 List<Banco> listadoBancos = poi_abmc.consultarBancos("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos");
+	    }
+	    catch (IOException e) {
+	       throw new RuntimeException(e);
+	    }
+	
+	
+//	public static void main(String[] args) throws IOException {
+//		JSONArray jsonArray = new JSONArray(
+//				IOUtils.toString(new URL("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos"),
+//						Charset.forName("UTF-8")));
+//		JSONObject json = jsonArray.getJSONObject(0);
+//		String unString = "data";
+//		JSONArray results = json.getJSONArray(unString);
+//		int index = 0;
 		/*
 		 * for (JSONObject result : results.get.getJSONObject(index)) {
 		 * System.out.print(result.getJSONObject("banco")); index++; }
@@ -42,9 +58,9 @@ public class worckspace {
 		 * System.out.println(result.getString("message", ""));
 		 * System.out.println("-----------");
 		 */
-	}
+	}}
 
-}
+
 
 /*
  * public class worckspace {

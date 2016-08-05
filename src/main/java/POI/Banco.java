@@ -5,6 +5,9 @@ import java.util.Calendar;
 import Geolocation.GeoLocation;
 
 public class Banco extends POI {
+	
+	String sucursal;
+	String gerente;
 		
 	public boolean disponible(String servicio){
 		/* el cajero automatico siempre esta disponible
