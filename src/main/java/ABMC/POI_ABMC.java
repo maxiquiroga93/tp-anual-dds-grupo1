@@ -161,6 +161,35 @@ public class POI_ABMC {
 		return listadoBancos;
 	}
 
+	// TODO Falta crear servicios y agregarlos al CGP si corresponde. (ver comuna 1)
 	
+	public List<CGP> consultarCentros(String url) throws JSONException, MalformedURLException, IOException {
+		// Obtengo el array que me devuelve el JSON
+		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL(url), Charset.forName("UTF-8")));
+		List<CGP> listadoCGP = new ArrayList<CGP>();
+
+		// Recorro el array obtenido
+		for (int i = 0, size = jsonArray.length(); i < size; i++) {
+			JSONObject objetoInterno = jsonArray.getJSONObject(i);
+
+			// obtengo los componentes y sus valores.
+//					String valor = objetoInterno.getString(nombre);
+					System.out.println("comuna: " + objetoInterno.getInt("comuna"));
+					System.out.println("zonas: " + objetoInterno.getString("zonas"));
+					System.out.println("director: " + objetoInterno.getString("director"));
+					System.out.println("domicilio: " + objetoInterno.getString("domicilio"));
+					System.out.println("telefono: " + objetoInterno.getString("telefono"));
+					System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
+					
+				//	Creamos el CGP usando latitud y longitud hardcodeada por faltar en servicios API
+					CGP nuevoCGP = new CGP(String.valueOf(objetoInterno.getInt("comuna")),-34,
+							-58);
+					
+					listadoCGP.add(nuevoCGP);
+
+			}
+
+		return listadoCGP;
+	}
 	
 }

@@ -6,6 +6,7 @@
 import ABMC.POI_ABMC;
 import ABMC.POI_DTO;
 import POI.Banco;
+import POI.CGP;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +28,14 @@ public class worckspace {
 	       throw new RuntimeException(e);
 	    }
 	
+	 
+	 try {
+		 POI_ABMC poi_abmc = new POI_ABMC();
+		 List<CGP> listadoCentros = poi_abmc.consultarCentros("http://trimatek.org/Consultas/centro?");
+	    }
+	    catch (IOException e) {
+	       throw new RuntimeException(e);
+	    }
 	
 //	public static void main(String[] args) throws IOException {
 //		JSONArray jsonArray = new JSONArray(

@@ -61,6 +61,8 @@ public class GeoLocation {
 	}
 
 	private void checkBounds() {
+//	TODO Comentado ya que  serviciosAPI devuelve valores de LAT y LON no validos y es necesario
+//	manejar la Exception de abajo.
 //		if (radLat < MIN_LAT || radLat > MAX_LAT ||
 //				radLon < MIN_LON || radLon > MAX_LON)
 //			throw new IllegalArgumentException();
