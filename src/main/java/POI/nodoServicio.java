@@ -2,7 +2,7 @@ package POI;
 
 import java.util.ArrayList;
 
-public class nodoServicioCGP {
+public class nodoServicio {
 	
 	String nombre;
 	ArrayList<Integer> listaDias = new ArrayList<Integer>();

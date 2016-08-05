@@ -8,16 +8,16 @@ import POI.Etiqueta;
 public abstract class POI {
 
 	Long id;
-	String nombre;
+	String nombre;//1
 	String callePrincipal;
 	String calleLateral;
-	int numeracion;
+	int numeracion;//4
 	int piso;
 	String departamento;
 	String unidad;
 	int codigoPostal;
 	String localidad;
-	String barrio;
+	String barrio;//2
 	String provincia;
 	String pais;
 	GeoLocation Ubicacion;

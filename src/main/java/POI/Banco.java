@@ -1,6 +1,8 @@
 package POI;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 
 import Geolocation.GeoLocation;
 
@@ -8,7 +10,19 @@ public class Banco extends POI {
 	
 	String sucursal;
 	String gerente;
-		
+	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();	
+	
+	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
+		nodoServicio nuevoNodo = new nodoServicio();
+		nuevoNodo.nombre = nombre;
+		nuevoNodo.listaDias = dias;
+		nuevoNodo.horaInicio = horaInicio;
+		nuevoNodo.horaFin = horaFin;
+		Servicios.add(nuevoNodo);
+	}
+
+
+
 	public boolean disponible(String servicio){
 		/* el cajero automatico siempre esta disponible
 		 * y si no pongo nada pide que devuelva si el banco tiene algun servicio
@@ -29,6 +43,7 @@ public class Banco extends POI {
 			}
 		}
 	}
+	
 	
 	public int obtenerDia(){
 		Calendar calendario = Calendar.getInstance();

@@ -8,11 +8,12 @@ import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 
 public class CGP extends POI {
-
-	public ArrayList<nodoServicioCGP> Servicios = new ArrayList<nodoServicioCGP>();
+	String director;//3
+	String telefono;//5
+	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();//6
 
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
-		nodoServicioCGP nuevoNodo = new nodoServicioCGP();
+		nodoServicio nuevoNodo = new nodoServicio();
 		nuevoNodo.nombre = nombre;
 		nuevoNodo.listaDias = dias;
 		nuevoNodo.horaInicio = horaInicio;
@@ -22,11 +23,11 @@ public class CGP extends POI {
 
 	public boolean disponible(String servicio) {
 		Calendar calendario = Calendar.getInstance();
-		Iterator<nodoServicioCGP> iterador = Servicios.iterator();
+		Iterator<nodoServicio> iterador = Servicios.iterator();
 		while (iterador.hasNext()) {
 			// Agarro el proximo nodo, busco un nodo especifico o recorro todo
 			// con ""
-			nodoServicioCGP nodo = iterador.next();
+			nodoServicio nodo = iterador.next();
 			if (nodo.getName() == servicio || "" == servicio) {
 
 				if (nodo.listaDias.contains(calendario.get(Calendar.DAY_OF_WEEK))) {
@@ -67,29 +68,35 @@ public class CGP extends POI {
 		this.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
 		this.setNombre(nombre);
 	}
+	
+
 
 	public boolean contieneServicio(String busqueda) {
-		for (nodoServicioCGP servicio : this.Servicios) {
+		for (nodoServicio servicio : this.Servicios) {
 			if (servicio.contiene(busqueda))
 				return true;
 		}
 		return false;
 	}
+	
 
+
+	
+	
 	@Override
 	public void setDatos(POI_DTO dto) {
 		super.setDatos(dto);
-		for (nodoServicioCGP servicio : dto.getServicios()) {
+		for (nodoServicio servicio : dto.getServicios()) {
 			this.agregarServicio(servicio.getName(), servicio.getListaDias(), servicio.getHoraInicio(),
 					servicio.getHoraFin());
 		}
 	}
 
-	public ArrayList<nodoServicioCGP> getServicios() {
+	public ArrayList<nodoServicio> getServicios() {
 		return Servicios;
 	}
 
-	public void setServicio(nodoServicioCGP servicio) {
+	public void setServicio(nodoServicio servicio) {
 		Servicios.add(servicio);
 	}
 

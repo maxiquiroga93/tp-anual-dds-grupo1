@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Geolocation.GeoLocation;
 import POI.Rubro;
 import POI.TiposPOI;
-import POI.nodoServicioCGP;
+import POI.nodoServicio;
 
 public class POI_DTO {
 	Long id;
@@ -29,7 +29,7 @@ public class POI_DTO {
 	Rubro rubro;
 	ArrayList<Integer> dias;
 	ArrayList<Integer> horas;
-	ArrayList<nodoServicioCGP> servicios;
+	ArrayList<nodoServicio> servicios;
 	
 	public Long getId() {
 		return id;
@@ -157,10 +157,10 @@ public class POI_DTO {
 	public void setHoras(ArrayList<Integer> horas) {
 		this.horas = horas;
 	}
-	public ArrayList<nodoServicioCGP> getServicios() {
+	public ArrayList<nodoServicio> getServicios() {
 		return servicios;
 	}
-	public void setServicios(ArrayList<nodoServicioCGP> servicios) {
+	public void setServicios(ArrayList<nodoServicio> servicios) {
 		this.servicios = servicios;
 	}
 	

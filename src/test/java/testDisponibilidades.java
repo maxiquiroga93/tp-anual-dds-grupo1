@@ -6,7 +6,7 @@ import POI.CGP;
 import POI.LocalComercial;
 import POI.ParadaColectivo;
 import POI.Rubro;
-import POI.nodoServicioCGP;
+import POI.nodoServicio;
 
 import org.junit.Assert;
 
@@ -44,7 +44,7 @@ public class testDisponibilidades {
 	@Before
 	public void inicializarCGP(){
 		cgp = new CGP("mataderos", 23, 44);
-		nodoServicioCGP nuevoNodo = new nodoServicioCGP();
+		nodoServicio nuevoNodo = new nodoServicio();
 		nuevoNodo.setName("rentas");
 		nuevoNodo.agregarDia(5); //Cambiando estos parametros probas todos los casos.
 		nuevoNodo.setHoras(2,3);//el horario mas grande de los cgp es de 9 a 18
