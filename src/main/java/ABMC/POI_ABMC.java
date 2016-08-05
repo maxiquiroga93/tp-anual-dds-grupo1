@@ -66,8 +66,12 @@ public class POI_ABMC {
 	public ArrayList<POI> getPOIs(String textoLibre) {
 
 		String busqueda = textoLibre.toLowerCase();
+		
 		ArrayList<POI> resultado = new ArrayList<POI>();
-
+		
+		
+		
+		
 		if (isColectivo(busqueda)) {
 			// Traigo ParadaColectivo por busqueda
 			resultado = DB_Server.getAllParadasColectivoByLinea(busqueda);
@@ -182,8 +186,7 @@ public class POI_ABMC {
 					System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
 					
 				//	Creamos el CGP usando latitud y longitud hardcodeada por faltar en servicios API
-					CGP nuevoCGP = new CGP(String.valueOf(objetoInterno.getInt("comuna")),-34,
-							-58);
+					CGP nuevoCGP = new CGP(String.valueOf(objetoInterno.getInt("comuna")),-34,-58);
 					
 					listadoCGP.add(nuevoCGP);
 

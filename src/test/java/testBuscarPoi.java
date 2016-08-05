@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +19,7 @@ public class testBuscarPoi {
 	private POI_ABMC poiController;
 	private DB_Server server;
 	@Before
-	public void init(){
+	public void init() throws JSONException, MalformedURLException, IOException{
 		poiController = new POI_ABMC();
 		server = new DB_Server();
 		
@@ -62,6 +66,9 @@ public class testBuscarPoi {
 		server.getListado().add(pColDos); 
 		server.getListado().add(pColTres); 
 		server.getListado().add(pColCuatro); 
+		/**/
+		//server.agregarListaBancos("http://trimatek.org/Consultas/banco?banco",poiController);
+		
 	}
 	
 	@Test
@@ -90,4 +97,5 @@ public class testBuscarPoi {
 		String servicio = "servicio";
 		Assert.assertNotNull(poiController.getPOIs(servicio));
 	}
+
 }
