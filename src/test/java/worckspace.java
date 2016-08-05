@@ -21,7 +21,7 @@ public class worckspace {
 	public static void main(String[] args) throws IOException {
 	 try {
 		 POI_ABMC poi_abmc = new POI_ABMC();
-		 List<Banco> listadoBancos = poi_abmc.consultarBancos("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos");
+		 List<Banco> listadoBancos = poi_abmc.consultarBancos("http://trimatek.org/Consultas/banco?banco");
 	    }
 	    catch (IOException e) {
 	       throw new RuntimeException(e);

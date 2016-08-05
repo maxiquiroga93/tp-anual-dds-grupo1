@@ -61,9 +61,9 @@ public class GeoLocation {
 	}
 
 	private void checkBounds() {
-		if (radLat < MIN_LAT || radLat > MAX_LAT ||
-				radLon < MIN_LON || radLon > MAX_LON)
-			throw new IllegalArgumentException();
+//		if (radLat < MIN_LAT || radLat > MAX_LAT ||
+//				radLon < MIN_LON || radLon > MAX_LON)
+//			throw new IllegalArgumentException();
 	}
 
 	/**
