@@ -57,27 +57,30 @@ public class testABMC_Alta {
 	@Test
 	public void altaBanco(){
 		//Agregar conversion de DTO_POI a POI
-		boolean respuesta = instancia.agregarPOI(poiDTOBanco.converttoPOI());
+		boolean respuesta = DB_Server.agregarPOI(poiDTOBanco.converttoPOI());
 		Assert.assertTrue(respuesta);
-		Assert.assertTrue(poiDTOBanco.getNombre() == instancia.getListado().get(instancia.getListado().size()-1).getNombre());
+		Assert.assertTrue(poiDTOBanco.getNombre() == DB_Server.getListado().get(DB_Server.getListado().size()-1).getNombre());
 		
 	}
 	
 	@Test
 	public void altaCGP(){
-		boolean respuesta=poi_abmc.alta(poiDTOCGP);
+		boolean respuesta = DB_Server.agregarPOI(poiDTOCGP.converttoPOI());
 		Assert.assertTrue(respuesta);
+		Assert.assertTrue(poiDTOCGP.getNombre() == DB_Server.getListado().get(DB_Server.getListado().size()-1).getNombre());
 	}
 	
 	@Test
 	public void altaLocalComercial(){
-		boolean respuesta=poi_abmc.alta(poiDTOComercial);
+		boolean respuesta = DB_Server.agregarPOI(poiDTOComercial.converttoPOI());
 		Assert.assertTrue(respuesta);
+		Assert.assertTrue(poiDTOComercial.getNombre() == DB_Server.getListado().get(DB_Server.getListado().size()-1).getNombre());
 	}
 	
 	@Test
 	public void altaParadaColectivo(){
-		boolean respuesta=poi_abmc.alta(poiDTOColectivo);
+		boolean respuesta = DB_Server.agregarPOI(poiDTOColectivo.converttoPOI());
 		Assert.assertTrue(respuesta);
+		Assert.assertTrue(poiDTOColectivo.getNombre() == DB_Server.getListado().get(DB_Server.getListado().size()-1).getNombre());
 	}
 }

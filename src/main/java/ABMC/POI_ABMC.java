@@ -49,7 +49,7 @@ public class POI_ABMC {
 		}
 	}
 
-	public boolean delete(Long ID) {
+	public boolean delete(double ID) {
 		if (DB_Server.getPOIbyId(ID) != null) {
 			return DB_Server.eliminarPOI(ID);
 		} else
