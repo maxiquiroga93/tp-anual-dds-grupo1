@@ -20,7 +20,7 @@ import POI.nodoServicio;
 
 public class CGP_Converter {
 	
-	public List<POI_DTO> getCGPs(String url) throws JSONException, MalformedURLException, IOException{	
+	public static List<POI_DTO> getCGPs(String url) throws JSONException, MalformedURLException, IOException{	
 		// Obtengo el array que me devuelve el JSON
 		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL(url), Charset.forName("UTF-8")));
 		Type listType = new TypeToken<ArrayList<CGP_DTO>>(){}.getType();
@@ -33,15 +33,19 @@ public class CGP_Converter {
 			dtoGenerico.setComuna(dto.getComuna());
 			dtoGenerico.setZonas(dto.getZonas());
 			dtoGenerico.setDirector(dto.getDirector());
-			dtoGenerico.setCallePrincipal(parseCalle(dto.getDirector()));
-			dtoGenerico.setNumeracion(parseNumero(dto.getDomicilio()));
+			if(!dto.getDomicilio().isEmpty()){
+				dtoGenerico.setCallePrincipal(parseCalle(dto.getDomicilio()));
+				dtoGenerico.setNumeracion(parseNumero(dto.getDomicilio()));
+			}
 			dtoGenerico.setTelefono(dto.getTelefono());
 			
 			for(nodoServicioDTO servicioDTO : dto.getServicios()){
 				nodoServicio servicio = new nodoServicio();
 				servicio.setName(servicioDTO.getNombre());
-				servicio.agregarDia(servicioDTO.getHorarios().getDiaSemana());
-				servicio.setHoras(servicioDTO.getHorarios().getHoraDesde(), servicioDTO.getHorarios().getHoraHasta());
+				for(HorariosDTO horariosDTO : servicioDTO.getHorarios()){
+					servicio.agregarDia(horariosDTO.getDiaSemana());
+					servicio.setHoras(horariosDTO.getHoraDesde(), horariosDTO.getHoraHasta());
+				}
 				dtoGenerico.addServicio(servicio);
 			}
 			
@@ -51,7 +55,7 @@ public class CGP_Converter {
 		return listadoPOI_DTO;
 	}
 	
-	private String parseCalle(String domicilio){
+	private static String parseCalle(String domicilio){
 		int corte =  domicilio.length();
 		for (int i = corte - 1; 0 < i; i--){
 		    if(domicilio.charAt(i) != ' '){
@@ -62,7 +66,7 @@ public class CGP_Converter {
 		return domicilio.substring(0, corte);
 	}
 	
-	private int parseNumero(String domicilio){
+	private static int parseNumero(String domicilio){
 		int corte =  domicilio.length();
 		for (int i = corte - 1; 0 < i; i--){
 		    if(domicilio.charAt(i) != ' '){

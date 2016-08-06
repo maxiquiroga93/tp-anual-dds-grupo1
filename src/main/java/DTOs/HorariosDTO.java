@@ -5,7 +5,7 @@ public class HorariosDTO {
 	int horaDesde;
 	int minutosDesde;
 	int horaHasta;
-	int minHasta;
+	int minutosHasta;
 
 	public int getDiaSemana() {
 		return diaSemana;
@@ -39,12 +39,12 @@ public class HorariosDTO {
 		this.horaHasta = horaHasta;
 	}
 
-	public int getMinHasta() {
-		return minHasta;
+	public int getMinutosHasta() {
+		return minutosHasta;
 	}
 
-	public void setMinHasta(int minHasta) {
-		this.minHasta = minHasta;
+	public void setMinutosHasta(int minutosHasta) {
+		this.minutosHasta = minutosHasta;
 	}
 
 }

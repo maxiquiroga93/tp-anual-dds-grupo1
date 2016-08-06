@@ -1,5 +1,6 @@
 package DTOs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CGP_DTO {
@@ -8,7 +9,7 @@ public class CGP_DTO {
 	String director;
 	String domicilio;
 	String telefono;
-	List<nodoServicioDTO> servicios;
+	List<nodoServicioDTO> servicios = new ArrayList<nodoServicioDTO>();
 
 	public int getComuna() {
 		return comuna;

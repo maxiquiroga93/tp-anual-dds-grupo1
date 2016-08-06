@@ -20,7 +20,7 @@ import POI.nodoServicio;
 
 public class Banco_Converter {
 
-	public List<POI_DTO> getBancos(String url) throws JSONException, MalformedURLException, IOException{	
+	public static List<POI_DTO> getBancos(String url) throws JSONException, MalformedURLException, IOException{	
 		// Obtengo el array que me devuelve el JSON
 		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL(url), Charset.forName("UTF-8")));
 		Type listType = new TypeToken<ArrayList<Banco_DTO>>(){}.getType();

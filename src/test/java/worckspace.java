@@ -3,12 +3,8 @@
 //import POI.Banco;
 //import POI.FlyweightFactoryEtiqueta;
 //import POI.POI;
-import ABMC.POI_ABMC;
-import ABMC.POI_DTO;
-import POI.Banco;
-import POI.CGP;
-
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -16,11 +12,15 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
-import org.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import DTOs.CGP_DTO;
 
 public class worckspace {
 	public static void main(String[] args) throws IOException {
-	 try {
+	 /*try {
 		 POI_ABMC poi_abmc = new POI_ABMC();
 		 List<Banco> listadoBancos = poi_abmc.consultarBancos("http://trimatek.org/Consultas/banco?banco");
 	    }
@@ -35,7 +35,7 @@ public class worckspace {
 	    }
 	    catch (IOException e) {
 	       throw new RuntimeException(e);
-	    }
+	    }*/
 	
 	
 //	public static void main(String[] args) throws IOException {
@@ -67,8 +67,17 @@ public class worckspace {
 		 * System.out.print(": ");
 		 * System.out.println(result.getString("message", ""));
 		 * System.out.println("-----------");
+	
 		 */
-	}}
+		
+		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL("http://trimatek.org/Consultas/centro?"), Charset.forName("UTF-8")));
+		Type listType = new TypeToken<ArrayList<CGP_DTO>>(){}.getType();
+		Gson gson = new Gson();
+		List<CGP_DTO> listadoCGP_DTO = gson.fromJson(jsonArray.toString(), listType);
+		System.out.println(listadoCGP_DTO);
+		
+	}
+}
 
 
 

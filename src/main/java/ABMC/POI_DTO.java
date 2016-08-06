@@ -40,6 +40,8 @@ public class POI_DTO {
 	String zonas;
 	String gerente;
 	String sucursal;
+	ArrayList<Integer> dias = new ArrayList<Integer>();
+	ArrayList<Integer> horas = new ArrayList<Integer>();
 
 	public POI converttoPOI() {
 		POI nuevoPOI = null;
@@ -273,6 +275,34 @@ public class POI_DTO {
 
 	public void setId(double id) {
 		this.id = id;
+	}
+
+	public void addServicio(nodoServicio servicio) {
+		this.Servicios.add(servicio);
+	}
+
+	public ArrayList<nodoServicio> getServicios() {
+		return Servicios;
+	}
+
+	public void setServicios(ArrayList<nodoServicio> servicios) {
+		Servicios = servicios;
+	}
+
+	public ArrayList<Integer> getDias() {
+		return dias;
+	}
+
+	public void setDias(ArrayList<Integer> dias) {
+		this.dias = dias;
+	}
+
+	public ArrayList<Integer> getHoras() {
+		return horas;
+	}
+
+	public void setHoras(ArrayList<Integer> horas) {
+		this.horas = horas;
 	}
 
 }

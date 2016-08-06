@@ -1,8 +1,10 @@
 package DTOs;
 
+import java.util.List;
+
 public class nodoServicioDTO {
 	String nombre;
-	HorariosDTO horarios;
+	List<HorariosDTO> horarios;
 
 	public String getNombre() {
 		return nombre;
@@ -12,11 +14,11 @@ public class nodoServicioDTO {
 		this.nombre = nombre;
 	}
 
-	public HorariosDTO getHorarios() {
+	public List<HorariosDTO> getHorarios() {
 		return horarios;
 	}
 
-	public void setHorarios(HorariosDTO horarios) {
+	public void setHorarios(List<HorariosDTO> horarios) {
 		this.horarios = horarios;
 	}
 
