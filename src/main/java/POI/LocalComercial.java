@@ -66,15 +66,15 @@ public class LocalComercial extends POI {
 		
 	}
 	
-	public void setDatos(POI_DTO dto,boolean esNuevo){
-		super.setDatos(dto);
-		this.setDias(dto.getDias());
-		this.setHoras(dto.getHoras());
-		
-		if(!esNuevo){
-			this.setRubro(dto.getRubro());
-		}
-	}
+//	public void setDatos(POI_DTO dto,boolean esNuevo){
+//		super.setDatos(dto);
+//		this.setDias(dto.getDias());
+//		this.setHoras(dto.getHoras());
+//		
+//		if(!esNuevo){
+//			this.setRubro(dto.getRubro());
+//		}
+//	}
 	
 	
 }

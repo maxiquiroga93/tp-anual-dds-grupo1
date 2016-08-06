@@ -272,18 +272,18 @@ public abstract class POI {
 		return (this.cercania > distancia);
 	}
 
-	public void setDatos(POI_DTO dto) {
-		this.setCallePrincipal(dto.getCallePrincipal());
-		this.setCalleLateral(dto.getCalleLateral());
-		this.setNumeracion(dto.getNumeracion());
-		this.setPiso(dto.getPiso());
-		this.setDepartamento(dto.getDepartamento());
-		this.setUnidad(dto.getUnidad());
-		this.setCodigoPostal(dto.getCodigoPostal());
-		this.setLocalidad(dto.getLocalidad());
-		this.setBarrio(dto.getBarrio());
-		this.setProvincia(dto.getProvincia());
-		this.setPais(dto.getPais());
-		this.setComuna(dto.getComuna());
-	}
+//	public void setDatos(POI_DTO dto) {
+//		this.setCallePrincipal(dto.getCallePrincipal());
+//		this.setCalleLateral(dto.getCalleLateral());
+//		this.setNumeracion(dto.getNumeracion());
+//		this.setPiso(dto.getPiso());
+//		this.setDepartamento(dto.getDepartamento());
+//		this.setUnidad(dto.getUnidad());
+//		this.setCodigoPostal(dto.getCodigoPostal());
+//		this.setLocalidad(dto.getLocalidad());
+//		this.setBarrio(dto.getBarrio());
+//		this.setProvincia(dto.getProvincia());
+//		this.setPais(dto.getPais());
+//		this.setComuna(dto.getComuna());
+//	}
 }
