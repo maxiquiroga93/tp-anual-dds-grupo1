@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ABMC.POI_ABMC;
 import DB.DB_Server;
 import POI.CGP;
 import POI.LocalComercial;
@@ -19,6 +18,7 @@ import userInterface.Buscador;
 public class testBuscarPoi {
 	private Buscador poiController;
 	private DB_Server server;
+	@SuppressWarnings("static-access")
 	@Before
 	public void init() throws JSONException, MalformedURLException, IOException{
 		poiController = new Buscador();
