@@ -14,18 +14,18 @@ import POI.Rubro;
 import ABMC.POI_ABMC;
 
 public class testABMC_Consulta {
-
+	
 	@Before
 	public void inicializar(){
 		Banco banco = new Banco("Santander", 0, 0);
 		LocalComercial local = new LocalComercial("Localcito", 0, 0,null);
 		ParadaColectivo parada = new ParadaColectivo("47", 0, 0);
 		CGP cgp = new CGP("Mataderos", 0, 0);
-		DB_Server base = new DB_Server();
-		base.agregarPOI(cgp);
-		base.agregarPOI(parada);
-		base.agregarPOI(local);
-		base.agregarPOI(banco);
+		
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
 		
 		banco.setBarrio("Mataderos");
 		banco.setPais("Argentina");
