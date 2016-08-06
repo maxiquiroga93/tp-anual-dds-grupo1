@@ -14,13 +14,14 @@ import POI.POI;
 import POI.ParadaColectivo;
 import POI.Rubro;
 import POI.TiposPOI;
+import userInterface.Buscador;
 
 public class testBuscarPoi {
-	private POI_ABMC poiController;
+	private Buscador poiController;
 	private DB_Server server;
 	@Before
 	public void init() throws JSONException, MalformedURLException, IOException{
-		poiController = new POI_ABMC();
+		poiController = new Buscador();
 		server = new DB_Server();
 		
 		Rubro unRubro = new Rubro("unRubro");
