@@ -67,10 +67,6 @@ public class POI_DTO {
 		nuevoPOI.setPais(pais);
 		nuevoPOI.setComuna(comuna);
 
-		ArrayList<Integer> dias;
-		ArrayList<Integer> horas;
-		ArrayList<nodoServicio> servicios;
-
 		return nuevoPOI;
 
 	}
