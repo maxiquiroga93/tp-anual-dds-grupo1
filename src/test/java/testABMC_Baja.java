@@ -1,5 +1,3 @@
-
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +7,7 @@ import ABMC.POI_DTO;
 import POI.Rubro;
 import POI.TiposPOI;
 
-
-public class testABMC_Alta {
+public class testABMC_Baja {
 	POI_ABMC poi_abmc;
 	POI_DTO poiDTOBanco; 
 	POI_DTO poiDTOCGP;
@@ -47,31 +44,34 @@ public class testABMC_Alta {
 		poiDTOColectivo.setNombre("unBanco");
 		poiDTOColectivo.setLatitud(-34.5664823);
 		poiDTOColectivo.setLongitud(-34.5664823);
-		
+		poi_abmc.alta(poiDTOBanco);
+		poi_abmc.alta(poiDTOCGP);
+		poi_abmc.alta(poiDTOComercial);
+		poi_abmc.alta(poiDTOColectivo);
 }
 	
 	@Test
 	public void altaBanco(){
 		
-		boolean respuesta=poi_abmc.alta(poiDTOBanco);
+		boolean respuesta=poi_abmc.delete(poiDTOBanco);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
 	public void altaCGP(){
-		boolean respuesta=poi_abmc.alta(poiDTOCGP);
+		boolean respuesta=poi_abmc.delete(poiDTOCGP);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
 	public void altaLocalComercial(){
-		boolean respuesta=poi_abmc.alta(poiDTOComercial);
+		boolean respuesta=poi_abmc.delete(poiDTOComercial);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
 	public void altaParadaColectivo(){
-		boolean respuesta=poi_abmc.alta(poiDTOColectivo);
+		boolean respuesta=poi_abmc.delete(poiDTOColectivo);
 		Assert.assertTrue(respuesta);
 	}
 }
