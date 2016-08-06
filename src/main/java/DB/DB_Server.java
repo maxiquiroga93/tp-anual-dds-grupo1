@@ -18,6 +18,7 @@ import userInterface.Buscador;
 public class DB_Server {
 
 	private static ArrayList<POI> listadoPOI;
+	private static DB_Server instance = null;
 	
 	public DB_Server(){
 		listadoPOI = new ArrayList<POI>();
@@ -25,6 +26,12 @@ public class DB_Server {
 	
 	public static ArrayList<POI> getListado(){
 		return DB_Server.listadoPOI;
+	}
+	
+	public DB_Server getInstance() {
+		if(instance == null)
+			instance = new DB_Server();
+		return instance;
 	}
 	
 	public static ArrayList<POI> getAllParadasColectivoByLinea(String busqueda) {
@@ -117,6 +124,7 @@ public class DB_Server {
 
 	public static boolean agregarPOI(POI nuevoPOI) {
 		try{
+			//testear
 			Long e = new Long(listadoPOI.size()+1);
 			nuevoPOI.setId(e);
 			listadoPOI.add(nuevoPOI);
@@ -150,4 +158,5 @@ public class DB_Server {
 			}				
 	
 	}
+
 }
