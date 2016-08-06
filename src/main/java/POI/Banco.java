@@ -69,4 +69,10 @@ public class Banco extends POI {
 		this.setNombre(nombre);
 	}
 
+
+
+	public void setServicios(ArrayList<nodoServicio> servicios) {
+		Servicios = servicios;
+	}
+
 }

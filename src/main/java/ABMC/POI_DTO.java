@@ -33,9 +33,7 @@ public class POI_DTO {
 	double latitud;
 	double longitud;
 	Rubro rubro;
-	ArrayList<Integer> dias;
-	ArrayList<Integer> horas;
-	ArrayList<nodoServicio> servicios;
+	ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();
 	Etiqueta[] etiquetas;
 	String telefono;
 	String director;
@@ -48,10 +46,8 @@ public class POI_DTO {
 
 		if (this.getTipo().equals(TiposPOI.CGP)) {
 			nuevoPOI = new CGP(this.getNombre(), this.getLatitud(), this.getLongitud());
-			((CGP) nuevoPOI).setDatos(this);
 		} else if (this.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)) {
 			nuevoPOI = new LocalComercial(this.getNombre(), this.getLatitud(), this.getLongitud(), this.getRubro());
-			((LocalComercial) nuevoPOI).setDatos(this, true);
 		} else if (this.getTipo().equals(TiposPOI.BANCO)) {
 			nuevoPOI = new Banco(this.getNombre(), this.getLatitud(), this.getLongitud());
 		} else if (this.getTipo().equals(TiposPOI.PARADA_COLECTIVO)) {
@@ -229,34 +225,6 @@ public class POI_DTO {
 
 	public void setRubro(Rubro rubro) {
 		this.rubro = rubro;
-	}
-
-	public ArrayList<Integer> getDias() {
-		return dias;
-	}
-
-	public void setDias(ArrayList<Integer> dias) {
-		this.dias = dias;
-	}
-
-	public ArrayList<Integer> getHoras() {
-		return horas;
-	}
-
-	public void setHoras(ArrayList<Integer> horas) {
-		this.horas = horas;
-	}
-
-	public ArrayList<nodoServicio> getServicios() {
-		return servicios;
-	}
-
-	public void setServicios(ArrayList<nodoServicio> servicios) {
-		this.servicios = servicios;
-	}
-
-	public void addServicio(nodoServicio servicio) {
-		this.servicios.add(servicio);
 	}
 
 	public Etiqueta[] getEtiquetas() {
