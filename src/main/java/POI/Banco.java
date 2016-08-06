@@ -2,8 +2,6 @@ package POI;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
-
 import Geolocation.GeoLocation;
 
 public class Banco extends POI {
