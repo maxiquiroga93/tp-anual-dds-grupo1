@@ -117,6 +117,8 @@ public class DB_Server {
 
 	public static boolean agregarPOI(POI nuevoPOI) {
 		try{
+			Long e = new Long(listadoPOI.size()+1);
+			nuevoPOI.setId(e);
 			listadoPOI.add(nuevoPOI);
 			return true;
 		} catch(Exception ex){
