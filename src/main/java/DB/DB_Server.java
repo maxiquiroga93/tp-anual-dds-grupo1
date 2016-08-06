@@ -23,7 +23,7 @@ public class DB_Server {
 		listadoPOI = new ArrayList<POI>();
 	}
 	
-	public ArrayList<POI> getListado(){
+	public static ArrayList<POI> getListado(){
 		return DB_Server.listadoPOI;
 	}
 	
