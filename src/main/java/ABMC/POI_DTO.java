@@ -130,13 +130,13 @@ public class POI_DTO {
 	public double getLatitud() {
 		return latitud;
 	}
-	public void setLatitud(Long latitud) {
+	public void setLatitud(double latitud) {
 		this.latitud = latitud;
 	}
 	public double getLongitud() {
 		return longitud;
 	}
-	public void setLongitud(Long longitud) {
+	public void setLongitud(double longitud) {
 		this.longitud = longitud;
 	}
 	public Rubro getRubro() {
