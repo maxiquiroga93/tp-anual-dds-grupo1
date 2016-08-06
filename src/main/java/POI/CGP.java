@@ -83,14 +83,14 @@ public class CGP extends POI {
 
 	
 	
-//	@Override
-//	public void setDatos(POI_DTO dto) {
-//		super.setDatos(dto);
-//		for (nodoServicio servicio : dto.getServicios()) {
-//			this.agregarServicio(servicio.getName(), servicio.getListaDias(), servicio.getHoraInicio(),
-//					servicio.getHoraFin());
-//		}
-//	}
+	@Override
+	public void setDatos(POI_DTO dto) {
+		super.setDatos(dto);
+		for (nodoServicio servicio : dto.getServicios()) {
+			this.agregarServicio(servicio.getName(), servicio.getListaDias(), servicio.getHoraInicio(),
+					servicio.getHoraFin());
+		}
+	}
 
 	public ArrayList<nodoServicio> getServicios() {
 		return Servicios;
