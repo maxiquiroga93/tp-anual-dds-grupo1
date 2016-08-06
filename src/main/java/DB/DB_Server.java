@@ -23,7 +23,7 @@ public class DB_Server {
 		listadoPOI = new ArrayList<POI>();
 	}
 	
-	public ArrayList<POI> getListado(){
+	public static ArrayList<POI> getListado(){
 		return DB_Server.listadoPOI;
 	}
 	
@@ -117,6 +117,8 @@ public class DB_Server {
 
 	public static boolean agregarPOI(POI nuevoPOI) {
 		try{
+			Long e = new Long(listadoPOI.size()+1);
+			nuevoPOI.setId(e);
 			listadoPOI.add(nuevoPOI);
 			return true;
 		} catch(Exception ex){

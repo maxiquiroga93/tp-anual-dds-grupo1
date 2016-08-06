@@ -62,6 +62,15 @@ public class POI_ABMC {
 		}
 		return false;
 	}
+	
+	public ArrayList<POI> consultaLocal(String busqueda){
+		ArrayList<POI> resultado;
+		for(int i = 0; i < DB_Server.getListado().size(); i++){
+			
+		}
+		return resultado;
+		
+	}
 
 	public List<Banco> consultarBancos(String url) throws JSONException, MalformedURLException, IOException {
 		// Obtengo el array que me devuelve el JSON
