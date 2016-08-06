@@ -13,6 +13,7 @@ import POI.CGP;
 import POI.LocalComercial;
 import POI.POI;
 import POI.TiposPOI;
+import userInterface.Buscador;
  
 public class DB_Server {
 
@@ -72,7 +73,7 @@ public class DB_Server {
 
 	public static boolean existeLinea(String str) {
 		for(POI poi : listadoPOI){
-			if(POI_ABMC.isNumeric(str) && poi.getNombre().equals(str));
+			if(Buscador.isNumeric(str) && poi.getNombre().equals(str));
 				return true;
 		}
 		return false;
