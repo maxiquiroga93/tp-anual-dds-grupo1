@@ -47,9 +47,9 @@ public class POI_ABMC {
 		}
 	}
 
-	public boolean delete(POI_DTO dto) {
-		if (DB_Server.getPOIbyId(dto.getId()) != null) {
-			return DB_Server.eliminarPOI(dto.getId());
+	public boolean delete(Long ID) {
+		if (DB_Server.getPOIbyId(ID) != null) {
+			return DB_Server.eliminarPOI(ID);
 		} else
 			return false;
 	}

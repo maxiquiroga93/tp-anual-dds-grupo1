@@ -2,6 +2,13 @@ package ABMC;
 
 import java.util.ArrayList;
 
+import DB.DB_Server;
+import POI.Banco;
+import POI.CGP;
+import POI.Etiqueta;
+import POI.LocalComercial;
+import POI.POI;
+import POI.ParadaColectivo;
 import Geolocation.GeoLocation;
 import POI.Rubro;
 import POI.TiposPOI;
@@ -30,6 +37,46 @@ public class POI_DTO {
 	ArrayList<Integer> dias;
 	ArrayList<Integer> horas;
 	ArrayList<nodoServicio> servicios;
+	Etiqueta[] etiquetas;
+		
+	public POI converttoPOI(){
+		POI nuevoPOI = null;
+
+		if (this.getTipo().equals(TiposPOI.CGP)) {
+			nuevoPOI = new CGP(this.getNombre(), this.getLatitud(), this.getLongitud());
+			((CGP) nuevoPOI).setDatos(this);
+		} else if (this.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)) {
+			nuevoPOI = new LocalComercial(this.getNombre(), this.getLatitud(), this.getLongitud(), this.getRubro());
+			((LocalComercial) nuevoPOI).setDatos(this, true);
+		} else if (this.getTipo().equals(TiposPOI.BANCO)) {
+			nuevoPOI = new Banco(this.getNombre(), this.getLatitud(), this.getLongitud());
+		} else if (this.getTipo().equals(TiposPOI.PARADA_COLECTIVO)) {
+			nuevoPOI = new ParadaColectivo(this.getNombre(), this.getLatitud(), this.getLongitud());
+		}
+		
+		
+		nuevoPOI.setCallePrincipal(callePrincipal);
+		nuevoPOI.setCalleLateral(calleLateral);
+		nuevoPOI.setNumeracion(numeracion);
+		nuevoPOI.setPiso(piso);
+		nuevoPOI.setDepartamento(departamento);
+		nuevoPOI.setUnidad(unidad);
+		nuevoPOI.setCodigoPostal(codigoPostal);
+		nuevoPOI.setLocalidad(localidad);
+		nuevoPOI.setBarrio(barrio);
+		nuevoPOI.setProvincia(provincia);
+		nuevoPOI.setPais(pais);		
+		nuevoPOI.setComuna(comuna);
+		
+		ArrayList<Integer> dias;
+		ArrayList<Integer> horas;
+		ArrayList<nodoServicio> servicios;
+		
+		
+		return nuevoPOI;
+
+
+	}
 	
 	public double getId() {
 		return id;
