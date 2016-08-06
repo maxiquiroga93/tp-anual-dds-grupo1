@@ -24,6 +24,8 @@ import POI.TiposPOI;
 
 public class POI_ABMC {
 
+	private ArrayList<POI> resultado;
+
 	public boolean alta(POI_DTO dto) {
 		POI nuevoPOI = null;
 
@@ -62,15 +64,51 @@ public class POI_ABMC {
 		}
 		return false;
 	}
-	
+
 	public ArrayList<POI> consultaLocal(String busqueda){
-		ArrayList<POI> resultado;
-		for(int i = 0; i < DB_Server.getListado().size(); i++){
-			
+		resultado = null;
+		ArrayList<POI> listado = DB_Server.getListado();
+		for(int i = 0; i < listado.size(); i++){
+			POI nodo = listado.get(i);
+			resultado.add(cumple(nodo,busqueda,nodo.getTipo()));
 		}
 		return resultado;
-		
+
 	}
+
+	public POI cumple(POI nodo, String busqueda,TiposPOI tipo){
+		if(busqueda == nodo.getBarrio() && tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getCalleLateral()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getCallePrincipal()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getDepartamento()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getLocalidad()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getNombre()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getPais()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getProvincia()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(busqueda == nodo.getUnidad()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(Integer.parseInt(busqueda) == nodo.getCercania()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(Integer.parseInt(busqueda) == nodo.getCodigoPostal()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(Integer.parseInt(busqueda) == nodo.getComuna()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(Integer.parseInt(busqueda) == nodo.getNumeracion()&& tipo == nodo.getTipo()){
+			return nodo;
+		}else if(Integer.parseInt(busqueda) == nodo.getPiso()&& tipo == nodo.getTipo()){
+			return nodo;
+		}
+		return null;
+	}
+
 
 	public List<Banco> consultarBancos(String url) throws JSONException, MalformedURLException, IOException {
 		// Obtengo el array que me devuelve el JSON
@@ -82,32 +120,32 @@ public class POI_ABMC {
 			JSONObject objetoInterno = jsonArray.getJSONObject(i);
 
 			// obtengo los componentes y sus valores.
-//					String valor = objetoInterno.getString(nombre);
-					System.out.println("banco: " + objetoInterno.getString("banco"));
-					System.out.println("sucursal: " + objetoInterno.getString("sucursal"));
-					System.out.println("gerente: " + objetoInterno.getString("gerente"));
-					System.out.println("x: " + objetoInterno.getDouble("x"));
-					System.out.println("y: " + objetoInterno.getDouble("y"));
-					System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
-					
-					Banco nuevoBanco = new Banco(objetoInterno.getString("banco"),objetoInterno.getDouble("x"),
-							objetoInterno.getDouble("y"));
-					
-					listadoBancos.add(nuevoBanco);
+			//					String valor = objetoInterno.getString(nombre);
+			System.out.println("banco: " + objetoInterno.getString("banco"));
+			System.out.println("sucursal: " + objetoInterno.getString("sucursal"));
+			System.out.println("gerente: " + objetoInterno.getString("gerente"));
+			System.out.println("x: " + objetoInterno.getDouble("x"));
+			System.out.println("y: " + objetoInterno.getDouble("y"));
+			System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
 
-			}
-			// Creo POI y lo guardo en el listado que devuelvo
-			// nombre, latitud y longitud.
-//			Banco banco = new Banco(valores.get("banco"), Long.parseLong(valores.get("x")),
-//					Long.parseLong(valores.get("y")));
-//			listadoBancos.add(banco);
+			Banco nuevoBanco = new Banco(objetoInterno.getString("banco"),objetoInterno.getDouble("x"),
+					objetoInterno.getDouble("y"));
+
+			listadoBancos.add(nuevoBanco);
+
+		}
+		// Creo POI y lo guardo en el listado que devuelvo
+		// nombre, latitud y longitud.
+		//			Banco banco = new Banco(valores.get("banco"), Long.parseLong(valores.get("x")),
+		//					Long.parseLong(valores.get("y")));
+		//			listadoBancos.add(banco);
 
 
 		return listadoBancos;
 	}
 
 	// TODO Falta crear servicios y agregarlos al CGP si corresponde. (ver comuna 1)
-	
+
 	public List<CGP> consultarCentros(String url) throws JSONException, MalformedURLException, IOException {
 		// Obtengo el array que me devuelve el JSON
 		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL(url), Charset.forName("UTF-8")));
@@ -118,22 +156,22 @@ public class POI_ABMC {
 			JSONObject objetoInterno = jsonArray.getJSONObject(i);
 
 			// obtengo los componentes y sus valores.
-//					String valor = objetoInterno.getString(nombre);
-					System.out.println("comuna: " + objetoInterno.getInt("comuna"));
-					System.out.println("zonas: " + objetoInterno.getString("zonas"));
-					System.out.println("director: " + objetoInterno.getString("director"));
-					System.out.println("domicilio: " + objetoInterno.getString("domicilio"));
-					System.out.println("telefono: " + objetoInterno.getString("telefono"));
-					System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
-					
-				//	Creamos el CGP usando latitud y longitud hardcodeada por faltar en servicios API
-					CGP nuevoCGP = new CGP(String.valueOf(objetoInterno.getInt("comuna")),-34,-58);
-					
-					listadoCGP.add(nuevoCGP);
+			//					String valor = objetoInterno.getString(nombre);
+			System.out.println("comuna: " + objetoInterno.getInt("comuna"));
+			System.out.println("zonas: " + objetoInterno.getString("zonas"));
+			System.out.println("director: " + objetoInterno.getString("director"));
+			System.out.println("domicilio: " + objetoInterno.getString("domicilio"));
+			System.out.println("telefono: " + objetoInterno.getString("telefono"));
+			System.out.println("servicios: " + objetoInterno.getJSONArray("servicios"));
 
-			}
+			//	Creamos el CGP usando latitud y longitud hardcodeada por faltar en servicios API
+			CGP nuevoCGP = new CGP(String.valueOf(objetoInterno.getInt("comuna")),-34,-58);
+
+			listadoCGP.add(nuevoCGP);
+
+		}
 
 		return listadoCGP;
 	}
-	
+
 }
