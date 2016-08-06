@@ -43,7 +43,7 @@ public class testABMC_Consulta {
 	}
 	
 	public boolean esnull(ArrayList<POI> lista){
-		return lista.size() == 0
+		return lista.size() == 0;
 	}
 
 
