@@ -17,6 +17,7 @@ public class testABMC_Alta {
 	POI_DTO poiDTOComercial;
 	POI_DTO poiDTOColectivo;
 	Rubro rubro;
+	
 	@Before
 	public void init(){
 		

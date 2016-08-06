@@ -8,7 +8,7 @@ import POI.TiposPOI;
 import POI.nodoServicio;
 
 public class POI_DTO {
-	Long id;
+	double id;
 	String nombre;
 	String callePrincipal;
 	String calleLateral ;
@@ -24,14 +24,14 @@ public class POI_DTO {
 	GeoLocation Ubicacion;
 	int comuna;
 	TiposPOI tipo;
-	Long latitud;
-	Long longitud;
+	double latitud;
+	double longitud;
 	Rubro rubro;
 	ArrayList<Integer> dias;
 	ArrayList<Integer> horas;
 	ArrayList<nodoServicio> servicios;
 	
-	public Long getId() {
+	public double getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -127,13 +127,13 @@ public class POI_DTO {
 	public void setTipo(TiposPOI tipo) {
 		this.tipo = tipo;
 	}
-	public Long getLatitud() {
+	public double getLatitud() {
 		return latitud;
 	}
 	public void setLatitud(Long latitud) {
 		this.latitud = latitud;
 	}
-	public Long getLongitud() {
+	public double getLongitud() {
 		return longitud;
 	}
 	public void setLongitud(Long longitud) {

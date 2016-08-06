@@ -109,9 +109,9 @@ public class DB_Server {
 		return false;
 	}
 
-	public static boolean eliminarPOI(Long id){
+	public static boolean eliminarPOI(double d){
 
-		return listadoPOI.remove(id);
+		return listadoPOI.remove(d);
 	}
 
 	public static boolean agregarPOI(POI nuevoPOI) {
@@ -123,9 +123,9 @@ public class DB_Server {
 		}
 	}
 
-	public static POI getPOIbyId(Long id) {
+	public static POI getPOIbyId(double d) {
 		for(POI poi : listadoPOI){
-			if(poi.getId().equals(id))
+			if(poi.getId().equals(d))
 				return poi;
 		}
 		return null;
