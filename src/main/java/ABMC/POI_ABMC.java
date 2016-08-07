@@ -19,6 +19,7 @@ import POI.LocalComercial;
 import POI.POI;
 import POI.ParadaColectivo;
 import POI.TiposPOI;
+import userInterface.Buscador;
 
 public class POI_ABMC {
 
@@ -64,11 +65,14 @@ public class POI_ABMC {
 	}
 
 	public ArrayList<POI> consultaLocal(String busqueda) {
-		resultado = null;
+		resultado = new ArrayList<POI>();
 		ArrayList<POI> listado = DB_Server.getListado();
 		for (int i = 0; i < listado.size(); i++) {
 			POI nodo = listado.get(i);
-			resultado.add(cumple(nodo, busqueda, nodo.getTipo()));
+			POI match = cumple(nodo,busqueda,nodo.getTipo());
+			if(!(match == null)){
+				resultado.add(match);
+			}
 		}
 		return resultado;
 
@@ -93,16 +97,18 @@ public class POI_ABMC {
 			return nodo;
 		} else if (busqueda == nodo.getUnidad() && tipo == nodo.getTipo()) {
 			return nodo;
-		} else if (Integer.parseInt(busqueda) == nodo.getCercania() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (Integer.parseInt(busqueda) == nodo.getCodigoPostal() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (Integer.parseInt(busqueda) == nodo.getComuna() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (Integer.parseInt(busqueda) == nodo.getNumeracion() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (Integer.parseInt(busqueda) == nodo.getPiso() && tipo == nodo.getTipo()) {
-			return nodo;
+		} else if (Buscador.isNumeric(busqueda)){
+			if(Integer.parseInt(busqueda) == nodo.getCercania() && tipo == nodo.getTipo()) {
+				return nodo;
+			} else if (Integer.parseInt(busqueda) == nodo.getCodigoPostal() && tipo == nodo.getTipo()) {
+				return nodo;
+			} else if (Integer.parseInt(busqueda) == nodo.getComuna() && tipo == nodo.getTipo()) {
+				return nodo;
+			} else if (Integer.parseInt(busqueda) == nodo.getNumeracion() && tipo == nodo.getTipo()) {
+				return nodo;
+			} else if (Integer.parseInt(busqueda) == nodo.getPiso() && tipo == nodo.getTipo()) {
+				return nodo;
+			}
 		}
 		return null;
 	}

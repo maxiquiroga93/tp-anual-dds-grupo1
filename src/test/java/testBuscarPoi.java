@@ -87,9 +87,9 @@ public class testBuscarPoi {
 	}
 	@Test
 	public void testBuscarPorEtiquetaNombre(){
-		String etiquetaNombre = "a";
+		String etiquetaNombre = "f";
 		Assert.assertNotNull(poiController.getPOIs(etiquetaNombre));
-		Assert.assertTrue(poiController.getPOIs(etiquetaNombre).size() == 8);
+		Assert.assertTrue(poiController.getPOIs(etiquetaNombre).size() == 1);
 	}
 	
 

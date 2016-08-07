@@ -14,18 +14,24 @@ import POI.Rubro;
 import ABMC.POI_ABMC;
 
 public class testABMC_Consulta {
+	POI_ABMC abmc;
+	DB_Server base;
+	DB_Server instancia;
 	
 	@Before
 	public void inicializar(){
+		abmc = new POI_ABMC();
 		Banco banco = new Banco("Santander", 0, 0);
 		LocalComercial local = new LocalComercial("Localcito", 0, 0,null);
 		ParadaColectivo parada = new ParadaColectivo("47", 0, 0);
 		CGP cgp = new CGP("Mataderos", 0, 0);
+		base = new DB_Server();
+		instancia = base.getInstance();
 		
-		DB_Server.agregarPOI(cgp);
-		DB_Server.agregarPOI(parada);
-		DB_Server.agregarPOI(local);
-		DB_Server.agregarPOI(banco);
+		instancia.agregarPOI(cgp);
+		instancia.agregarPOI(parada);
+		instancia.agregarPOI(local);
+		instancia.agregarPOI(banco);
 		
 		banco.setBarrio("Mataderos");
 		banco.setPais("Argentina");
@@ -37,7 +43,7 @@ public class testABMC_Consulta {
 	public void testConsulta(){
 		ArrayList<POI> lista=null;
 		
-		lista = consultaLocal("Mataderos");
+		lista = abmc.consultaLocal("Galicia");
 		Assert.assertFalse(esnull(lista));
 			
 	}
