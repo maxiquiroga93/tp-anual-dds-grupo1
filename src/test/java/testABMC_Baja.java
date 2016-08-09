@@ -51,26 +51,26 @@ public class testABMC_Baja {
 }
 	
 	@Test
-	public void altaBanco(){
+	public void bajaBanco(){
 		
 		boolean respuesta=poi_abmc.delete(poiDTOBanco.getId());
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void altaCGP(){
+	public void bajaCGP(){
 		boolean respuesta=poi_abmc.delete(poiDTOCGP.getId());
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void altaLocalComercial(){
+	public void bajaLocalComercial(){
 		boolean respuesta=poi_abmc.delete(poiDTOComercial.getId());
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void altaParadaColectivo(){
+	public void bajaParadaColectivo(){
 		boolean respuesta=poi_abmc.delete(poiDTOColectivo.getId());
 		Assert.assertTrue(respuesta);
 	}
