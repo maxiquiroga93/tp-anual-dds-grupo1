@@ -1,9 +1,18 @@
 package POI;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.List;
+
+import org.json.JSONException;
+
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 import POI.FlyweightFactoryEtiqueta;
 import POI.Etiqueta;
+import DTOs.Banco_Converter;
+import DTOs.CGP_Converter;
+
 
 public abstract class POI {
 
@@ -285,5 +294,28 @@ public abstract class POI {
 		this.setProvincia(dto.getProvincia());
 		this.setPais(dto.getPais());
 		this.setComuna(dto.getComuna());
+	}
+	// No esta completo
+	public List<POI_DTO> buscarPOI(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
+		List<POI_DTO> listaResultado=null;
+		int contieneBanco=url.indexOf("Consultas/banco?");
+		int contieneCentro=url.indexOf("/Consultas/centro?");
+		
+		if(contieneCentro!=-1){
+			//nombre calle o zona
+			//http://trimatek.org/Consultas/centro?zona=Boedo
+			//http://trimatek.org/Consultas/centro?domicilio=
+			listaResultado=CGP_Converter.getCGPs(url);
+			
+		}
+		if(contieneBanco!=-1){
+			//nombre de banco y servicio
+			//http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
+			listaResultado=Banco_Converter.getBancos(url);
+		}
+		
+		//busqueda calle y zona
+		return listaResultado;
+		
 	}
 }
