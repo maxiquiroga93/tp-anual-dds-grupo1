@@ -142,21 +142,5 @@ public class DB_Server {
 		return null;
 	}
 	
-	/*agregar todos los POIs BANCOS externos*/
-	public void agregarListaBancos(String url,POI_ABMC poi_abmc) throws JSONException, MalformedURLException, IOException {
-		List<Banco> listadoBancos = poi_abmc.consultarBancos(url);
-		for(POI poi : listadoBancos){
-			listadoPOI.add(poi);	
-			}
-					
-	}
-	/*agregar todos los POIs CENTROS externos*/
-	public void agregarListaCentros(String url,POI_ABMC poi_abmc) throws JSONException, MalformedURLException, IOException {
-		List<CGP> listadoCentros = poi_abmc.consultarCentros(url);
-			for(POI poi : listadoCentros){
-				listadoPOI.add(poi);	
-			}				
-	
-	}
 
 }
