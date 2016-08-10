@@ -25,20 +25,8 @@ public class POI_ABMC {
 	private ArrayList<POI> resultado;
 
 	public boolean alta(POI_DTO dto) {
-		POI nuevoPOI = null;
 
-		if (dto.getTipo().equals(TiposPOI.CGP)) {
-			nuevoPOI = new CGP(dto.getNombre(), dto.getLatitud(), dto.getLongitud());
-			((CGP) nuevoPOI).setDatos(dto);
-		} else if (dto.getTipo().equals(TiposPOI.LOCAL_COMERCIAL)) {
-			nuevoPOI = new LocalComercial(dto.getNombre(), dto.getLatitud(), dto.getLongitud(), dto.getRubro());
-			((LocalComercial) nuevoPOI).setDatos(dto, true);
-		} else if (dto.getTipo().equals(TiposPOI.BANCO)) {
-			nuevoPOI = new Banco(dto.getNombre(), dto.getLatitud(), dto.getLongitud());
-		} else if (dto.getTipo().equals(TiposPOI.PARADA_COLECTIVO)) {
-			nuevoPOI = new ParadaColectivo(dto.getNombre(), dto.getLatitud(), dto.getLongitud());
-		}
-
+		POI nuevoPOI = dto.converttoPOI();
 		if (nuevoPOI.equals(null)) {
 			return false;
 		} else {
