@@ -92,18 +92,7 @@ public class Banco extends POI {
 			}else if(gerente == cadena[i]){
 				return this;
 			}else{
-				for(nodoServicio servicio: Servicios){
-					if(servicio.nombre == cadena[i]){
-						return this;
-					}else if(MetodosComunes.isNumeric(cadena[i])){
-						int valor = Integer.parseInt(cadena[i]);
-						if(servicio.horaInicio<valor && valor<servicio.horaFin){
-							return this;
-						}else if(servicio.listaDias.contains(valor)){
-							return this;
-						}
-					}
-				}
+				compararServicios(cadena);
 			}
 		}
 		

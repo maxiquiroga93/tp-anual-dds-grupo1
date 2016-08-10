@@ -2,6 +2,7 @@ package POI;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -14,6 +15,7 @@ import userInterface.Buscador;
 import POI.Etiqueta;
 import DTOs.Banco_Converter;
 import DTOs.CGP_Converter;
+import POI.nodoServicio;
 
 
 public abstract class POI {
@@ -39,6 +41,7 @@ public abstract class POI {
 	// este atributo hay que ver si nos sirve porque
 	// las subclases tienen el nombre del tipo, de por si.
 	TiposPOI tipo;
+	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();
 
 	// pueden ser varias y se crean a travez de
 	// FlyweightFactoryEtiqueta.listarEtiquetas(String etiquetas[])
@@ -302,8 +305,8 @@ public abstract class POI {
 	public List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
 
 		List<POI_DTO> listaResultado=null;
-	//	int contieneBanco=url.indexOf("Consultas/banco?");
-	//	int contieneCentro=url.indexOf("/Consultas/centro?");
+		//	int contieneBanco=url.indexOf("Consultas/banco?");
+		//	int contieneCentro=url.indexOf("/Consultas/centro?");
 		/*contieneCentro!=-1*/
 		if(this instanceof CGP){
 			//nombre calle o zona
@@ -314,7 +317,7 @@ public abstract class POI {
 			if(listaResultado==null){
 				url=url+"domicilio="+textoLibre2;
 				listaResultado=CGP_Converter.getCGPs(url);
-				
+
 			}
 		}
 		if(this instanceof Banco){
@@ -323,20 +326,20 @@ public abstract class POI {
 			url=url+"banco="+textoLibre1+"&servicio="+textoLibre2;
 			listaResultado=Banco_Converter.getBancos(url);
 		}
-		
+
 		//busqueda calle y zona
 		return listaResultado;
-		
+
 	}
-	
+
 	public POI busquedaEstandar(String texto1,String texto2){
-		
+
 		String[] cadena = new String[2];
 		cadena[0]=texto1;
 		cadena[1]=texto2;
-		
+
 		//quedamos en que bruno hacia levenshtein y lo agregabamos aca
-		
+
 		for(int i=0; i<2; i++){
 			if(nombre==cadena[i]){
 				return this;
@@ -381,8 +384,25 @@ public abstract class POI {
 				return this;
 			}
 		}
-		
+
 		return null;
-		
+
+	}
+	public POI compararServicios(String[] cadena){
+		for(int i = 0; i<2;i++){
+			for(nodoServicio servicio: Servicios){
+				if(servicio.nombre == cadena[i]){
+					return this;
+				}else if(MetodosComunes.isNumeric(cadena[i])){
+					int valor = Integer.parseInt(cadena[i]);
+					if(servicio.horaInicio<valor && valor<servicio.horaFin){
+						return this;
+					}else if(servicio.listaDias.contains(valor)){
+						return this;
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

@@ -75,6 +75,17 @@ public class CGP extends POI {
 			return this;
 		}
 		
+		String[] cadena = new String[2];
+		for(int i=0;i<2;i++){
+			if(director == cadena[i]){
+				return this;
+			}else if(telefono == cadena[i]){
+				return this;
+			}else{
+				compararServicios(cadena);
+			}
+		}
+		return null;
 		
 	}
 	
