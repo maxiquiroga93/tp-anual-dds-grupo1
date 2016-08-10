@@ -70,8 +70,7 @@ public class CGP extends POI {
 	}
 	
 	public CGP busqueda(String texto1, String texto2){
-		POI nodo = busquedaEstandar(texto1,texto2);
-		if(nodo != null){
+		if(busquedaEstandar(texto1,texto2) != null){
 			return this;
 		}
 		

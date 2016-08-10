@@ -19,7 +19,6 @@ import POI.LocalComercial;
 import POI.POI;
 import POI.ParadaColectivo;
 import POI.TiposPOI;
-import userInterface.Buscador;
 
 public class POI_ABMC {
 

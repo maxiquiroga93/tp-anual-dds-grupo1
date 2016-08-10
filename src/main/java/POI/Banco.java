@@ -77,9 +77,8 @@ public class Banco extends POI {
 	}
 	
 	public Banco busqueda(String texto1, String texto2){
-		POI nodo = busquedaEstandar(texto1,texto2);
-		if(nodo != null){
-			return (Banco) nodo;
+		if(busquedaEstandar(texto1,texto2) != null){
+			return this;
 		}
 		
 		//lo mismo digo aca, levenshtein.
