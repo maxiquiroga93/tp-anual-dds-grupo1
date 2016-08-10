@@ -3,6 +3,7 @@ package POI;
 import java.util.ArrayList;
 import java.util.Calendar;
 import Geolocation.GeoLocation;
+import Helpers.MetodosComunes;
 
 public class Banco extends POI {
 	
@@ -73,6 +74,41 @@ public class Banco extends POI {
 
 	public void setServicios(ArrayList<nodoServicio> servicios) {
 		Servicios = servicios;
+	}
+	
+	public Banco busqueda(String texto1, String texto2){
+		POI nodo = busquedaEstandar(texto1,texto2);
+		if(nodo != null){
+			return (Banco) nodo;
+		}
+		
+		//lo mismo digo aca, levenshtein.
+		
+		String[] cadena = new String[2];
+		
+		for(int i=0;i<2;i++){
+			if(sucursal == cadena[i]){
+				return this;
+			}else if(gerente == cadena[i]){
+				return this;
+			}else{
+				for(nodoServicio servicio: Servicios){
+					if(servicio.nombre == cadena[i]){
+						return this;
+					}else if(MetodosComunes.isNumeric(cadena[i])){
+						int valor = Integer.parseInt(cadena[i]);
+						if(servicio.horaInicio<valor && valor<servicio.horaFin){
+							return this;
+						}else if(servicio.listaDias.contains(valor)){
+							return this;
+						}
+					}
+				}
+			}
+		}
+		
+		return null;
+		
 	}
 
 }

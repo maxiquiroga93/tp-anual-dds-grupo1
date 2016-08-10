@@ -1,7 +1,7 @@
 package POI;
 
 public enum TiposPOI {
-	BANCO ("BANCO"), CGP ("CGP"), LOCAL_COMERCIAL ("LOCAL_COMERCIAL"), PARADA_COLECTIVO ("PARADA_COLECTIVO");
+	BANCO ("banco"), CGP ("cgp"), LOCAL_COMERCIAL ("local comercial"), PARADA_COLECTIVO ("parada colectivo");
 
 	private String nombre;
 	

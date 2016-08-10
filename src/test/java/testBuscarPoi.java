@@ -98,7 +98,7 @@ public class testBuscarPoi {
 	@Test
 	public void testBuscarPorServicio(){
 		String servicio = "servicio";
-		Assert.assertNotNull(poiController.getPOIs(servicio));
+		Assert.assertNotNull(Banco.);
 	}
 	
 

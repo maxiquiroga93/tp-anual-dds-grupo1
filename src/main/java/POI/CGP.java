@@ -69,18 +69,9 @@ public class CGP extends POI {
 		this.setNombre(nombre);
 	}
 	
-
-
-	public boolean contieneServicio(String busqueda) {
-		for (nodoServicio servicio : this.Servicios) {
-			if (servicio.contiene(busqueda))
-				return true;
-		}
-		return false;
+	public POI busqueda(String texto1, String texto2){
+		
 	}
-	
-
-
 	
 	
 	@Override
