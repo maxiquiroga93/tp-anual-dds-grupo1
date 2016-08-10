@@ -8,7 +8,9 @@ import org.json.JSONException;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import Helpers.MetodosComunes;
 import POI.FlyweightFactoryEtiqueta;
+import userInterface.Buscador;
 import POI.Etiqueta;
 import DTOs.Banco_Converter;
 import DTOs.CGP_Converter;
@@ -296,7 +298,7 @@ public abstract class POI {
 		this.setComuna(dto.getComuna());
 	}
 	// No esta completo
-	public List<POI_DTO> buscarPOI(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
+	public List<POI_DTO> busquedaExterna(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
 		List<POI_DTO> listaResultado=null;
 		int contieneBanco=url.indexOf("Consultas/banco?");
 		int contieneCentro=url.indexOf("/Consultas/centro?");
@@ -316,6 +318,63 @@ public abstract class POI {
 		
 		//busqueda calle y zona
 		return listaResultado;
+		
+	}
+	
+	public POI busquedaEstandar(String texto1,String texto2){
+		
+		String[] cadena = new String[2];
+		cadena[0]=texto1;
+		cadena[1]=texto2;
+		
+		//quedamos en que bruno hacia levenshtein y lo agregabamos aca
+		
+		for(int i=0; i<2; i++){
+			if(nombre==cadena[i]){
+				return this;
+			}else if(callePrincipal == cadena[i]){
+				return this;
+			}else if(calleLateral == cadena[i]){
+				return this;
+			}else if(calleLateral==cadena[i]){
+				return this;
+			}else if(departamento == cadena[i]){
+				return this;
+			}else if(unidad == cadena[i]){
+				return this;
+			}else if(localidad == cadena[i]){
+				return this;
+			}else if(barrio == cadena[i]){
+				return this;
+			}else if(provincia == cadena[i]){
+				return this;
+			}else if(pais == cadena[i]){
+				return this;
+			}else if(MetodosComunes.isNumeric(cadena[i])){
+				int valor = Integer.parseInt(cadena[i]);
+				if(numeracion == valor){
+					return this;
+				}else if(piso == valor){
+					return this;
+				}else if(codigoPostal == valor){
+					return this;
+				}else if(comuna == valor){
+					return this;
+				}
+			}else if(TiposPOI.BANCO.name() == cadena[i]){
+				return this;
+			}else if(TiposPOI.CGP.name() == cadena[i]){
+				return this;
+			}else if(TiposPOI.LOCAL_COMERCIAL.name() == cadena[i]){
+				return this;
+			}else if(TiposPOI.PARADA_COLECTIVO.name() == cadena[i]){
+				return this;
+			}else if(buscarEtiqueta(cadena[i])){
+				return this;
+			}
+		}
+		
+		return null;
 		
 	}
 }

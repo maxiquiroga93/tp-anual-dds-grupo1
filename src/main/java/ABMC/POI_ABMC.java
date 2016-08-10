@@ -64,54 +64,5 @@ public class POI_ABMC {
 		return false;
 	}
 
-	public ArrayList<POI> consultaLocal(String busqueda) {
-		resultado = new ArrayList<POI>();
-		ArrayList<POI> listado = DB_Server.getListado();
-		for (int i = 0; i < listado.size(); i++) {
-			POI nodo = listado.get(i);
-			POI match = cumple(nodo,busqueda,nodo.getTipo());
-			if(!(match == null)){
-				resultado.add(match);
-			}
-		}
-		return resultado;
-
-	}
-
-	public POI cumple(POI nodo, String busqueda, TiposPOI tipo) {
-		if (busqueda == nodo.getBarrio() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getCalleLateral() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getCallePrincipal() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getDepartamento() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getLocalidad() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getNombre() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getPais() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getProvincia() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (busqueda == nodo.getUnidad() && tipo == nodo.getTipo()) {
-			return nodo;
-		} else if (Buscador.isNumeric(busqueda)){
-			if(Integer.parseInt(busqueda) == nodo.getCercania() && tipo == nodo.getTipo()) {
-				return nodo;
-			} else if (Integer.parseInt(busqueda) == nodo.getCodigoPostal() && tipo == nodo.getTipo()) {
-				return nodo;
-			} else if (Integer.parseInt(busqueda) == nodo.getComuna() && tipo == nodo.getTipo()) {
-				return nodo;
-			} else if (Integer.parseInt(busqueda) == nodo.getNumeracion() && tipo == nodo.getTipo()) {
-				return nodo;
-			} else if (Integer.parseInt(busqueda) == nodo.getPiso() && tipo == nodo.getTipo()) {
-				return nodo;
-			}
-		}
-		return null;
-	}
-
 
 }
