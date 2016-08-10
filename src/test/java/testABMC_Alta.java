@@ -56,7 +56,6 @@ public class testABMC_Alta {
 	
 	@Test
 	public void altaBanco(){
-		//Agregar conversion de DTO_POI a POI
 		boolean respuesta = DB_Server.agregarPOI(poiDTOBanco.converttoPOI());
 		Assert.assertTrue(respuesta);
 		Assert.assertTrue(poiDTOBanco.getNombre() == DB_Server.getListado().get(DB_Server.getListado().size()-1).getNombre());

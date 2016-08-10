@@ -19,7 +19,7 @@ import POI.nodoServicio;
 
 public abstract class POI {
 
-	Long id;
+	int id;
 	String nombre;//1
 	String callePrincipal;
 	String calleLateral;
@@ -267,11 +267,11 @@ public abstract class POI {
 
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
