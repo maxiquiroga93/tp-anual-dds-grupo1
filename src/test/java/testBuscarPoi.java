@@ -8,12 +8,14 @@ import org.junit.Test;
 
 import DB.DB_Server;
 import POI.CGP;
+import POI.Banco;
 import POI.LocalComercial;
 import POI.POI;
 import POI.ParadaColectivo;
 import POI.Rubro;
 import POI.TiposPOI;
 import userInterface.Buscador;
+
 
 public class testBuscarPoi {
 	private Buscador poiController;
@@ -98,5 +100,7 @@ public class testBuscarPoi {
 		String servicio = "servicio";
 		Assert.assertNotNull(poiController.getPOIs(servicio));
 	}
+	
+
 
 }
