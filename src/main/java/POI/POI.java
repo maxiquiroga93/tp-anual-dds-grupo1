@@ -11,7 +11,6 @@ import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
 import Helpers.MetodosComunes;
 import POI.FlyweightFactoryEtiqueta;
-import userInterface.Buscador;
 import POI.Etiqueta;
 import DTOs.Banco_Converter;
 import DTOs.CGP_Converter;
