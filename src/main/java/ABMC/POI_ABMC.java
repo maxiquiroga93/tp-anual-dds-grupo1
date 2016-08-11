@@ -47,6 +47,7 @@ public class POI_ABMC {
 		poi = DB_Server.getPOIbyId(dto.getId());
 		if (poi != null) {
 			poi.setDatos(dto);
+			return true;
 		}
 		return false;
 	}
