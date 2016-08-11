@@ -22,16 +22,21 @@ public class DB_Server {
 		return instance;
 	}
 
-	public static boolean eliminarPOI(double d){
+	public static boolean eliminarPOI(int d){
 
-		return listadoPOI.remove(d);
+		for(POI poi : listadoPOI){
+			if(Integer.compare(poi.getId(), d) == 0){
+				listadoPOI.remove(poi);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static boolean agregarPOI(POI nuevoPOI) {
 		try{
 			//testear
-			Long e = new Long(listadoPOI.size()+1);
-			nuevoPOI.setId(e);
+			nuevoPOI.setId(listadoPOI.size()+1);
 			listadoPOI.add(nuevoPOI);
 			return true;
 		} catch(Exception ex){
@@ -41,7 +46,7 @@ public class DB_Server {
 
 	public static POI getPOIbyId(double d) {
 		for(POI poi : listadoPOI){
-			if(poi.getId().equals(d))
+			if(Integer.compare(poi.getId(), (int) d) == 0)
 				return poi;
 		}
 		return null;

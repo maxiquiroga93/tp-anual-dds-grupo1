@@ -69,7 +69,22 @@ public class CGP extends POI {
 		this.setNombre(nombre);
 	}
 	
-	public POI busqueda(String texto1, String texto2){
+	public CGP busqueda(String texto1, String texto2){
+		if(busquedaEstandar(texto1,texto2) != null){
+			return this;
+		}
+		
+		String[] cadena = new String[2];
+		for(int i=0;i<2;i++){
+			if(director == cadena[i]){
+				return this;
+			}else if(telefono == cadena[i]){
+				return this;
+			}else{
+				compararServicios(cadena);
+			}
+		}
+		return null;
 		
 	}
 	

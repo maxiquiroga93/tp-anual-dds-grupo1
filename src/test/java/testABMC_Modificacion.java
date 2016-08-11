@@ -8,7 +8,7 @@ import DB.DB_Server;
 import POI.Rubro;
 import POI.TiposPOI;
 
-public class testABMC_Baja {
+public class testABMC_Modificacion {
 	POI_ABMC abmc = new POI_ABMC();
 	POI_ABMC poi_abmc;
 	POI_DTO poiDTOBanco; 
@@ -57,44 +57,53 @@ public class testABMC_Baja {
 		DB_Server.agregarPOI(poiDTOComercial.converttoPOI());
 		DB_Server.agregarPOI(poiDTOColectivo.converttoPOI());
 }
-// Se realizan 4 test de borrado, uno por cada POI
+	
 	@Test
-	public void bajaBanco(){
-		boolean respuesta=poi_abmc.delete(1);
+	public void modificacionBanco(){
+		
+		poiDTOBanco.setNombre("unBancoModificado");
+		poiDTOBanco.setId(1);
+		boolean respuesta=poi_abmc.modificar(poiDTOBanco);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void bajaCGP(){
-		boolean respuesta=poi_abmc.delete(2);
+	public void modificacionCGP(){
+		poiDTOCGP.setNombre("unCGPModificado");
+		poiDTOCGP.setId(2);
+		boolean respuesta=poi_abmc.modificar(poiDTOCGP);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void bajaLocalComercial(){
-		boolean respuesta=poi_abmc.delete(3);
+	public void modificacionLocalComercial(){
+		poiDTOComercial.setNombre("unLocalComercialModificado");
+		poiDTOComercial.setId(3);
+		boolean respuesta=poi_abmc.modificar(poiDTOComercial);
 		Assert.assertTrue(respuesta);
 	}
 	
 	@Test
-	public void bajaParadaColectivo(){
-		boolean respuesta=poi_abmc.delete(4);
+	public void modificacionParadaColectivo(){
+		poiDTOColectivo.setNombre("unaParadaColectivoModificado");
+		poiDTOColectivo.setId(4);
+		boolean respuesta=poi_abmc.modificar(poiDTOColectivo);
 		Assert.assertTrue(respuesta);
 	}
-// Comprobamos que no se puede borrar un POI al ingresar un ID inexistente
+	// Test modificacion POI inexistente
 	@Test
-	public void borrarInexistente(){
-		boolean respuesta=poi_abmc.delete(10);
+	public void modificacionPOIInexistente(){
+		poiDTOColectivo.setNombre("unaParadaColectivoModificado");
+		poiDTOColectivo.setId(5);
+		boolean respuesta=poi_abmc.modificar(poiDTOColectivo);
 		Assert.assertFalse(respuesta);
 	}
-	
-// Comprobamos que efectivamente se elimina el POI
+	// Test modificacion de todos los atributos de un POI (de Banco a Colectivo)
 	@Test
-	public void comprobarInexistencia(){
-		DB_Server.agregarPOI(poiDTOColectivo.converttoPOI());
-		poi_abmc.delete(5);
-		boolean respuesta=poi_abmc.delete(5);
-		Assert.assertFalse(respuesta);
-
+	public void modificacionPOITodosLosAtributos(){
+		poiDTOColectivo.setNombre("unaParadaColectivoModificado");
+		poiDTOColectivo.setId(1);
+		boolean respuesta=poi_abmc.modificar(poiDTOColectivo);
+		Assert.assertTrue(respuesta);
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import Helpers.MetodosComunes;
 
 public class LocalComercial extends POI {
 
@@ -74,6 +75,29 @@ public class LocalComercial extends POI {
 		if(!esNuevo){
 			this.setRubro(dto.getRubro());
 		}
+	}
+	
+	public LocalComercial busqueda(String texto1, String texto2){
+		 if(busquedaEstandar(texto1,texto2)!= null){
+			 return this;
+		 }
+		
+		String[] cadena = new String[2];
+		for(int i=0; i<2;i++){
+			if(rubro.getNombre()==cadena[i]){
+				return this;
+			}else{
+				if(MetodosComunes.isNumeric(cadena[i])){
+					Integer valor = Integer.parseInt(cadena[i]);
+					if(dias.contains(valor)){
+						return this;
+					}else if(horas.contains(valor)){
+						return this;
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
 	
