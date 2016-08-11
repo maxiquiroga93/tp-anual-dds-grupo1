@@ -38,7 +38,7 @@ public abstract class POI {
 	int cercania = 500;
 	// este atributo hay que ver si nos sirve porque
 	// las subclases tienen el nombre del tipo, de por si.
-	TiposPOI tipo;
+	static TiposPOI tipo;
 
 	// pueden ser varias y se crean a travez de
 	// FlyweightFactoryEtiqueta.listarEtiquetas(String etiquetas[])
@@ -299,28 +299,30 @@ public abstract class POI {
 	}
 	// No esta completo
 
-	public List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
+	public  List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
 
 		List<POI_DTO> listaResultado=null;
 	//	int contieneBanco=url.indexOf("Consultas/banco?");
 	//	int contieneCentro=url.indexOf("/Consultas/centro?");
 		/*contieneCentro!=-1*/
-		if(this instanceof CGP){
+		System.out.println(tipo.name());
+		if(tipo.name()=="cgp"){
 			//nombre calle o zona
 			//http://trimatek.org/Consultas/centro?zona=Boedo
 			//http://trimatek.org/Consultas/centro?domicilio=
-			url=url+"zona="+textoLibre1;
+			url=url+"centro?zona="+textoLibre1;
 			listaResultado=CGP_Converter.getCGPs(url);
 			if(listaResultado==null){
-				url=url+"domicilio="+textoLibre2;
+				url=url+"centro?domicilio="+textoLibre2;
 				listaResultado=CGP_Converter.getCGPs(url);
 				
 			}
 		}
-		if(this instanceof Banco){
+		if(tipo.name()=="banco"){
+			
 			//nombre de banco y servicio
 			//http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
-			url=url+"banco="+textoLibre1+"&servicio="+textoLibre2;
+			url=url+"banco?banco="+textoLibre1+"&servicio="+textoLibre2;
 			listaResultado=Banco_Converter.getBancos(url);
 		}
 		
