@@ -21,7 +21,6 @@ public class testBuscarPoiExterno {
 		String var2 = "Pagos";
 		List<POI_DTO> listaResultado=null;
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
-		System.out.println(listaResultado.size());
 		Assert.assertTrue(listaResultado.size()==1);
 	}
 	@Test
@@ -30,7 +29,7 @@ public class testBuscarPoiExterno {
 		
 		List<POI_DTO> listaResultado=null;
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1);
-		System.out.println(listaResultado.size());
+	
 		Assert.assertTrue(listaResultado.size()==1);
 	}
 }
