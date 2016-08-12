@@ -95,11 +95,7 @@ public class testBuscarPoi {
 	}
 	
 
-	@Test
-	public void testBuscarPorServicio(){
-		String servicio = "servicio";
-		Assert.assertNotNull(Banco.);
-	}
+
 	
 
 

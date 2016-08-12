@@ -301,43 +301,8 @@ public abstract class POI {
 		this.setPais(dto.getPais());
 		this.setComuna(dto.getComuna());
 	}
-	// No esta completo
+	
 
-	public  List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException{
-
-		List<POI_DTO> listaResultado=null;
-		//	int contieneBanco=url.indexOf("Consultas/banco?");
-		//	int contieneCentro=url.indexOf("/Consultas/centro?");
-		/*contieneCentro!=-1*/
-		System.out.println(tipo.name());
-		if(tipo.name()=="CGP"){
-			//nombre calle o zona
-			//http://trimatek.org/Consultas/centro?zona=Boedo
-			//http://trimatek.org/Consultas/centro?domicilio=
-			url=url+"centro?zona="+textoLibre1;
-			System.out.println(url);
-			listaResultado=CGP_Converter.getCGPs(url);
-			if(listaResultado==null){
-				url=url+"centro?domicilio="+textoLibre2;
-				System.out.println(url);
-				listaResultado=CGP_Converter.getCGPs(url);
-
-			}
-			
-		}
-		if(tipo.name()=="BANCO"){
-			
-			//nombre de banco y servicio
-			//http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
-			url=url+"banco?banco="+textoLibre1+"&servicio="+textoLibre2;
-			System.out.println(url);
-			listaResultado=Banco_Converter.getBancos(url);
-		}
-		
-		//busqueda calle y zona
-		return listaResultado;
-
-	}
 
 	public POI busquedaEstandar(String texto1,String texto2){
 
