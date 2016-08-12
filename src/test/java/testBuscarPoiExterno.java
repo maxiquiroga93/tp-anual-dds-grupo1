@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import ABMC.POI_DTO;
 import POI.BusquedaDePOIsExternos;
+import POI.POI;
 
 
 
@@ -19,7 +20,7 @@ public class testBuscarPoiExterno {
 	public void testBuscarPOIsExternosBanco() throws JSONException, MalformedURLException, IOException{
 		String var1 = "Santander";
 		String var2 = "Pagos";
-		List<POI_DTO> listaResultado=null;
+		List<POI> listaResultado=null;
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
 		Assert.assertTrue(listaResultado.size()==1);
 	}
@@ -27,9 +28,9 @@ public class testBuscarPoiExterno {
 	public void testBuscarPOIsExternosCGP() throws JSONException, MalformedURLException, IOException{
 		String var1 = "Boedo";
 		
-		List<POI_DTO> listaResultado=null;
+		List<POI> listaResultado=null;
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1);
-	
-		Assert.assertTrue(listaResultado.size()==1);
+		
+		Assert.assertTrue(listaResultado.size()==16);
 	}
 }

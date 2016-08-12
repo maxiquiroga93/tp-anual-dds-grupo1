@@ -68,6 +68,7 @@ public class POI_DTO {
 		nuevoPOI.setProvincia(provincia);
 		nuevoPOI.setPais(pais);
 		nuevoPOI.setComuna(comuna);
+		nuevoPOI.setTipo(tipo);
 
 		return nuevoPOI;
 

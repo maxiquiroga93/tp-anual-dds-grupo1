@@ -2,6 +2,7 @@ package POI;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
@@ -14,54 +15,69 @@ public class BusquedaDePOIsExternos {
 	
 	
 	
-	public static  List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException
+	public static  List<POI> buscarPOIsExternos(String url,String textoLibre1,String textoLibre2) throws JSONException, MalformedURLException, IOException
 	{
 		String urlCreada;
 		List<POI_DTO> listaResultado=null;
-		
+		List<POI> listaResultadoEnPOI=new ArrayList<POI>();
+		POI poi;
 		//nombre de banco y servicio
 		//http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
 		urlCreada=url+"banco?banco="+textoLibre1+"&servicio="+textoLibre2;
 		
 		listaResultado=Banco_Converter.getBancos(urlCreada);
 		
-		
-		return listaResultado;
+		for (POI_DTO poi_dto:listaResultado){
+			//Setiando tipo de POI
+			poi_dto.setTipo(TiposPOI.BANCO);
+			//Convirtiendo
+			poi=poi_dto.converttoPOI();			
+			listaResultadoEnPOI.add(poi);		
+		}		
+		return listaResultadoEnPOI;
 	}
 
 
-@SuppressWarnings("null")
-public static  List<POI_DTO> buscarPOIsExternos(String url,String textoLibre1) throws JSONException, MalformedURLException, IOException{
+
+public static  List<POI> buscarPOIsExternos(String url,String textoLibre1) throws JSONException, MalformedURLException, IOException{
 	String urlCreada;
-	List<POI_DTO> listaResultado=null;
-	List<POI>	listaResultadoEnPOI=null;
+	List<POI_DTO> listaResultado1=null;
+	List<POI_DTO> listaResultado2=null;
+
+	List<POI> listaResultadoEnPOI=new ArrayList<POI>();
 	POI poi;
-		//nombre calle o zona
-		//http://trimatek.org/Consultas/centro?zona=Boedo
-		//http://trimatek.org/Consultas/centro?domicilio=
+
+		
+		//Agrego POIs con zona ejemplo http://trimatek.org/Consultas/centro?zona=Boedo
+		
 		urlCreada=url+"centro?zona="+textoLibre1;
-		listaResultado=CGP_Converter.getCGPs(urlCreada);
-		if(listaResultado==null){
-			urlCreada=url+"centro?domicilio="+textoLibre1;
-			listaResultado=CGP_Converter.getCGPs(urlCreada);
-			}
-		
-		System.out.println(urlCreada);
-		
-		//convertimos a lista de pois
-		System.out.println(listaResultado.size());
-		for (POI_DTO poi_dto:listaResultado){
-			poi_dto.setTipo(TiposPOI.CGP);
-			//probando como convierte
-			poi=poi_dto.converttoPOI();
+		listaResultado1=CGP_Converter.getCGPs(urlCreada);
+		//Agrego POIs con domicilio ejemplo http://trimatek.org/Consultas/centro?domicilio=Boedo
+		//PARA MI LUCAS ANDA MAL EL SERVICIO DE BUSQUEDA /Consultas/centro?domicilio=Boedo que devuelve 15 objetos
+		//YA QUE NO TIENEN DOMICILIO Y LO DEVUELVE IGUAL
+		urlCreada=url+"centro?domicilio="+textoLibre1;
+		listaResultado2=CGP_Converter.getCGPs(urlCreada);
+	 
+		//agrego listaResultado1 y convierto
+		for (POI_DTO poi_dto:listaResultado1){			
 			
-			System.out.println(poi.tipo);
+			poi_dto.setTipo(TiposPOI.CGP);
+			//Convirtiendo
+			poi=poi_dto.converttoPOI();			
 			listaResultadoEnPOI.add(poi);
-			System.out.println(listaResultadoEnPOI.size());
+		}
+		//agrego listaResultado2 y convierto
+		for (POI_DTO poi_dto:listaResultado2){			
+			poi_dto.setTipo(TiposPOI.CGP);
+			//Convirtiendo
+			poi=poi_dto.converttoPOI();			
+			listaResultadoEnPOI.add(poi);		
 		}
 		
+		//convertimos a lista de pois
 		
-		return listaResultado;
+		
+		return listaResultadoEnPOI;
 	}
 
 }
