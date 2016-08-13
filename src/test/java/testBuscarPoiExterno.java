@@ -21,13 +21,17 @@ public class testBuscarPoiExterno {
 	public void testBuscarPOIsExternosBanco() throws JSONException, MalformedURLException, IOException{
 		String var1 = "Santander";
 		String var2 = "Pagos";
+		boolean loContiene=false;
 		List<POI> listaResultado1=null;
 		List<POI> listaResultado2=null;
 		listaResultado1=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
 		listaResultado2=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var2,var1);
-		Assert.assertTrue(listaResultado1.size()==1);
-		Assert.assertTrue(listaResultado2.size()==1);
-		Assert.assertTrue( listaResultado1.size()==listaResultado2.size());
+		
+		
+		if(listaResultado1.size() == listaResultado2.size()){
+	         for(POI nodo : listaResultado1){
+	        	 loContiene=listaResultado2.contains(nodo);}}
+		Assert.assertTrue(loContiene);
 		
 		
 	}
