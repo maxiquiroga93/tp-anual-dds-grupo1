@@ -1,9 +1,20 @@
 package ABMC;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import DB.DB_Server;
+//import POI.Banco;
 import POI.POI;
+import POI.BusquedaDePOIsExternos;
+//import POI.CGP;
+//import POI.ParadaColectivo;
+//import POI.LocalComercial;
 
 public class POI_ABMC {
 
@@ -35,6 +46,47 @@ public class POI_ABMC {
 			return true;
 		}
 		return false;
+	}
+	
+	public ArrayList<POI> buscar(String url,String texto1, String texto2) throws JSONException, MalformedURLException, IOException{
+		resultado = new ArrayList<POI>();
+		ArrayList<POI> listaLocal = DB_Server.getListado();
+		for(POI nodo : listaLocal){
+			//No se si como es POI directamente llama a la busqueda de la superclase...
+			//asi que dejo codigo por las dudas
+			/*switch(nodo.getTipo().nombre()){
+			case "banco": if(((Banco) nodo).busquedaEstandar(texto1, texto2)){
+				resultado.add(nodo);
+			}
+			case "cgp": if(((CGP) nodo).busquedaEstandar(texto1, texto2)){
+				resultado.add(nodo);
+			}
+			case "parada colectivo": if(((ParadaColectivo) nodo).busquedaEstandar(texto1, texto2)){
+				resultado.add(nodo);
+			}
+			case "local comercial": if(((LocalComercial) nodo).busquedaEstandar(texto1, texto2)){
+				resultado.add(nodo);
+			}
+			}*/
+			if(nodo.busquedaEstandar(texto1, texto2)){
+				resultado.add(nodo);
+			}
+		}
+		
+		List<POI> listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1);//cgp con 1er string
+		if(!(listaExterna.isEmpty())){
+			resultado.addAll(listaExterna);
+		}
+		listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto2);//cgp con 2do string
+		if(!(listaExterna.isEmpty())){
+			resultado.addAll(listaExterna);
+		}
+		listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1, texto2);//bancos
+		if(!(listaExterna.isEmpty())){
+			resultado.addAll(listaExterna);
+		}
+		
+		return resultado;
 	}
 
 

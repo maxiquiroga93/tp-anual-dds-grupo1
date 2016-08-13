@@ -292,7 +292,7 @@ public abstract class POI {
 		this.setComuna(dto.getComuna());
 	}
 
-	public POI busquedaEstandar(String texto1, String texto2) {
+	public boolean busquedaEstandar(String texto1, String texto2) {
 
 		List<String> filtros = new ArrayList<String>();
 		filtros.add(texto1);
@@ -301,59 +301,59 @@ public abstract class POI {
 			if (MetodosComunes.isNumeric(filtro)) {
 				long valor = Long.parseLong(filtro);
 				if (numeracion == valor)
-					return this;
+					return true;
 				else if (piso == valor)
-					return this;
+					return true;
 				else if (codigoPostal == valor)
-					return this;
+					return true;
 				else if (comuna == valor)
-					return this;
+					return true;
 			} else if (LevDist.calcularDistancia(filtro, this.nombre) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.callePrincipal) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.calleLateral) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.departamento) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.unidad) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.localidad) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.barrio) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.provincia) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, this.pais) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()) < 2)
-				return this;
+				return true;
 			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()) < 2)
-				return this;
+				return true;
 			else if (buscarEtiqueta(filtro))
-				return this;
+				return true;
 		}
-		return null;
+		return false;
 	}
 
-	public POI compararServicios(String filtro) {
+	public boolean compararServicios(String filtro) {
 		for (nodoServicio servicio : Servicios) {
-			if (LevDist.calcularDistancia(filtro, this.nombre) < 2) {
-				return this;
+			if (LevDist.calcularDistancia(filtro, servicio.nombre) < 2) {
+				return true;
 			} else if (MetodosComunes.isNumeric(filtro)) {
 				long filtroNumerico = Long.parseLong(filtro);
 				if (servicio.horaInicio < filtroNumerico && filtroNumerico < servicio.horaFin) {
-					return this;
+					return true;
 				} else if (servicio.listaDias.contains(filtroNumerico)) {
-					return this;
+					return true;
 				}
 			}
 		}
 
-		return null;
+		return false;
 	}
 }

@@ -23,7 +23,7 @@ public class BusquedaDePOIsExternos {
 		POI poi;
 		//nombre de banco y servicio
 		//http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
-		if (textoLibre1!=null||textoLibre2!=null){
+		if (textoLibre1!=""||textoLibre2!=""){
 		urlCreada=url+"banco?banco="+textoLibre1+"&servicio="+textoLibre2;
 		
 		listaResultado=Banco_Converter.getBancos(urlCreada);
@@ -66,7 +66,7 @@ public static  List<POI> buscarPOIsExternos(String url,String textoLibre1) throw
 
 		
 		//Agrego POIs con zona ejemplo http://trimatek.org/Consultas/centro?zona=Boedo
-		if(textoLibre1!=null){
+		if(textoLibre1!=""){
 		urlCreada=url+"centro?zona="+textoLibre1;
 		listaResultado1=CGP_Converter.getCGPs(urlCreada);
 		//Agrego POIs con domicilio ejemplo http://trimatek.org/Consultas/centro?domicilio=Boedo

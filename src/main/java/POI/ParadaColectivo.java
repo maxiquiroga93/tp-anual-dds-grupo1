@@ -25,10 +25,11 @@ public class ParadaColectivo extends POI {
 		this.setNombre(nombre);
 	}
 	
-	public ParadaColectivo busqueda(String texto1, String texto2){
-		if(busquedaEstandar(texto1, texto2) != null){
-			return this;
+	@Override
+	public boolean busquedaEstandar(String texto1, String texto2){
+		if(busquedaEstandar(texto1, texto2)){
+			return true;
 		}
-		return null;
+		return false;
 	}
 }

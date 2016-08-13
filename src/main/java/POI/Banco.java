@@ -75,25 +75,26 @@ public class Banco extends POI {
 	}
 
 	@Override
-	public Banco busquedaEstandar(String texto1, String texto2) {
+	public boolean busquedaEstandar(String texto1, String texto2) {
 		List<String> filtros = new ArrayList<String>();
 		filtros.add(texto1);
 		filtros.add(texto2);
 
-		if (super.busquedaEstandar(filtros.get(0), filtros.get(1)) != null)
-			return this;
+		if (super.busquedaEstandar(filtros.get(0), filtros.get(1))){
+			return true;
+			}
 
 		for (String filtro : filtros) {
 			if (LevDist.calcularDistancia(filtro, this.sucursal) < 2) {
-				return this;
+				return true;
 			} else if (LevDist.calcularDistancia(filtro, this.gerente) < 2) {
-				return this;
+				return true;
 			} else {
 				this.compararServicios(filtro);
 			}
 		}
 
-		return null;
+		return false;
 
 	}
 
