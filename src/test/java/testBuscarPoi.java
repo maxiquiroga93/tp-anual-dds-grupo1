@@ -77,7 +77,7 @@ public class testBuscarPoi {
 	@Test
 	public void testBuscarColectivo(){
 		String linea = "114";
-		Assert.assertNotNull(poiController.getPOIs(linea));
+		Assert.assertNotNull(poiControler.getPOIs(linea));
 		Assert.assertTrue(poiController.getPOIs(linea).size() == 2);
 	}
 	
