@@ -3,14 +3,16 @@ package POI;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import Helpers.LevDist;
 
 public class CGP extends POI {
-	String director;//3
-	String telefono;//5
-	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();//6
+	String director;// 3
+	String telefono;// 5
+	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();// 6
 
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
 		nodoServicio nuevoNodo = new nodoServicio();
@@ -44,11 +46,11 @@ public class CGP extends POI {
 		return false;
 	}
 
-	public int getDistancia() {
+	public long getDistancia() {
 		return cercania;
 	}
 
-	public void setDistancia(int distancia) {
+	public void setDistancia(long distancia) {
 		this.cercania = distancia;
 	}
 
@@ -56,9 +58,9 @@ public class CGP extends POI {
 	@Override
 	public boolean esCercano(POI poi) {
 
-		Integer comuna1 = this.getComuna();
-		int comuna2 = poi.getComuna();
-		if (comuna1.equals(comuna2))
+		long comuna1 = this.getComuna();
+		long comuna2 = poi.getComuna();
+		if (comuna1 == comuna2)
 			return true;
 		else
 			return false;
@@ -68,27 +70,29 @@ public class CGP extends POI {
 		this.Ubicacion = GeoLocation.fromDegrees(latitud, longitud);
 		this.setNombre(nombre);
 	}
-	
-	public CGP busqueda(String texto1, String texto2){
-		if(busquedaEstandar(texto1,texto2) != null){
+
+	@Override
+	public CGP busquedaEstandar(String texto1, String texto2) {
+		List<String> filtros = new ArrayList<String>();
+		filtros.add(texto1);
+		filtros.add(texto2);
+
+		if (super.busquedaEstandar(filtros.get(0), filtros.get(1)) != null)
 			return this;
-		}
-		
-		String[] cadena = new String[2];
-		for(int i=0;i<2;i++){
-			if(director == cadena[i]){
+
+		for (String filtro : filtros) {
+			if (LevDist.calcularDistancia(filtro, this.director) < 2) {
 				return this;
-			}else if(telefono == cadena[i]){
+			} else if (LevDist.calcularDistancia(filtro, this.telefono) < 2) {
 				return this;
-			}else{
-				compararServicios(cadena);
+			} else {
+				this.compararServicios(filtro);
 			}
 		}
+
 		return null;
-		
 	}
-	
-	
+
 	@Override
 	public void setDatos(POI_DTO dto) {
 		super.setDatos(dto);

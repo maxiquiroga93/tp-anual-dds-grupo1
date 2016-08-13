@@ -1,48 +1,38 @@
 package POI;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import Helpers.LevDist;
 import Helpers.MetodosComunes;
-import POI.FlyweightFactoryEtiqueta;
-import POI.Etiqueta;
-import DTOs.Banco_Converter;
-import DTOs.CGP_Converter;
-import POI.nodoServicio;
-
 
 public abstract class POI {
 
-	int id;
-	String nombre;//1
+	long id;
+	String nombre;
 	String callePrincipal;
 	String calleLateral;
-	int numeracion;//4
-	int piso;
+	long numeracion;
+	long piso;
 	String departamento;
 	String unidad;
-	int codigoPostal;
+	long codigoPostal;
 	String localidad;
-	String barrio;//2
+	String barrio;
 	String provincia;
 	String pais;
 	GeoLocation Ubicacion;
 	// TipoPOI tipo;
-	int comuna;
+	long comuna;
 	// define cuando otro punto es cercano.
-	int cercania = 500;
+	long cercania = 500;
 	// este atributo hay que ver si nos sirve porque
 	// las subclases tienen el nombre del tipo, de por si.
 
 	TiposPOI tipo;
 	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();
-
 
 	// pueden ser varias y se crean a travez de
 	// FlyweightFactoryEtiqueta.listarEtiquetas(String etiquetas[])
@@ -78,7 +68,7 @@ public abstract class POI {
 	// Se le pregunta a un POI si es cercano.
 	public boolean esCercano(POI poi) {
 		double distancia = this.Ubicacion.distanceTo(poi.Ubicacion);
-		int tcercania = this.getCercania();
+		long tcercania = this.getCercania();
 		int retval = Double.compare(distancia, tcercania);
 		if (retval > 0)
 			return false;
@@ -110,19 +100,19 @@ public abstract class POI {
 		this.calleLateral = calleLateral;
 	}
 
-	public int getNumeracion() {
+	public long getNumeracion() {
 		return numeracion;
 	}
 
-	public void setNumeracion(int numeracion) {
+	public void setNumeracion(long numeracion) {
 		this.numeracion = numeracion;
 	}
 
-	public int getPiso() {
+	public long getPiso() {
 		return piso;
 	}
 
-	public void setPiso(int piso) {
+	public void setPiso(long piso) {
 		this.piso = piso;
 	}
 
@@ -142,11 +132,11 @@ public abstract class POI {
 		this.unidad = unidad;
 	}
 
-	public int getCodigoPostal() {
+	public long getCodigoPostal() {
 		return codigoPostal;
 	}
 
-	public void setCodigoPostal(int codigoPostal) {
+	public void setCodigoPostal(long codigoPostal) {
 		this.codigoPostal = codigoPostal;
 	}
 
@@ -198,19 +188,19 @@ public abstract class POI {
 		this.Ubicacion.setDegLon(longitud);
 	}
 
-	public int getComuna() {
+	public long getComuna() {
 		return comuna;
 	}
 
-	public void setComuna(int comuna) {
+	public void setComuna(long comuna) {
 		this.comuna = comuna;
 	}
 
-	public int getCercania() {
+	public long getCercania() {
 		return cercania;
 	}
 
-	public void setCecania(int valor) {
+	public void setCecania(long valor) {
 		this.cercania = valor;
 	}
 
@@ -261,19 +251,19 @@ public abstract class POI {
 	public Boolean buscarEtiqueta(String etiquetaNombre) {
 
 		for (int i = 0; i < etiquetas.length; i++) {
-			if (etiquetaNombre == this.etiquetas[i].nombre) {
+			if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre()) < 2) {
 				return true;
 			}
 		}
-		return false;
 
+		return false;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -284,7 +274,7 @@ public abstract class POI {
 		double lng2 = ubicacion.getLongitudeInDegrees();
 		double distancia = distanciaEntreDosPuntos(lat1, lng1, lat2, lng2);
 
-		return (this.cercania > distancia);
+		return this.cercania > distancia;
 	}
 
 	public void setDatos(POI_DTO dto) {
@@ -301,80 +291,69 @@ public abstract class POI {
 		this.setPais(dto.getPais());
 		this.setComuna(dto.getComuna());
 	}
-	
 
+	public POI busquedaEstandar(String texto1, String texto2) {
 
-	public POI busquedaEstandar(String texto1,String texto2){
-
-		String[] cadena = new String[2];
-		cadena[0]=texto1;
-		cadena[1]=texto2;
-
-		//quedamos en que bruno hacia levenshtein y lo agregabamos aca
-
-		for(int i=0; i<2; i++){
-			if(nombre==cadena[i]){
-				return this;
-			}else if(callePrincipal == cadena[i]){
-				return this;
-			}else if(calleLateral == cadena[i]){
-				return this;
-			}else if(calleLateral==cadena[i]){
-				return this;
-			}else if(departamento == cadena[i]){
-				return this;
-			}else if(unidad == cadena[i]){
-				return this;
-			}else if(localidad == cadena[i]){
-				return this;
-			}else if(barrio == cadena[i]){
-				return this;
-			}else if(provincia == cadena[i]){
-				return this;
-			}else if(pais == cadena[i]){
-				return this;
-			}else if(MetodosComunes.isNumeric(cadena[i])){
-				int valor = Integer.parseInt(cadena[i]);
-				if(numeracion == valor){
+		List<String> filtros = new ArrayList<String>();
+		filtros.add(texto1);
+		filtros.add(texto2);
+		for (String filtro : filtros) {
+			if (MetodosComunes.isNumeric(filtro)) {
+				long valor = Long.parseLong(filtro);
+				if (numeracion == valor)
 					return this;
-				}else if(piso == valor){
+				else if (piso == valor)
 					return this;
-				}else if(codigoPostal == valor){
+				else if (codigoPostal == valor)
 					return this;
-				}else if(comuna == valor){
+				else if (comuna == valor)
 					return this;
-				}
-			}else if(TiposPOI.BANCO.name() == cadena[i]){
+			} else if (LevDist.calcularDistancia(filtro, this.nombre) < 2)
 				return this;
-			}else if(TiposPOI.CGP.name() == cadena[i]){
+			else if (LevDist.calcularDistancia(filtro, this.callePrincipal) < 2)
 				return this;
-			}else if(TiposPOI.LOCAL_COMERCIAL.name() == cadena[i]){
+			else if (LevDist.calcularDistancia(filtro, this.calleLateral) < 2)
 				return this;
-			}else if(TiposPOI.PARADA_COLECTIVO.name() == cadena[i]){
+			else if (LevDist.calcularDistancia(filtro, this.departamento) < 2)
 				return this;
-			}else if(buscarEtiqueta(cadena[i])){
+			else if (LevDist.calcularDistancia(filtro, this.unidad) < 2)
 				return this;
-			}
+			else if (LevDist.calcularDistancia(filtro, this.localidad) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, this.barrio) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, this.provincia) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, this.pais) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()) < 2)
+				return this;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()) < 2)
+				return this;
+			else if (buscarEtiqueta(filtro))
+				return this;
 		}
-
 		return null;
-
 	}
-	public POI compararServicios(String[] cadena){
-		for(int i = 0; i<2;i++){
-			for(nodoServicio servicio: Servicios){
-				if(servicio.nombre == cadena[i]){
+
+	public POI compararServicios(String filtro) {
+		for (nodoServicio servicio : Servicios) {
+			if (LevDist.calcularDistancia(filtro, this.nombre) < 2) {
+				return this;
+			} else if (MetodosComunes.isNumeric(filtro)) {
+				long filtroNumerico = Long.parseLong(filtro);
+				if (servicio.horaInicio < filtroNumerico && filtroNumerico < servicio.horaFin) {
 					return this;
-				}else if(MetodosComunes.isNumeric(cadena[i])){
-					int valor = Integer.parseInt(cadena[i]);
-					if(servicio.horaInicio<valor && valor<servicio.horaFin){
-						return this;
-					}else if(servicio.listaDias.contains(valor)){
-						return this;
-					}
+				} else if (servicio.listaDias.contains(filtroNumerico)) {
+					return this;
 				}
 			}
 		}
+
 		return null;
 	}
 }

@@ -25,7 +25,7 @@ public class DB_Server {
 	public static boolean eliminarPOI(int d){
 
 		for(POI poi : listadoPOI){
-			if(Integer.compare(poi.getId(), d) == 0){
+			if(Long.compare(poi.getId(), d) == 0){
 				listadoPOI.remove(poi);
 				return true;
 			}
@@ -46,7 +46,7 @@ public class DB_Server {
 
 	public static POI getPOIbyId(double d) {
 		for(POI poi : listadoPOI){
-			if(Integer.compare(poi.getId(), (int) d) == 0)
+			if(Long.compare(poi.getId(), (int) d) == 0)
 				return poi;
 		}
 		return null;
