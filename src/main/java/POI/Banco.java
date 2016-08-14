@@ -11,6 +11,24 @@ public class Banco extends POI {
 
 	String sucursal;
 	String gerente;
+	
+	public String getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(String sucursal) {
+		this.sucursal = sucursal;
+	}
+	
+	public String getGerente() {
+		return gerente;
+	}
+
+	public void setGerente(String gerente) {
+		this.gerente = gerente;
+	}
+
+
 	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();
 
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {

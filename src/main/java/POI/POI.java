@@ -363,7 +363,7 @@ public abstract class POI {
 	}
 	
 	public boolean compararPOI(POI poi){
-		if (numeracion == poi.numeracion &&
+		if ( numeracion == poi.numeracion &&
 			piso == poi.piso &&
 			codigoPostal == poi.codigoPostal &&
 			comuna == poi.comuna &&
@@ -376,10 +376,8 @@ public abstract class POI {
 			poi.barrio == this.barrio &&
 			poi.provincia == this.provincia &&
 			poi.pais == this.pais &&
-			poi.tipo.name() == TiposPOI.BANCO.name() &&
-			poi.tipo.name() == TiposPOI.CGP.name() &&
-			poi.tipo.name() == TiposPOI.LOCAL_COMERCIAL.name() &&
-			poi.tipo.name() == TiposPOI.PARADA_COLECTIVO.name())
+			poi.tipo.name() == tipo.name() )
+		
 				return true;
 //		else if (buscarEtiqueta(filtro))
 //			return true;
