@@ -26,7 +26,7 @@ public class testBuscarPoiExterno {
 				
 	}
 	@Test
-	public void testBuscarPOIsExternosBancoTamaño() throws JSONException, MalformedURLException, IOException{
+	public void testBuscarPOIsExternosBancoTamano() throws JSONException, MalformedURLException, IOException{
 		String var1 = "Santander";
 		String var2 = "Pagos";
 		List<POI> listaResultado=null;
@@ -54,7 +54,7 @@ public class testBuscarPoiExterno {
 		Assert.assertNotNull(listaResultado);
 	}
 	@Test
-	public void testBuscarPOIsExternosCGPTamaño() throws JSONException, MalformedURLException, IOException{
+	public void testBuscarPOIsExternosCGPTamano() throws JSONException, MalformedURLException, IOException{
 		String var1 = "Boedo";
 		
 		List<POI> listaResultado=null;
