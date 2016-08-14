@@ -37,15 +37,42 @@ public class testABMC_Consulta {
 		banco.setPais("Argentina");
 		banco.setCallePrincipal("Alberdi");
 		banco.setCalleLateral("Escalada");
-		banco.setCallePrincipal("prueba");
 		ServicioAPI = "http://trimatek.org/Consultas/";
 	}
 	
 	@Test
+	public void testConsultaVacia() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar(ServicioAPI, "", "");
+		Assert.assertTrue(lista.isEmpty());
+			
+	}
+	
+	@Test
+	public void testConsultaLocal() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar("", "Alberdi", "");
+		Assert.assertTrue(lista.size() == 1);
+			
+	}
+	
+	@Test
+	public void testConsultaLocal2() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar("", "Mataderos", "");
+		Assert.assertTrue(lista.size() == 2);
+			
+	}
+	// deberia devolver 1 solo resultado, pero como el servicio remoto ServiciosAPI no filtra bien,
+	// devuelve todos los CGPs y el banco encontrado (en total 15)
+	@Test
 	public void testConsulta() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar(ServicioAPI, "Galicia", "sad");
+		lista = abmc.buscar(ServicioAPI, "Galicia", "");
 		Assert.assertTrue(!(lista.isEmpty()));
 			
 	}
