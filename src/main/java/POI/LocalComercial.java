@@ -85,7 +85,7 @@ public class LocalComercial extends POI {
 		filtros.add(texto1);
 		filtros.add(texto2);
 		
-		if(busquedaEstandar(texto1,texto2)){
+		if(super.busquedaEstandar(texto1,texto2)){
 			 return true;
 		 }
 		for(String filtro : filtros){
