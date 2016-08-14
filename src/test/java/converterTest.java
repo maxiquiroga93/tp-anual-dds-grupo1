@@ -20,7 +20,7 @@ public class converterTest {
 	
 	@Test
 	public void testBanco() throws JSONException, MalformedURLException, IOException {
-		List<POI_DTO> listado = Banco_Converter.getBancos("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagoshttp://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos");
+		List<POI_DTO> listado = Banco_Converter.getBancos("http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos");
 		Assert.assertTrue(listado.size() == 1);
 	}
 }
