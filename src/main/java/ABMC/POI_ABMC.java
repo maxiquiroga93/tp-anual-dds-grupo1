@@ -48,6 +48,17 @@ public class POI_ABMC {
 		return false;
 	}
 	
+	public boolean POIExists (ArrayList<POI> list, POI poi){
+		
+		if (list.size() > 0)
+			for (POI nodo : list){
+				if (nodo.compararPOI(poi))
+					return true;
+			}
+		return false;
+	}
+	
+	
 // Busqueda por texto libre ABIERTA (busca todos los pois que contengan al menos UNA palabra contenida en la busqueda)
 	public ArrayList<POI> buscar(String url,String texto) throws JSONException, MalformedURLException, IOException{
 		String filtros[] = texto.split("\\s+");
@@ -64,7 +75,7 @@ public class POI_ABMC {
 				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra);//cgp
 				if(!(listaExterna.isEmpty())){
 					for (POI x : listaExterna){
-						   if (!resultado.contains(x))
+						   if (!POIExists(resultado,x))
 						      resultado.add(x);
 					}
 					System.out.printf("BusquedaCGPExternaadentorDelFor= %d \n", resultado.size());
@@ -75,7 +86,7 @@ public class POI_ABMC {
 						listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, palabra2);//bancos
 						if(!(listaExterna.isEmpty())){
 							for (POI x : listaExterna){
-								   if (!resultado.contains(x))
+								if (!POIExists(resultado,x))
 								      resultado.add(x);
 							}
 						}
@@ -86,14 +97,14 @@ public class POI_ABMC {
 					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, "");//bancos
 					if(!(listaExterna.isEmpty())){
 						for (POI x : listaExterna){
-							   if (!resultado.contains(x))
+							if (!POIExists(resultado,x))
 							      resultado.add(x);
 						}
 					}
 					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, "", palabra);//bancos
 					if(!(listaExterna.isEmpty())){
 						for (POI x : listaExterna){
-							   if (!resultado.contains(x))
+							if (!POIExists(resultado,x))
 							      resultado.add(x);
 						}
 					}
