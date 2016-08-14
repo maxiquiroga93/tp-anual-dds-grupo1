@@ -17,6 +17,7 @@ public class testPOI_Comparacion {
 
 	Banco unBanco = new Banco("Galicia", 50, 20);
 	Banco otroBanco = new Banco("Santander", 50, 20);
+	Banco bancoNull = new Banco("Galicia", 20, 40);
 
 	CGP unCGP = new CGP("unCGP", 100, 20);
 	CGP otroCGP = new CGP("otroCGP", 100, 20);
@@ -63,6 +64,17 @@ public class testPOI_Comparacion {
 		otroBanco.setBarrio("Boedo");
 		otroBanco.setProvincia("Buenos Aires");
 		otroBanco.setPais("Argentina");
+		
+		bancoNull.setTipo(TiposPOI.BANCO);
+		bancoNull.setSucursal("Martinez");
+		bancoNull.setGerente("Carlo");
+		bancoNull.setPiso(1);
+		bancoNull.setCallePrincipal("221B baker street");
+		bancoNull.setUnidad("unaUnidad");
+		bancoNull.setLocalidad("Martinez");
+		bancoNull.setBarrio("Boedo");
+		bancoNull.setProvincia("Buenos Aires");
+		bancoNull.setPais("Argentina");
 		
 		unCGP.setTipo(TiposPOI.CGP);
 		unCGP.setDirector("Cacho");
@@ -150,8 +162,7 @@ public class testPOI_Comparacion {
 		
 	}
 	
-	/*Testear contra POI con nulls
-	 * Servicios
+	/* Servicios
 	 * Etiquetas
 	 */
 	
@@ -201,6 +212,10 @@ public class testPOI_Comparacion {
 		Assert.assertFalse(respuesta);
 	}
 	
+	@Test
+	public void testBancoConNull(){
+		Assert.assertFalse(unBanco.compararPOI(bancoNull));
+	}
 	
 	
 	
