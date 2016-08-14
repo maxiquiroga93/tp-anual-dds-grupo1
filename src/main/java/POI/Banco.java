@@ -11,6 +11,24 @@ public class Banco extends POI {
 
 	String sucursal;
 	String gerente;
+	
+	public String getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(String sucursal) {
+		this.sucursal = sucursal;
+	}
+	
+	public String getGerente() {
+		return gerente;
+	}
+
+	public void setGerente(String gerente) {
+		this.gerente = gerente;
+	}
+
+
 	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();
 
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
@@ -96,6 +114,21 @@ public class Banco extends POI {
 
 		return false;
 
+	}
+	
+	@Override
+	public boolean compararPOI(POI poi) {
+		Banco banco = (Banco)poi;
+		if (!super.compararPOI(poi)){
+			return false;
+			}
+
+		if (banco.sucursal == this.sucursal &&
+		banco.gerente == this.gerente)
+//		this.compararServicios(filtro);
+			return true;
+		else
+			return false;
 	}
 
 }

@@ -12,6 +12,27 @@ import Helpers.LevDist;
 public class CGP extends POI {
 	String director;// 3
 	String telefono;// 5
+	
+	public String getDirector() {
+		return director;
+	}
+
+	public void setDirector(String director) {
+		this.director = director;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setServicios(ArrayList<nodoServicio> servicios) {
+		Servicios = servicios;
+	}
+	
 	public ArrayList<nodoServicio> Servicios = new ArrayList<nodoServicio>();// 6
 
 	public void agregarServicio(String nombre, ArrayList<Integer> dias, int horaInicio, int horaFin) {
@@ -91,6 +112,21 @@ public class CGP extends POI {
 		}
 
 		return false;
+	}
+	
+	@Override
+	public boolean compararPOI(POI poi) {
+		CGP cgp = (CGP)poi;
+		if (!super.compararPOI(poi)){
+			return false;
+			}
+
+			if (cgp.director == this.director &&
+				cgp.telefono == this.telefono)
+//			this.compararServicios(filtro);
+				return true;
+			else
+				return false;
 	}
 
 	@Override

@@ -330,14 +330,14 @@ public abstract class POI {
 				return true;
 			else if (LevDist.calcularDistancia(filtro, this.pais))
 				return true;
-//			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
-//				return true;
-//			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
-//				return true;
-//			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
-//				return true;
-//			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
-//				return true;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
+				return true;
 			else if (buscarEtiqueta(filtro))
 				return true;
 		}
@@ -359,6 +359,30 @@ public abstract class POI {
 		}
 
 		return false;
+		
+	}
+	
+	public boolean compararPOI(POI poi){
+		if ( numeracion == poi.numeracion &&
+			piso == poi.piso &&
+			codigoPostal == poi.codigoPostal &&
+			comuna == poi.comuna &&
+			poi.nombre == this.nombre &&
+			poi.callePrincipal == this.callePrincipal &&
+			poi.calleLateral == this.calleLateral &&
+			poi.departamento == this.departamento &&
+			poi.unidad == this.unidad &&
+			poi.localidad == this.localidad &&
+			poi.barrio == this.barrio &&
+			poi.provincia == this.provincia &&
+			poi.pais == this.pais &&
+			poi.tipo.name() == tipo.name() )
+		
+				return true;
+//		else if (buscarEtiqueta(filtro))
+//			return true;
+		else 
+			return false;
 		
 	}
 }
