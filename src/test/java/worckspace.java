@@ -76,10 +76,6 @@ public class worckspace {
 //		List<CGP_DTO> listadoCGP_DTO = gson.fromJson(jsonArray.toString(), listType);
 //		System.out.println(listadoCGP_DTO);
 		
-		String prueba = "esto es una prueba";
-		String split[] = prueba.split("\\s+");
-		for (String palabra : split )
-			System.out.println(palabra);
 		
 	}
 	
