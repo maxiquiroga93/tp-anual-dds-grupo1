@@ -19,19 +19,17 @@ public class testABMC_Consulta {
 	POI_ABMC abmc;
 	String ServicioAPI;
 	
+	Banco banco = new Banco("Santander", 0, 0);
+	LocalComercial local = new LocalComercial("Localcito", 0, 0,null);
+	ParadaColectivo parada = new ParadaColectivo("47", 0, 0);
+	CGP cgp = new CGP("Mataderos", 0, 0);
+	
 	@Before
 	public void inicializar(){
 		abmc = new POI_ABMC();
-		Banco banco = new Banco("Santander", 0, 0);
-		LocalComercial local = new LocalComercial("Localcito", 0, 0,null);
-		ParadaColectivo parada = new ParadaColectivo("47", 0, 0);
-		CGP cgp = new CGP("Mataderos", 0, 0);
+
 		new DB_Server();
 		
-		DB_Server.agregarPOI(cgp);
-		DB_Server.agregarPOI(parada);
-		DB_Server.agregarPOI(local);
-		DB_Server.agregarPOI(banco);
 		
 		banco.setBarrio("Mataderos");
 		banco.setPais("Argentina");
@@ -43,6 +41,10 @@ public class testABMC_Consulta {
 	@Test
 	public void testConsultaVacia() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
 		
 		lista = abmc.buscar(ServicioAPI, "");
 		Assert.assertTrue(lista.isEmpty());
@@ -52,6 +54,10 @@ public class testABMC_Consulta {
 	@Test
 	public void testConsultaLocal() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
 		
 		lista = abmc.buscar("", "Alberdi");
 		Assert.assertTrue(lista.size() == 1);
@@ -61,28 +67,72 @@ public class testABMC_Consulta {
 	@Test
 	public void testConsultaLocal2() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
 		
 		lista = abmc.buscar("", "Mataderos");
 		Assert.assertTrue(lista.size() == 2);
 			
 	}
+	
+	@Test
+	public void testConsultaRemota() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar(ServicioAPI, "Mataderos");
+		Assert.assertTrue(lista.size() == 15);
+			
+	}
 	// deberia devolver 1 solo resultado, pero como el servicio remoto ServiciosAPI no filtra bien,
-	// devuelve todos los CGPs y el banco encontrado (en total 15)
+	// devuelve todos los CGPs y el banco encontrado (en total 16)	
+	@Test
+	public void testConsultaRemota2() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar(ServicioAPI, "Galicia");
+		Assert.assertTrue(lista.size() == 16);
+			
+	}
+	
+	
+	@Test
+	public void testConsultaRemotaVariasPalabras() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar(ServicioAPI, "Galicia Mataderos");
+		Assert.assertTrue(lista.size() == 16);
+			
+	}
+	
+	
 	@Test
 	public void testConsulta() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
+		
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
 		
 		lista = abmc.buscar(ServicioAPI, "Galicia");
 		Assert.assertTrue(!(lista.isEmpty()));
 			
 	}
 	
+	
 	@Test
 	public void testConsultavariasPalabras() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
+		DB_Server.agregarPOI(cgp);
+		DB_Server.agregarPOI(parada);
+		DB_Server.agregarPOI(local);
+		DB_Server.agregarPOI(banco);
+		
 		lista = abmc.buscar(ServicioAPI, "Galicia Mataderos");
-		Assert.assertTrue(!(lista.isEmpty()));
+		Assert.assertTrue(lista.size() == 18);
 			
 	}
 	

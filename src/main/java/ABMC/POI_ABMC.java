@@ -78,9 +78,7 @@ public class POI_ABMC {
 						   if (!POIExists(resultado,x))
 						      resultado.add(x);
 					}
-					System.out.printf("BusquedaCGPExternaadentorDelFor= %d \n", resultado.size());
 				}
-				System.out.printf("BusquedaCGPExterna= %d \n", resultado.size());
 				if(filtros.length > 1){
 					for ( String palabra2 : filtros ){
 						listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, palabra2);//bancos
@@ -93,7 +91,7 @@ public class POI_ABMC {
 					}
 					
 				// si hay una sola palabra se busca solo por servicio o solo por banco
-				} else {
+				}
 					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, "");//bancos
 					if(!(listaExterna.isEmpty())){
 						for (POI x : listaExterna){
@@ -108,8 +106,6 @@ public class POI_ABMC {
 							      resultado.add(x);
 						}
 					}
-					
-				}
 			}
 		}
 		return resultado;
