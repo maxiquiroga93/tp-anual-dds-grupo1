@@ -17,6 +17,7 @@ import ABMC.POI_ABMC;
 
 public class testABMC_Consulta {
 	POI_ABMC abmc;
+	String ServicioAPI;
 	
 	@Before
 	public void inicializar(){
@@ -36,13 +37,15 @@ public class testABMC_Consulta {
 		banco.setPais("Argentina");
 		banco.setCallePrincipal("Alberdi");
 		banco.setCalleLateral("Escalada");
+		banco.setCallePrincipal("prueba");
+		ServicioAPI = "http://trimatek.org/Consultas/";
 	}
 	
 	@Test
 	public void testConsulta() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar(null, "Galicia", "sad");
+		lista = abmc.buscar(ServicioAPI, "Galicia", "sad");
 		Assert.assertTrue(!(lista.isEmpty()));
 			
 	}
