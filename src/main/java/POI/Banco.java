@@ -97,5 +97,20 @@ public class Banco extends POI {
 		return false;
 
 	}
+	
+	@Override
+	public boolean compararPOI(POI poi) {
+		Banco banco = (Banco)poi;
+		if (!super.CompararPOI(poi)){
+			return false;
+			}
+
+		if (banco.sucursal == this.sucursal &&
+		banco.gerente == this.gerente)
+//		this.compararServicios(filtro);
+			return true;
+		else
+			return false;
+	}
 
 }

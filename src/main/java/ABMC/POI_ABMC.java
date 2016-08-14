@@ -67,7 +67,9 @@ public class POI_ABMC {
 						   if (!resultado.contains(x))
 						      resultado.add(x);
 					}
+					System.out.printf("BusquedaCGPExternaadentorDelFor= %d \n", resultado.size());
 				}
+				System.out.printf("BusquedaCGPExterna= %d \n", resultado.size());
 				if(filtros.length > 1){
 					for ( String palabra2 : filtros ){
 						listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, palabra2);//bancos

@@ -92,6 +92,21 @@ public class CGP extends POI {
 
 		return false;
 	}
+	
+	@Override
+	public boolean compararPOI(POI poi) {
+		CGP cgp = (CGP)poi;
+		if (!super.CompararPOI(poi)){
+			return false;
+			}
+
+			if (cgp.director == this.director &&
+				cgp.telefono == this.telefono)
+//			this.compararServicios(filtro);
+				return true;
+			else
+				return false;
+	}
 
 	@Override
 	public void setDatos(POI_DTO dto) {

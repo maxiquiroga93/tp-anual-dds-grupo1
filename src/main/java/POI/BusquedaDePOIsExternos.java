@@ -77,14 +77,16 @@ public class BusquedaDePOIsExternos {
 				poi_dto.setTipo(TiposPOI.CGP);
 				// Convirtiendo
 				poi = poi_dto.converttoPOI();
-				listaResultadoEnPOI.add(poi);
+				if (!listaResultadoEnPOI.contains(poi))
+						   listaResultadoEnPOI.add(poi);
 			}
 			// agrego listaResultado2 y convierto
 			for (POI_DTO poi_dto : listaResultado2) {
 				poi_dto.setTipo(TiposPOI.CGP);
 				// Convirtiendo
 				poi = poi_dto.converttoPOI();
-				listaResultadoEnPOI.add(poi);
+				if (!listaResultadoEnPOI.contains(poi))
+					   listaResultadoEnPOI.add(poi);
 			}
 		}
 
