@@ -251,7 +251,7 @@ public abstract class POI {
 	public Boolean buscarEtiqueta(String etiquetaNombre) {
 		if (etiquetas != null)
 			for (int i = 0; i < etiquetas.length; i++) {
-				if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre()) < 2) {
+				if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre())) {
 					return true;
 				}
 			}
@@ -310,31 +310,31 @@ public abstract class POI {
 					return true;
 				else if (comuna == valor)
 					return true;
-			} else if (LevDist.calcularDistancia(filtro, this.nombre) < 2)
+			} else if (LevDist.calcularDistancia(filtro, this.nombre))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.callePrincipal) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.callePrincipal))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.calleLateral) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.calleLateral))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.departamento) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.departamento))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.unidad) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.unidad))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.localidad) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.localidad))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.barrio) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.barrio))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.provincia) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.provincia))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, this.pais) < 2)
+			else if (LevDist.calcularDistancia(filtro, this.pais))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()) < 2)
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()) < 2)
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()) < 2)
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()) < 2)
+			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
 				return true;
 			else if (buscarEtiqueta(filtro))
 				return true;
@@ -344,7 +344,7 @@ public abstract class POI {
 
 	public boolean compararServicios(String filtro) {
 		for (nodoServicio servicio : Servicios) {
-			if (LevDist.calcularDistancia(filtro, servicio.nombre) < 2) {
+			if (LevDist.calcularDistancia(filtro, servicio.nombre)) {
 				return true;
 			} else if (MetodosComunes.isNumeric(filtro)) {
 				long filtroNumerico = Long.parseLong(filtro);

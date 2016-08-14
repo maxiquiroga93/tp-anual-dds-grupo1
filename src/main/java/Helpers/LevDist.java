@@ -2,6 +2,8 @@ package Helpers;
 
 public class LevDist {
 	
+	static int DIST = 2;
+	
 	private static int minimo(int a, int b, int c) {
         if(a<=b && a<=c)
         {
@@ -14,10 +16,10 @@ public class LevDist {
         return c;
     }
 
-    public static int calcularDistancia(String str1, String str2) {
+    public static boolean calcularDistancia(String str1, String str2) {
     	if (str1 == null || str2 == null)
-    		return 10;
-        return calcularDistancia(str1.toCharArray(),str2.toCharArray());
+    		return false;
+        return ( calcularDistancia(str1.toCharArray(),str2.toCharArray()) < DIST );
     }
 
     private static int calcularDistancia(char [] str1, char [] str2) {
