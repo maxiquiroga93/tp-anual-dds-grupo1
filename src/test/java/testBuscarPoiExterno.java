@@ -23,8 +23,18 @@ public class testBuscarPoiExterno {
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
 		
 		Assert.assertNotNull(listaResultado);
+				
+	}
+	@Test
+	public void testBuscarPOIsExternosBancoTamaño() throws JSONException, MalformedURLException, IOException{
+		String var1 = "Santander";
+		String var2 = "Pagos";
+		List<POI> listaResultado=null;
+		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
 		
 		
+		Assert.assertTrue(listaResultado.size()==1);
+			
 	}
 	@Test
 	public void testBuscarPOIsExternosBancoNull() throws JSONException, MalformedURLException, IOException{
@@ -42,6 +52,15 @@ public class testBuscarPoiExterno {
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1);
 		
 		Assert.assertNotNull(listaResultado);
+	}
+	@Test
+	public void testBuscarPOIsExternosCGPTamaño() throws JSONException, MalformedURLException, IOException{
+		String var1 = "Boedo";
+		
+		List<POI> listaResultado=null;
+		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1);
+		
+		Assert.assertTrue(listaResultado.size()==16);
 	}
 	@Test
 	public void testBuscarPOIsExternosCGPNull() throws JSONException, MalformedURLException, IOException{

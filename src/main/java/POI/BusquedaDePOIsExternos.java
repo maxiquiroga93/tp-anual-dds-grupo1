@@ -23,7 +23,7 @@ public class BusquedaDePOIsExternos {
 		// http://trimatek.org/Consultas/banco?banco=Santander&servicio=Pagos
 		if (textoLibre1 != "" || textoLibre2 != "") {
 			urlCreada = url + "banco?banco=" + textoLibre1 + "&servicio=" + textoLibre2;
-
+			
 			listaResultado = Banco_Converter.getBancos(urlCreada);
 
 			for (POI_DTO poi_dto : listaResultado) {
