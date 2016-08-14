@@ -1,9 +1,20 @@
 package ABMC;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import DB.DB_Server;
+//import POI.Banco;
 import POI.POI;
+import POI.BusquedaDePOIsExternos;
+//import POI.CGP;
+//import POI.ParadaColectivo;
+//import POI.LocalComercial;
 
 public class POI_ABMC {
 
@@ -36,6 +47,58 @@ public class POI_ABMC {
 		}
 		return false;
 	}
-
-
+	
+// Busqueda por texto libre ABIERTA (busca todos los pois que contengan al menos UNA palabra contenida en la busqueda)
+	public ArrayList<POI> buscar(String url,String texto) throws JSONException, MalformedURLException, IOException{
+		String filtros[] = texto.split("\\s+");
+		resultado = new ArrayList<POI>();
+		ArrayList<POI> listaLocal = DB_Server.getListado();
+		for(POI nodo : listaLocal){
+			if(nodo.busquedaEstandar(filtros)){
+				resultado.add(nodo);
+			}
+		}
+		if(url != ""){
+			List<POI> listaExterna = new ArrayList<POI>();
+			for ( String palabra : filtros ){
+				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra);//cgp
+				if(!(listaExterna.isEmpty())){
+					for (POI x : listaExterna){
+						   if (!resultado.contains(x))
+						      resultado.add(x);
+					}
+				}
+				if(filtros.length > 1){
+					for ( String palabra2 : filtros ){
+						listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, palabra2);//bancos
+						if(!(listaExterna.isEmpty())){
+							for (POI x : listaExterna){
+								   if (!resultado.contains(x))
+								      resultado.add(x);
+							}
+						}
+					}
+					
+				// si hay una sola palabra se busca solo por servicio o solo por banco
+				} else {
+					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, "");//bancos
+					if(!(listaExterna.isEmpty())){
+						for (POI x : listaExterna){
+							   if (!resultado.contains(x))
+							      resultado.add(x);
+						}
+					}
+					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, "", palabra);//bancos
+					if(!(listaExterna.isEmpty())){
+						for (POI x : listaExterna){
+							   if (!resultado.contains(x))
+							      resultado.add(x);
+						}
+					}
+					
+				}
+			}
+		}
+		return resultado;
+	}
 }

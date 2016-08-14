@@ -72,25 +72,25 @@ public class CGP extends POI {
 	}
 
 	@Override
-	public CGP busquedaEstandar(String texto1, String texto2) {
-		List<String> filtros = new ArrayList<String>();
-		filtros.add(texto1);
-		filtros.add(texto2);
+	public boolean busquedaEstandar(String filtros[]) {
+//		List<String> filtros = new ArrayList<String>();
+//		filtros.add(texto1);
+//		filtros.add(texto2);
 
-		if (super.busquedaEstandar(filtros.get(0), filtros.get(1)) != null)
-			return this;
+		if (super.busquedaEstandar(filtros))
+			return true;
 
 		for (String filtro : filtros) {
-			if (LevDist.calcularDistancia(filtro, this.director) < 2) {
-				return this;
-			} else if (LevDist.calcularDistancia(filtro, this.telefono) < 2) {
-				return this;
+			if (LevDist.calcularDistancia(filtro, this.director)) {
+				return true;
+			} else if (LevDist.calcularDistancia(filtro, this.telefono)) {
+				return true;
 			} else {
 				this.compararServicios(filtro);
 			}
 		}
 
-		return null;
+		return false;
 	}
 
 	@Override

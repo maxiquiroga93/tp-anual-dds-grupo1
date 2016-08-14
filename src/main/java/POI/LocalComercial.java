@@ -3,9 +3,11 @@ package POI;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
+import Helpers.LevDist;
 import Helpers.MetodosComunes;
 
 public class LocalComercial extends POI {
@@ -77,27 +79,30 @@ public class LocalComercial extends POI {
 		}
 	}
 	
-	public LocalComercial busqueda(String texto1, String texto2){
-		 if(busquedaEstandar(texto1,texto2)!= null){
-			 return this;
-		 }
+	@Override
+	public boolean busquedaEstandar(String filtros[]){
+//		List<String> filtros = new ArrayList<String>();
+//		filtros.add(texto1);
+//		filtros.add(texto2);
 		
-		String[] cadena = new String[2];
-		for(int i=0; i<2;i++){
-			if(rubro.getNombre()==cadena[i]){
-				return this;
+		if(super.busquedaEstandar(filtros)){
+			 return true;
+		 }
+		for(String filtro : filtros){
+			if(rubro != null && LevDist.calcularDistancia(filtro, rubro.getNombre())){
+				return true;
 			}else{
-				if(MetodosComunes.isNumeric(cadena[i])){
-					Integer valor = Integer.parseInt(cadena[i]);
+				if(MetodosComunes.isNumeric(filtro)){
+					Long valor = Long.parseLong(filtro);
 					if(dias.contains(valor)){
-						return this;
+						return true;
 					}else if(horas.contains(valor)){
-						return this;
+						return true;
 					}
 				}
 			}
 		}
-		return null;
+		return false;
 	}
 	
 	

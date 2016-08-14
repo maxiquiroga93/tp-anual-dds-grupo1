@@ -249,12 +249,12 @@ public abstract class POI {
 	}
 
 	public Boolean buscarEtiqueta(String etiquetaNombre) {
-
-		for (int i = 0; i < etiquetas.length; i++) {
-			if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre()) < 2) {
-				return true;
+		if (etiquetas != null)
+			for (int i = 0; i < etiquetas.length; i++) {
+				if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre())) {
+					return true;
+				}
 			}
-		}
 
 		return false;
 	}
@@ -292,68 +292,73 @@ public abstract class POI {
 		this.setComuna(dto.getComuna());
 	}
 
-	public POI busquedaEstandar(String texto1, String texto2) {
+	public boolean busquedaEstandar(String filtros[]) {
+		
+		
 
-		List<String> filtros = new ArrayList<String>();
-		filtros.add(texto1);
-		filtros.add(texto2);
+//		List<String> filtros = new ArrayList<String>();
+//		if (texto1 != null )
+//			filtros.add(texto1);
+//		if (texto2 != null )
+//			filtros.add(texto2);
 		for (String filtro : filtros) {
 			if (MetodosComunes.isNumeric(filtro)) {
 				long valor = Long.parseLong(filtro);
 				if (numeracion == valor)
-					return this;
+					return true;
 				else if (piso == valor)
-					return this;
+					return true;
 				else if (codigoPostal == valor)
-					return this;
+					return true;
 				else if (comuna == valor)
-					return this;
-			} else if (LevDist.calcularDistancia(filtro, this.nombre) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.callePrincipal) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.calleLateral) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.departamento) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.unidad) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.localidad) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.barrio) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.provincia) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, this.pais) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()) < 2)
-				return this;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()) < 2)
-				return this;
+					return true;
+			} else if (LevDist.calcularDistancia(filtro, this.nombre))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.callePrincipal))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.calleLateral))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.departamento))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.unidad))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.localidad))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.barrio))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.provincia))
+				return true;
+			else if (LevDist.calcularDistancia(filtro, this.pais))
+				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
+//				return true;
 			else if (buscarEtiqueta(filtro))
-				return this;
+				return true;
 		}
-		return null;
+		return false;
 	}
 
-	public POI compararServicios(String filtro) {
+	public boolean compararServicios(String filtro) {
 		for (nodoServicio servicio : Servicios) {
-			if (LevDist.calcularDistancia(filtro, this.nombre) < 2) {
-				return this;
+			if (LevDist.calcularDistancia(filtro, servicio.nombre)) {
+				return true;
 			} else if (MetodosComunes.isNumeric(filtro)) {
 				long filtroNumerico = Long.parseLong(filtro);
 				if (servicio.horaInicio < filtroNumerico && filtroNumerico < servicio.horaFin) {
-					return this;
+					return true;
 				} else if (servicio.listaDias.contains(filtroNumerico)) {
-					return this;
+					return true;
 				}
 			}
 		}
 
-		return null;
+		return false;
+		
 	}
 }
