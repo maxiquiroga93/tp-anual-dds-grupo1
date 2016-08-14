@@ -150,6 +150,11 @@ public class testPOI_Comparacion {
 		
 	}
 	
+	/*Testear contra POI con nulls
+	 * Servicios
+	 * Etiquetas
+	 */
+	
 	@Test
 	public void testBancosIguales(){
 		Assert.assertTrue(unBanco.compararPOI(unBanco));
@@ -189,6 +194,14 @@ public class testPOI_Comparacion {
 	public void testParadaColectivoDistinta(){
 		Assert.assertFalse(unaParada.compararPOI(otraParada));
 	}
+	
+	@Test
+	public void testTiposPOI(){
+		boolean respuesta = unBanco.compararPOI(unCGP);
+		Assert.assertFalse(respuesta);
+	}
+	
+	
 	
 	
 }

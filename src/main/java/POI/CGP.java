@@ -116,10 +116,10 @@ public class CGP extends POI {
 	
 	@Override
 	public boolean compararPOI(POI poi) {
-		CGP cgp = (CGP)poi;
 		if (!super.compararPOI(poi)){
 			return false;
 			}
+		CGP cgp = (CGP)poi;
 
 			if (cgp.director == this.director &&
 				cgp.telefono == this.telefono)

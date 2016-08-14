@@ -118,10 +118,10 @@ public class Banco extends POI {
 	
 	@Override
 	public boolean compararPOI(POI poi) {
-		Banco banco = (Banco)poi;
 		if (!super.compararPOI(poi)){
 			return false;
 			}
+		Banco banco = (Banco)poi;
 
 		if (banco.sucursal == this.sucursal &&
 		banco.gerente == this.gerente)
