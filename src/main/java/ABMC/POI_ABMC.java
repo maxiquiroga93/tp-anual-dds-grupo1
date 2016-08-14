@@ -52,42 +52,33 @@ public class POI_ABMC {
 		resultado = new ArrayList<POI>();
 		ArrayList<POI> listaLocal = DB_Server.getListado();
 		for(POI nodo : listaLocal){
-			//No se si como es POI directamente llama a la busqueda de la superclase...
-			//asi que dejo codigo por las dudas
-			/*switch(nodo.getTipo().nombre()){
-			case "banco": if(((Banco) nodo).busquedaEstandar(texto1, texto2)){
-				resultado.add(nodo);
-			}
-			case "cgp": if(((CGP) nodo).busquedaEstandar(texto1, texto2)){
-				resultado.add(nodo);
-			}
-			case "parada colectivo": if(((ParadaColectivo) nodo).busquedaEstandar(texto1, texto2)){
-				resultado.add(nodo);
-			}
-			case "local comercial": if(((LocalComercial) nodo).busquedaEstandar(texto1, texto2)){
-				resultado.add(nodo);
-			}
-			}*/
 			if(nodo.busquedaEstandar(texto1, texto2)){
 				resultado.add(nodo);
 			}
 		}
+		if(url != ""){
+			List<POI> listaExterna = new ArrayList<POI>();
+			if(texto1 != ""){
+				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1);//cgp con 1er string
+				if(!(listaExterna.isEmpty())){
+					resultado.addAll(listaExterna);
+				}
+			}
+			if(texto2 != ""){
+				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto2);//cgp con 2do string
+				if(!(listaExterna.isEmpty())){
+					resultado.addAll(listaExterna);
+				}
+			}
+			
+			
+			listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1, texto2);//bancos
+			if(!(listaExterna.isEmpty())){
+				resultado.addAll(listaExterna);
+			}
+		}
 		
-		List<POI> listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1);//cgp con 1er string
-		if(!(listaExterna.isEmpty())){
-			resultado.addAll(listaExterna);
-		}
-		listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto2);//cgp con 2do string
-		if(!(listaExterna.isEmpty())){
-			resultado.addAll(listaExterna);
-		}
-		listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1, texto2);//bancos
-		if(!(listaExterna.isEmpty())){
-			resultado.addAll(listaExterna);
-		}
 		
 		return resultado;
 	}
-
-
 }
