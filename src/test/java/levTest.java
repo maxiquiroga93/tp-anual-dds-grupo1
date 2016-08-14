@@ -38,10 +38,10 @@ public class levTest {
 		Assert.assertFalse(resultado);
 	}
 	
-		@Test
-		public void test3Diferencias(){
-			resultado = LevDist.calcularDistancia(a,d);
-			Assert.assertFalse(resultado);
+	@Test
+	public void test3Diferencias(){
+		resultado = LevDist.calcularDistancia(a,d);
+		Assert.assertFalse(resultado);
 	}
 	
 	@Test
