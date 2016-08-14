@@ -96,7 +96,7 @@ public class CGP extends POI {
 	@Override
 	public boolean compararPOI(POI poi) {
 		CGP cgp = (CGP)poi;
-		if (!super.CompararPOI(poi)){
+		if (!super.compararPOI(poi)){
 			return false;
 			}
 

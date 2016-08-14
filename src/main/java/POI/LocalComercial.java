@@ -109,7 +109,7 @@ public class LocalComercial extends POI {
 	@Override
 	public boolean compararPOI(POI poi){
 		LocalComercial local = (LocalComercial)poi;
-		if (!super.CompararPOI(poi)){
+		if (!super.compararPOI(poi)){
 			return false;
 			}
 		

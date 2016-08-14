@@ -101,7 +101,7 @@ public class Banco extends POI {
 	@Override
 	public boolean compararPOI(POI poi) {
 		Banco banco = (Banco)poi;
-		if (!super.CompararPOI(poi)){
+		if (!super.compararPOI(poi)){
 			return false;
 			}
 
