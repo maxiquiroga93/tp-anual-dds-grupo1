@@ -85,9 +85,9 @@ public class Banco extends POI {
 			}
 
 		for (String filtro : filtros) {
-			if (LevDist.calcularDistancia(filtro, this.sucursal) < 2) {
+			if (LevDist.calcularDistancia(filtro, this.sucursal)) {
 				return true;
-			} else if (LevDist.calcularDistancia(filtro, this.gerente) < 2) {
+			} else if (LevDist.calcularDistancia(filtro, this.gerente)) {
 				return true;
 			} else {
 				this.compararServicios(filtro);

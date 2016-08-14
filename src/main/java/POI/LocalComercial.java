@@ -89,7 +89,7 @@ public class LocalComercial extends POI {
 			 return true;
 		 }
 		for(String filtro : filtros){
-			if(LevDist.calcularDistancia(filtro, rubro.getNombre())<2){
+			if(LevDist.calcularDistancia(filtro, rubro.getNombre())){
 				return true;
 			}else{
 				if(MetodosComunes.isNumeric(filtro)){

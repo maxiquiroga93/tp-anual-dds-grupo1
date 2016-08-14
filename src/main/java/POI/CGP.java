@@ -81,9 +81,9 @@ public class CGP extends POI {
 			return true;
 
 		for (String filtro : filtros) {
-			if (LevDist.calcularDistancia(filtro, this.director) < 2) {
+			if (LevDist.calcularDistancia(filtro, this.director)) {
 				return true;
-			} else if (LevDist.calcularDistancia(filtro, this.telefono) < 2) {
+			} else if (LevDist.calcularDistancia(filtro, this.telefono)) {
 				return true;
 			} else {
 				this.compararServicios(filtro);
