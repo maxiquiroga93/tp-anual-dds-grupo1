@@ -1,14 +1,8 @@
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-
-import org.json.JSONException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import Helpers.LevDist;
-import POI.POI;
 
 
 
