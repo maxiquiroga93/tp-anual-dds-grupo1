@@ -80,12 +80,12 @@ public class LocalComercial extends POI {
 	}
 	
 	@Override
-	public boolean busquedaEstandar(String texto1, String texto2){
-		List<String> filtros = new ArrayList<String>();
-		filtros.add(texto1);
-		filtros.add(texto2);
+	public boolean busquedaEstandar(String filtros[]){
+//		List<String> filtros = new ArrayList<String>();
+//		filtros.add(texto1);
+//		filtros.add(texto2);
 		
-		if(super.busquedaEstandar(texto1,texto2)){
+		if(super.busquedaEstandar(filtros)){
 			 return true;
 		 }
 		for(String filtro : filtros){

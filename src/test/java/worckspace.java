@@ -70,13 +70,20 @@ public class worckspace {
 	
 		 */
 		
-		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL("http://trimatek.org/Consultas/centro?"), Charset.forName("UTF-8")));
-		Type listType = new TypeToken<ArrayList<CGP_DTO>>(){}.getType();
-		Gson gson = new Gson();
-		List<CGP_DTO> listadoCGP_DTO = gson.fromJson(jsonArray.toString(), listType);
-		System.out.println(listadoCGP_DTO);
+//		JSONArray jsonArray = new JSONArray(IOUtils.toString(new URL("http://trimatek.org/Consultas/centro?"), Charset.forName("UTF-8")));
+//		Type listType = new TypeToken<ArrayList<CGP_DTO>>(){}.getType();
+//		Gson gson = new Gson();
+//		List<CGP_DTO> listadoCGP_DTO = gson.fromJson(jsonArray.toString(), listType);
+//		System.out.println(listadoCGP_DTO);
+		
+		String prueba = "esto es una prueba";
+		String split[] = prueba.split("\\s+");
+		for (String palabra : split )
+			System.out.println(palabra);
 		
 	}
+	
+
 }
 
 

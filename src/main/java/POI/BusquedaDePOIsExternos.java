@@ -33,17 +33,17 @@ public class BusquedaDePOIsExternos {
 				poi = poi_dto.converttoPOI();
 				listaResultadoEnPOI.add(poi);
 			}
-			urlCreada = url + "banco?banco=" + textoLibre2 + "&servicio=" + textoLibre1;
-
-			listaResultado = Banco_Converter.getBancos(urlCreada);
-
-			for (POI_DTO poi_dto : listaResultado) {
-				// Setiando tipo de POI
-				poi_dto.setTipo(TiposPOI.BANCO);
-				// Convirtiendo
-				poi = poi_dto.converttoPOI();
-				listaResultadoEnPOI.add(poi);
-			}
+//			urlCreada = url + "banco?banco=" + textoLibre2 + "&servicio=" + textoLibre1;
+//
+//			listaResultado = Banco_Converter.getBancos(urlCreada);
+//
+//			for (POI_DTO poi_dto : listaResultado) {
+//				// Setiando tipo de POI
+//				poi_dto.setTipo(TiposPOI.BANCO);
+//				// Convirtiendo
+//				poi = poi_dto.converttoPOI();
+//				listaResultadoEnPOI.add(poi);
+//			}
 		}
 
 		return listaResultadoEnPOI;

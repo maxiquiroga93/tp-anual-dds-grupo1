@@ -44,7 +44,7 @@ public class testABMC_Consulta {
 	public void testConsultaVacia() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar(ServicioAPI, "", "");
+		lista = abmc.buscar(ServicioAPI, "");
 		Assert.assertTrue(lista.isEmpty());
 			
 	}
@@ -53,7 +53,7 @@ public class testABMC_Consulta {
 	public void testConsultaLocal() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar("", "Alberdi", "");
+		lista = abmc.buscar("", "Alberdi");
 		Assert.assertTrue(lista.size() == 1);
 			
 	}
@@ -62,7 +62,7 @@ public class testABMC_Consulta {
 	public void testConsultaLocal2() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar("", "Mataderos", "");
+		lista = abmc.buscar("", "Mataderos");
 		Assert.assertTrue(lista.size() == 2);
 			
 	}
@@ -72,14 +72,20 @@ public class testABMC_Consulta {
 	public void testConsulta() throws JSONException, MalformedURLException, IOException{
 		ArrayList<POI> lista=null;
 		
-		lista = abmc.buscar(ServicioAPI, "Galicia", "");
+		lista = abmc.buscar(ServicioAPI, "Galicia");
 		Assert.assertTrue(!(lista.isEmpty()));
 			
 	}
 	
-	public boolean esnull(ArrayList<POI> lista){
-		return lista.size() == 0;
+	@Test
+	public void testConsultavariasPalabras() throws JSONException, MalformedURLException, IOException{
+		ArrayList<POI> lista=null;
+		
+		lista = abmc.buscar(ServicioAPI, "Galicia Mataderos");
+		Assert.assertTrue(!(lista.isEmpty()));
+			
 	}
+	
 
 
 	

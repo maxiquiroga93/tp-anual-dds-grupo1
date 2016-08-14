@@ -292,13 +292,15 @@ public abstract class POI {
 		this.setComuna(dto.getComuna());
 	}
 
-	public boolean busquedaEstandar(String texto1, String texto2) {
+	public boolean busquedaEstandar(String filtros[]) {
+		
+		
 
-		List<String> filtros = new ArrayList<String>();
-		if (texto1 != null )
-			filtros.add(texto1);
-		if (texto2 != null )
-			filtros.add(texto2);
+//		List<String> filtros = new ArrayList<String>();
+//		if (texto1 != null )
+//			filtros.add(texto1);
+//		if (texto2 != null )
+//			filtros.add(texto2);
 		for (String filtro : filtros) {
 			if (MetodosComunes.isNumeric(filtro)) {
 				long valor = Long.parseLong(filtro);
@@ -328,14 +330,14 @@ public abstract class POI {
 				return true;
 			else if (LevDist.calcularDistancia(filtro, this.pais))
 				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
-				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
-				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
-				return true;
-			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
-				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.BANCO.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.CGP.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.LOCAL_COMERCIAL.name()))
+//				return true;
+//			else if (LevDist.calcularDistancia(filtro, TiposPOI.PARADA_COLECTIVO.name()))
+//				return true;
 			else if (buscarEtiqueta(filtro))
 				return true;
 		}
@@ -357,5 +359,6 @@ public abstract class POI {
 		}
 
 		return false;
+		
 	}
 }

@@ -48,37 +48,57 @@ public class POI_ABMC {
 		return false;
 	}
 	
-	public ArrayList<POI> buscar(String url,String texto1, String texto2) throws JSONException, MalformedURLException, IOException{
+// Busqueda por texto libre ABIERTA (busca todos los pois que contengan al menos UNA palabra contenida en la busqueda)
+	public ArrayList<POI> buscar(String url,String texto) throws JSONException, MalformedURLException, IOException{
+		String filtros[] = texto.split("\\s+");
 		resultado = new ArrayList<POI>();
 		ArrayList<POI> listaLocal = DB_Server.getListado();
 		for(POI nodo : listaLocal){
-			if(nodo.busquedaEstandar(texto1, texto2)){
+			if(nodo.busquedaEstandar(filtros)){
 				resultado.add(nodo);
 			}
 		}
 		if(url != ""){
 			List<POI> listaExterna = new ArrayList<POI>();
-			if(texto1 != ""){
-				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1);//cgp con 1er string
+			for ( String palabra : filtros ){
+				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra);//cgp
 				if(!(listaExterna.isEmpty())){
-					resultado.addAll(listaExterna);
+					for (POI x : listaExterna){
+						   if (!resultado.contains(x))
+						      resultado.add(x);
+					}
 				}
-			}
-			if(texto2 != ""){
-				listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto2);//cgp con 2do string
-				if(!(listaExterna.isEmpty())){
-					resultado.addAll(listaExterna);
+				if(filtros.length > 1){
+					for ( String palabra2 : filtros ){
+						listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, palabra2);//bancos
+						if(!(listaExterna.isEmpty())){
+							for (POI x : listaExterna){
+								   if (!resultado.contains(x))
+								      resultado.add(x);
+							}
+						}
+					}
+					
+				// si hay una sola palabra se busca solo por servicio o solo por banco
+				} else {
+					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, palabra, "");//bancos
+					if(!(listaExterna.isEmpty())){
+						for (POI x : listaExterna){
+							   if (!resultado.contains(x))
+							      resultado.add(x);
+						}
+					}
+					listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, "", palabra);//bancos
+					if(!(listaExterna.isEmpty())){
+						for (POI x : listaExterna){
+							   if (!resultado.contains(x))
+							      resultado.add(x);
+						}
+					}
+					
 				}
-			}
-			
-			
-			listaExterna = BusquedaDePOIsExternos.buscarPOIsExternos(url, texto1, texto2);//bancos
-			if(!(listaExterna.isEmpty())){
-				resultado.addAll(listaExterna);
 			}
 		}
-		
-		
 		return resultado;
 	}
 }

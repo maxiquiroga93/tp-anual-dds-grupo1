@@ -75,12 +75,12 @@ public class Banco extends POI {
 	}
 
 	@Override
-	public boolean busquedaEstandar(String texto1, String texto2) {
-		List<String> filtros = new ArrayList<String>();
-		filtros.add(texto1);
-		filtros.add(texto2);
+	public boolean busquedaEstandar(String filtros[]) {
+//		List<String> filtros = new ArrayList<String>();
+//		filtros.add(texto1);
+//		filtros.add(texto2);
 
-		if (super.busquedaEstandar(filtros.get(0), filtros.get(1))){
+		if (super.busquedaEstandar(filtros)){
 			return true;
 			}
 
