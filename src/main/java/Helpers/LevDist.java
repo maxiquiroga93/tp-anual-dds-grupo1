@@ -15,6 +15,8 @@ public class LevDist {
     }
 
     public static int calcularDistancia(String str1, String str2) {
+    	if (str1 == null || str2 == null)
+    		return 10;
         return calcularDistancia(str1.toCharArray(),str2.toCharArray());
     }
 

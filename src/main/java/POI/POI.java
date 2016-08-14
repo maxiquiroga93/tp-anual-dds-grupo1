@@ -249,12 +249,12 @@ public abstract class POI {
 	}
 
 	public Boolean buscarEtiqueta(String etiquetaNombre) {
-
-		for (int i = 0; i < etiquetas.length; i++) {
-			if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre()) < 2) {
-				return true;
+		if (etiquetas != null)
+			for (int i = 0; i < etiquetas.length; i++) {
+				if (LevDist.calcularDistancia(etiquetaNombre, this.etiquetas[i].getNombre()) < 2) {
+					return true;
+				}
 			}
-		}
 
 		return false;
 	}
@@ -295,8 +295,10 @@ public abstract class POI {
 	public boolean busquedaEstandar(String texto1, String texto2) {
 
 		List<String> filtros = new ArrayList<String>();
-		filtros.add(texto1);
-		filtros.add(texto2);
+		if (texto1 != null )
+			filtros.add(texto1);
+		if (texto2 != null )
+			filtros.add(texto2);
 		for (String filtro : filtros) {
 			if (MetodosComunes.isNumeric(filtro)) {
 				long valor = Long.parseLong(filtro);
