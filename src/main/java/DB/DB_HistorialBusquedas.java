@@ -27,7 +27,6 @@ public class DB_HistorialBusquedas {
 		return instance;
 	}
 
-
 	public void agregarHistorialBusqueda(registroHistorico registro){
 		String registroStr = Integer.toString(listadoRegistros.size());
 		listadoRegistros.put(Long.parseLong(registroStr),registro);
