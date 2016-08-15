@@ -9,10 +9,6 @@ import POI.ParadaColectivo;
 import POI.Rubro;
 import POI.TiposPOI;
 
-import org.json.JSONException;
-import org.junit.Assert;
-import org.junit.Test;
-
 public class testPOI_Comparacion {
 
 	Banco unBanco = new Banco("Galicia", 50, 20);

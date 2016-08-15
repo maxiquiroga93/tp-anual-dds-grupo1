@@ -1,20 +1,20 @@
 package DB;
 
-import java.sql.Timestamp;
+import org.joda.time.DateTime;
 
 public class registroHistorico {
 
-	private Timestamp time;
+	private DateTime time;
 	private long userID;
 	private String busqueda;
 	private long cantResultados;
 	private double tiempoDeConsulta;
 
-	public Timestamp getTime() {
+	public DateTime getTime() {
 		return time;
 	}
 
-	public void setTime(Timestamp time) {
+	public void setTime(DateTime time) {
 		this.time = time;
 	}
 

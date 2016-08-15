@@ -1,11 +1,10 @@
 package DB;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import POI.POI;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class DB_HistorialBusquedas {
 
@@ -37,15 +36,17 @@ public class DB_HistorialBusquedas {
 		Map<String, Long> resumen = new HashMap<String, Long>();
 		String fechaPrevia = "";
 		Long cantParcial = 0L;
+
 		for (Map.Entry<Long, registroHistorico> registro : listadoRegistros.entrySet()) {
-			String fechaActual = registro.getValue().getTime().toString();
+			DateTimeFormatter fmt = DateTimeFormat.shortDate();
+			String fechaActual = fmt.print(registro.getValue().getTime());
+
 			if (fechaPrevia.equals(fechaActual)) {
 				cantParcial += registro.getValue().getCantResultados();
 			} else {
 				resumen.put(fechaPrevia, cantParcial);
 				fechaPrevia = fechaActual;
 				cantParcial = registro.getValue().getCantResultados();
-				
 			}
 
 		}

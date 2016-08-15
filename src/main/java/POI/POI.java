@@ -1,7 +1,6 @@
 package POI;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ABMC.POI_DTO;
 import Geolocation.GeoLocation;
