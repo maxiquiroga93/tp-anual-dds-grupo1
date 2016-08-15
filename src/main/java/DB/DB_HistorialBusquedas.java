@@ -29,13 +29,16 @@ public class DB_HistorialBusquedas {
 
 
 	public void agregarHistorialBusqueda(registroHistorico registro){
-		// TODO revisar
-		listadoRegistros.put(Long.parseLong(Integer.toString(listadoRegistros.size())),registro);
+		String registroStr = Integer.toString(listadoRegistros.size());
+		listadoRegistros.put(Long.parseLong(registroStr),registro);
 	}
 
-// Reporte de busquedas por fecha y cantidad de todo el sistema	
-	public ArrayList<registroHistorico> reporteBusquedas(String criterioConsulta) {
-
+	// Reporte de busquedas por fecha y cantidad de todo el sistema	
+	public Map<String, Long> reporteBusquedas(String criterioConsulta) {
+		Map<String, Long> resumen = new HashMap<String, Long>();
+		for(registroHistorico registro : registros)
+		
+		return resumen;
 	}
 	
 	
