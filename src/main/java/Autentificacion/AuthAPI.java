@@ -1,22 +1,63 @@
 package Autentificacion;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AuthAPI {
+import javax.xml.bind.DatatypeConverter;
 
+public class AuthAPI {
 	
-	Map<String,String> userPass = new HashMap<String,String>();
+	Map<String,String> diccionarioTokenUser = new HashMap<String,String>();
 	
-	
-	public String iniciarSesion(String user, String pass){
+	//ESTA LISTA DE USUARIOS DEBERIA SER LA BASE DE DATOS
+	ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
+
+	public String iniciarSesion(String user, String pass) throws NoSuchAlgorithmException{
+
+
+		//LA PASS YA DEBERIA LLEGAR HASHEADA AL ENTRAR A ESTA FUNCION, preguntarme si no captan el por que
 		
-		return "";
+		for(Usuario usuario : ListaUsuarios){
+			if(usuario.getUsername() == user || usuario.getPassword() == pass){
+				String token =  generarToken(user,pass);
+				diccionarioTokenUser.put(token, user);
+				return token;
+			}
+		}
+
+		return null;
+	}
+
+	public String hashear(String string) throws NoSuchAlgorithmException{
+		//Esta funcion en una de esas quizas va en las comunes
+		String userPass=string;
+		MessageDigest hasher = MessageDigest.getInstance("SHA-256");
+		hasher.update(userPass.getBytes());
+
+		return DatatypeConverter.printHexBinary(hasher.digest());
 	}
 	
+	public String generarToken(String user,String pass) throws NoSuchAlgorithmException{
+		Date fecha = new Date();
+		fecha.getTime();
+		
+		String stringGenerador = user+pass+fecha.toString();
+		
+		return hashear(stringGenerador);
+	}
+
 	public Boolean validarToken(String Token){
 		
-		return true;
+		if(diccionarioTokenUser.get(Token) != null){
+			return true;
+		}
+
+		return false;
 	}
-	
+
 }
