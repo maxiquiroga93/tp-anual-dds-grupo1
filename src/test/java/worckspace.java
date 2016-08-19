@@ -4,9 +4,15 @@
 //import POI.FlyweightFactoryEtiqueta;
 //import POI.POI;
 import java.io.IOException;
-
+import EMail.EMail;
+import EMail.EnviarEmail;
 public class worckspace {
 	public static void main(String[] args) throws IOException {
+		//EMail correoTexto = new EMail();
+		 // correoTexto.mandarCorreo("Hola");
+		EnviarEmail email=new EnviarEmail();
+		email.sendMail("lag21392@gmail.com", "ImportanteJAVA", "hola", "Lucas");
+		
 	 /*try {
 		 POI_ABMC poi_abmc = new POI_ABMC();
 		 List<Banco> listadoBancos = poi_abmc.consultarBancos("http://trimatek.org/Consultas/banco?banco");

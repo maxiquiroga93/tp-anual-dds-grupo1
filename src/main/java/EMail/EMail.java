@@ -1,90 +1,96 @@
 package EMail;
 import java.util.Properties;
+
 import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
+
 
 public class EMail {
-private final Properties properties = new Properties();
+
 	
-	private String password;
- 
-	private Session session;
-	private String emailAdmin;
 	
  
 	
-	private void init() {
- 
+	
+		//Cuenta creada Gmail
+		//Usuario:SistemasDDSGrupo1@gmail.com Contraseña:DDSGrupo1 ContraseñaDeAplicacion:nhxnogsxyobwwbzl	
+		//
 		
-		
-		properties.put("mail.smtp.host", "mail.gmail.com");
-		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.port",25);
-		properties.put("mail.smtp.mail.sender","emisor@gmail.com");
-		properties.put("mail.smtp.user", "usuario");
-		properties.put("mail.smtp.auth", "true");
- 
-		session = Session.getDefaultInstance(properties);
-	}
 	
-	public void enviarEmailDemoraDeXSegundos(double segundos){
+	public boolean mandarCorreo(String texto) {
+		  // El correo gmail de envío
+		  String correoEnvia = "SistemasDDSGrupo1@gmail.com";
+		  String claveCorreo = "nhxnogsxyobwwbzl";
+		  String correoRecibe="lag21392@gmail.com";
 		 
-		init();
-		String text="La busqueda demoro mas de "+segundos+" ";
-		String subject="Demora de busqueda";
-		try{
-			MimeMessage message = new MimeMessage(session);
-			message.setFrom(new InternetAddress((String)properties.get("mail.smtp.mail.sender")));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress("receptor@gmail.com"));
-			message.setSubject(subject);
-			message.setText(text);
-			Transport t = session.getTransport("smtp");
-			t.connect((String)properties.get("mail.smtp.user"), "password");
-			t.sendMessage(message, message.getAllRecipients());
-			t.close();
-		}catch (MessagingException me){
-                        //Aqui se deberia o mostrar un mensaje de error o en lugar
-                        //de no hacer nada con la excepcion, lanzarla para que el modulo
-                        //superior la capture y avise al usuario con un popup, por ejemplo.
-			System.out.println("Error de envio de E-Mail");
-			return;
+		  // La configuración para enviar correo
+		  Properties properties = new Properties();
+		  properties.put("mail.smtp.host", "smtp.gmail.com");
+		  properties.put("mail.smtp.starttls.enable", "true");
+		  properties.put("mail.smtp.port", "589");
+		  properties.put("mail.smtp.auth", "true");
+		  properties.put("mail.user", correoEnvia);
+		  properties.put("mail.password", claveCorreo);
+		 
+		  // Obtener la sesion
+		  try {Session session = Session.getInstance(properties, null);
+	
+		 
+		 
+		   // Crear el cuerpo del mensaje
+		   MimeMessage mimeMessage = new MimeMessage(session);
+		 
+		   // Agregar quien envía el correo
+		   mimeMessage.setFrom(new InternetAddress(correoEnvia, "DDS Grupo 1"));
+		    
+		   // Los destinatarios
+		   InternetAddress[] internetAddresses = {
+		     new InternetAddress(correoRecibe)/*,
+		     new InternetAddress("correo2@gmail.com"),
+		     new InternetAddress("correo3@gmail.com") */};
+		 
+		   // Agregar los destinatarios al mensaje
+		   mimeMessage.setRecipients(Message.RecipientType.TO,
+		     internetAddresses);
+		 
+		   // Agregar el asunto al correo
+		   mimeMessage.setSubject("Demora En Segundos");
+		 
+		   // Creo la parte del mensaje
+		   MimeBodyPart mimeBodyPart = new MimeBodyPart();
+		   mimeBodyPart.setText( texto);
+		 
+		   // Crear el multipart para agregar la parte del mensaje anterior
+		   Multipart multipart = new MimeMultipart();
+		   multipart.addBodyPart(mimeBodyPart);
+		 
+		   // Agregar el multipart al cuerpo del mensaje
+		   mimeMessage.setContent(multipart);
+		 
+		   // Enviar el mensaje
+		   Transport transport = session.getTransport("smtp");
+		   transport.connect(correoEnvia, claveCorreo);
+		   transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+		   transport.close();
+		 
+		  } catch (Exception ex) {
+		   ex.printStackTrace();
+		   return false;
+		  }
+		  System.out.println("Correo enviado");
+		return true;
+		 }
+		 
+		/* public static void main(String[] args) {
+		  EMail correoTexto = new EMail();
+		  correoTexto.mandarCorreo();
+		   
+		 }*/
 		}
-		
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Session getSession() {
-		return session;
-	}
-
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
-	public String getEmailAdmin() {
-		return emailAdmin;
-	}
-
-	public void setEmailAdmin(String emailAdmin) {
-		this.emailAdmin = emailAdmin;
-	}
-
-	public Properties getProperties() {
-		return properties;
-	}
-	
-}
-
-
-
