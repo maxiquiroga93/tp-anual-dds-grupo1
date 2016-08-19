@@ -17,8 +17,8 @@ public class testBuscarPoiExterno {
 	
 	@Test
 	public void testBuscarPOIsExternosBanco() throws JSONException, MalformedURLException, IOException{
-		String var1 = "Santander";
-		String var2 = "Pagos";
+		String var1 = "Galicia";
+		String var2 = "";
 		List<POI> listaResultado=null;
 		listaResultado=BusquedaDePOIsExternos.buscarPOIsExternos("http://trimatek.org/Consultas/",var1,var2);
 		
