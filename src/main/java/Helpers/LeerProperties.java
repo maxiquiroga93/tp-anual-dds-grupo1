@@ -1,0 +1,44 @@
+package Helpers;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
+public class LeerProperties {
+
+	public static Properties prop;
+	private static LeerProperties instance = null;
+
+	public LeerProperties(){
+		prop = new Properties();
+	}
+
+	public static Properties getProperties() {
+		return LeerProperties.prop;
+	}
+
+	public static LeerProperties getInstance() {
+		if (instance == null)
+			instance = new LeerProperties();
+		return instance;
+	}
+
+	public static void printThemAll() {
+		prop = new Properties();
+		// InputStream input = null;
+
+		try (InputStream input = new FileInputStream("config.properties")) {
+
+			// load a properties file
+			// Properties prop = new Properties();
+			prop.load(input);
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+
+		}
+	}
+
+}
