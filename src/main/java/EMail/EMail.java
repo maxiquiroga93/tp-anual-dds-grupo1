@@ -20,21 +20,21 @@ public class EMail {
 	
 	
 		//Cuenta creada Gmail
-		//Usuario:SistemasDDSGrupo1@gmail.com Contraseña:DDSGrupo1 ContraseñaDeAplicacion:nhxnogsxyobwwbzl	
+		//Usuario:SistemasDDSGrupo1@gmail.com Contraseï¿½a:DDSGrupo1 Contraseï¿½aDeAplicacion:nhxnogsxyobwwbzl	
 		//
 		
 	
 	public boolean mandarCorreo(String texto) {
-		  // El correo gmail de envío
+		  // El correo gmail de envï¿½o
 		  String correoEnvia = "SistemasDDSGrupo1@gmail.com";
 		  String claveCorreo = "nhxnogsxyobwwbzl";
 		  String correoRecibe="lag21392@gmail.com";
 		 
-		  // La configuración para enviar correo
+		  // La configuraciï¿½n para enviar correo
 		  Properties properties = new Properties();
 		  properties.put("mail.smtp.host", "smtp.gmail.com");
 		  properties.put("mail.smtp.starttls.enable", "true");
-		  properties.put("mail.smtp.port", "589");
+		  properties.put("mail.smtp.port", "587");
 		  properties.put("mail.smtp.auth", "true");
 		  properties.put("mail.user", correoEnvia);
 		  properties.put("mail.password", claveCorreo);
@@ -47,7 +47,7 @@ public class EMail {
 		   // Crear el cuerpo del mensaje
 		   MimeMessage mimeMessage = new MimeMessage(session);
 		 
-		   // Agregar quien envía el correo
+		   // Agregar quien envï¿½a el correo
 		   mimeMessage.setFrom(new InternetAddress(correoEnvia, "DDS Grupo 1"));
 		    
 		   // Los destinatarios
