@@ -1,25 +1,28 @@
+import javax.mail.MessagingException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import EMail.EMail;
+
+import EMail.EnviarEmail;
 
 
 public class testEMailDeDistancia {
 	boolean envio;
-	EMail email;
+	EnviarEmail email;
 	
 	@Before
 	public void init(){
-		email =new EMail();
+		email =new EnviarEmail();
 	
 }
 	
 	@Test
-	public void modificacionBanco(){
+	public void modificacionBanco() throws MessagingException{
 		
-		//envio=email.enviarEmailDemoraDeXSegundos(2);
-		envio=email.mandarCorreo("Hola");
+		//PONER LA BUSQUEDA QUE SE REALIZO Y SU TIEMPO
+		envio=email.mandarCorreoXSegundos("busquedaRubroAAAA", 3333.2);
 		Assert.assertTrue(envio);
 	}
 }
