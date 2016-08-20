@@ -22,9 +22,9 @@ import javax.mail.internet.MimeMultipart;
 
 
 public class EnviarEmail {
-	String correoEnvia1 = "SistemasDDSGrupo1@gmail.com";
-	  String claveCorreo1 = "nhxnogsxyobwwbzl";
-	  String correoRecibe1="lag21392@gmail.com";
+	  String correoEnvia = "SistemasDDSGrupo1@gmail.com";
+	  String claveCorreo = "nhxnogsxyobwwbzl";
+	  String correoRecibe="lag21392@gmail.com";
 
 
 	
@@ -33,7 +33,7 @@ public class EnviarEmail {
 		String texto="Busqueda "+nombreDeBusqueda+" demoro mas de "+segundos+" segundos.";
 		String titulo="Demora de busqueda";
 		
-		boolean enviado=mandarCorreo(texto,titulo,correoRecibe1,correoEnvia1,claveCorreo1);
+		boolean enviado=mandarCorreo(texto,titulo,correoRecibe,correoEnvia,claveCorreo);
 		return enviado;
 	}
 	public boolean mandarCorreo(String texto,String titulo,String correoRecibe,String correoEnvia,String claveCorreo) throws MessagingException{
