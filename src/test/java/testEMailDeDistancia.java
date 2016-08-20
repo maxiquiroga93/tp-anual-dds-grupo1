@@ -19,10 +19,10 @@ public class testEMailDeDistancia {
 }
 	
 	@Test
-	public void modificacionBanco() throws MessagingException{
+	public void mandarCorreoDemoraXSegundosBusqueda() throws MessagingException{
 		
 		//PONER LA BUSQUEDA QUE SE REALIZO Y SU TIEMPO
-		envio=email.mandarCorreoXSegundos("busquedaRubroAAAA", 3333.2);
+		envio=email.mandarCorreoXSegundos("busquedaRubro", 3333.2);
 		Assert.assertTrue(envio);
 	}
 }
