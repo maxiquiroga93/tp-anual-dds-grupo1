@@ -1,5 +1,7 @@
 package Helpers;
 
+import Helpers.LeerProperties;
+
 public class LevDist {
 	
 	static int DIST = 2;
@@ -19,7 +21,7 @@ public class LevDist {
     public static boolean calcularDistancia(String str1, String str2) {
     	if (str1 == null || str2 == null)
     		return false;
-        return ( calcularDistancia(str1.toCharArray(),str2.toCharArray()) < DIST );
+        return ( calcularDistancia(str1.toCharArray(),str2.toCharArray()) < Integer.valueOf(LeerProperties.getInstance().prop.getProperty("distanciaLeveinstein")) );
     }
 
     private static int calcularDistancia(char [] str1, char [] str2) {

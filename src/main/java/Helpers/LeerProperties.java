@@ -10,21 +10,7 @@ public class LeerProperties {
 	public static Properties prop;
 	private static LeerProperties instance = null;
 
-	public LeerProperties(){
-		prop = new Properties();
-	}
-
-	public static Properties getProperties() {
-		return LeerProperties.prop;
-	}
-
-	public static LeerProperties getInstance() {
-		if (instance == null)
-			instance = new LeerProperties();
-		return instance;
-	}
-
-	public static void printThemAll() {
+	public LeerProperties() {
 		prop = new Properties();
 		// InputStream input = null;
 
@@ -39,6 +25,16 @@ public class LeerProperties {
 		} finally {
 
 		}
+	}
+
+	public static Properties getProperties() {
+		return LeerProperties.prop;
+	}
+
+	public static LeerProperties getInstance() {
+		if (instance == null)
+			instance = new LeerProperties();
+		return instance;
 	}
 
 }

@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import Helpers.LeerProperties;
 import Helpers.LevDist;
 
 
@@ -9,12 +10,14 @@ import Helpers.LevDist;
 public class levTest {
 	String a,b,c,d,e;
 	boolean resultado;
+	LeerProperties instance;
 	@Before
 	public void inicializar(){
 		a = "Esto es una prueba";
 		b = "Exto es una prueba";
 		c = "Exto es una prueva";
 		d = "Exto es una praeva";
+		instance = new LeerProperties();
 	}
 	
 	
