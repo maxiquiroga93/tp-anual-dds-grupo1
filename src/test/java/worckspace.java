@@ -1,17 +1,17 @@
 //import POI.CGP;
 
-//import POI.Banco;
-//import POI.FlyweightFactoryEtiqueta;
-//import POI.POI;
-import java.io.IOException;
-import EMail.EMail;
+
 import EMail.EnviarEmail;
+
+
 public class worckspace {
-	public static void main(String[] args) throws IOException {
-		//EMail correoTexto = new EMail();
-		 // correoTexto.mandarCorreo("Hola");
+	public static void main(String[] args) throws Exception {
+		
+		
 		EnviarEmail email=new EnviarEmail();
-		email.sendMail("lag21392@gmail.com", "ImportanteJAVA", "hola", "Lucas");
+		email.mandarCorreoXSegundos("busquedaRubro", 3333.2);
+		
+		
 		
 	 /*try {
 		 POI_ABMC poi_abmc = new POI_ABMC();

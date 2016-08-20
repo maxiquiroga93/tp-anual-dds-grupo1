@@ -1,9 +1,18 @@
 package EMail;
-import java.util.Date;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -12,63 +21,75 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 
-
-
 public class EnviarEmail {
-	// Enviar correo
-	// * 
-	// * @Dirección de correo electrónico, correo Param
-	// * @Param title título Correo
-	// * @Param Content mensajes de texto
-	// * @param nickName
-	// *  El apodo de visualización
+	String correoEnvia1 = "SistemasDDSGrupo1@gmail.com";
+	  String claveCorreo1 = "nhxnogsxyobwwbzl";
+	  String correoRecibe1="lag21392@gmail.com";
+
+
 	
-	public void sendMail(String email, String title, String content, String nickName) {
-		 String correoEnvia = "SistemasDDSGrupo1@gmail.com";
-		  String claveCorreo = "nhxnogsxyobwwbzl";
-		  String correoRecibe=email;
-		try {
-			// El correo sesión
-			Properties props = new Properties();
-			// Información del servidor de correo de almacenamiento
-			props.put("mail.smtp.host", correoEnvia);
-			// Al mismo tiempo, a través de la verificación
-			props.put("mail.smtp.auth", "true");
-			// Según la naturaleza de la construcción de un nuevo correo sesión
-			Session mailSession = Session.getInstance(props);
-			// Nueva sesión un mensaje por correo de objetos
-			MimeMessage message = new MimeMessage(mailSession);
-			// Configuración de correo
-			String nick = javax.mail.internet.MimeUtility.encodeText(nickName);
-			// Preferencias de la dirección del remitente
-			message.setFrom(new InternetAddress(nick + "<" + correoRecibe + ">"));
-			// Preferencias de los beneficiarios, y fijar su tipo de recepción para to
-			InternetAddress to = new InternetAddress(email);
-			message.setRecipient(Message.RecipientType.TO, to);
-			// Preferencias de la partida
-			message.setSubject(title);
-			// Establecer el contenido de la Carta,
-			Multipart mp = new MimeMultipart();
-			MimeBodyPart mbp1 = new MimeBodyPart();
-			// Contenido
-			mbp1.setText(content);
-			mp.addBodyPart(mbp1);
-			// Preferencias del Anexo
-			message.setContent(mp, "text/html;charset=UTF-8");
-			// Está escrito
-			message.setSentDate(new Date());
-			// El almacenamiento electrónico de la información
-			message.saveChanges();
-			// Enviar correo
-			Transport transport = mailSession.getTransport("smtp");
-			// A modo de registro SMTP buzón, el primer parámetro es enviar un correo con la dirección de correo del servidor SMTP. El segundo parámetro para el nombre de usuario y contraseña para el tercer parámetro
-			transport.connect(correoEnvia, correoRecibe, claveCorreo);
-			// Enviar mensajes de correo electrónico, de los cuales el segundo parámetro es todo lo que se ha establecido en virtud de la buena dirección del destinatario
-			transport.sendMessage(message, message.getAllRecipients());
-		}
-		catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+	public boolean mandarCorreoXSegundos(String nombreDeBusqueda,double segundos) throws MessagingException {
+		
+		String texto="Busqueda "+nombreDeBusqueda+" demoro mas de "+segundos+" segundos.";
+		String titulo="Demora de busqueda";
+		
+		boolean enviado=mandarCorreo(texto,titulo,correoRecibe1,correoEnvia1,claveCorreo1);
+		return enviado;
 	}
+	public boolean mandarCorreo(String texto,String titulo,String correoRecibe,String correoEnvia,String claveCorreo) throws MessagingException{
+       
+        
+        Authenticator authenticator = new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(correoEnvia, claveCorreo);
+            }
+        };
+        try{
+        	
+        Properties properties = new Properties();
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.googlemail.com");
+        properties.put("mail.smtp.port", "587");
+
+        // Contenido del mensaje
+        String content = texto;
+
+        // Establecer las direcciones a las que será enviado el mensaje
+        MimeBodyPart contentPart = new MimeBodyPart();
+        contentPart.setText(content, "UTF-8");
+
+       
+
+        // Agrupar las partes
+        Multipart mp = new MimeMultipart();
+        mp.addBodyPart(contentPart);
+        
+
+        // Obtener la sesión para enviar correos electrónicos
+        Session session = Session.getDefaultInstance(properties, authenticator);
+
+        // Crear el mensaje a enviar
+        MimeMessage message = new MimeMessage(session);
+        message.setSubject(titulo, "UTF-8");
+        message.setFrom(new InternetAddress(correoRecibe));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(correoRecibe));
+        message.addRecipient(Message.RecipientType.BCC, new InternetAddress(correoRecibe));
+        message.setContent(mp);
+
+        // Enviar el correo electrónico
+        Transport.send(message);
+        return true;
+        }
+        catch (Exception e){
+        	e.printStackTrace();
+        	return false;
+        }
+    }
+
+    
+
+      
+    
+
 }
