@@ -20,16 +20,22 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import Helpers.LeerProperties;
+
 
 public class EnviarEmail {
-	  String correoEnvia = "SistemasDDSGrupo1@gmail.com";
-	  String claveCorreo = "nhxnogsxyobwwbzl";
-	  String correoRecibe="lag21392@gmail.com";
+	LeerProperties instance;
+	  
 
 
 	
 	public boolean mandarCorreoXSegundos(String nombreDeBusqueda,double segundos) throws MessagingException {
+		instance = new LeerProperties();
 		
+		String correoEnvia = LeerProperties.prop.getProperty("email");
+		String claveCorreo = LeerProperties.prop.getProperty("emailPassword");
+		String correoRecibe=LeerProperties.prop.getProperty("emailAdmin");
+		System.out.println(correoEnvia+claveCorreo+correoRecibe+LeerProperties.prop.getProperty("emailServer")+LeerProperties.prop.getProperty("SMTP_Port"));
 		String texto="Busqueda "+nombreDeBusqueda+" demoro mas de "+segundos+" segundos.";
 		String titulo="Demora de busqueda";
 		
@@ -49,8 +55,8 @@ public class EnviarEmail {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.googlemail.com");
-        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.host", LeerProperties.prop.getProperty("emailServer"));
+        properties.put("mail.smtp.port", LeerProperties.prop.getProperty("SMTP_Port"));
 
         // Contenido del mensaje
         String content = texto;

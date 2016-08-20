@@ -9,6 +9,7 @@ import EMail.EnviarEmail;
 
 
 public class testEMailDeDistancia {
+	
 	boolean envio;
 	EnviarEmail email;
 	
