@@ -18,8 +18,7 @@ public class testPropiedades {
 
 		@Test
 		public void testLeer() {
-	//		LeerProperties.getInstance().printThemAll();
-			System.out.printf("%d\n",Integer.valueOf(LeerProperties.getInstance().prop.getProperty("distanciaLeveinstein")));
+//			System.out.printf("%d\n",Integer.valueOf(LeerProperties.getInstance().prop.getProperty("distanciaLeveinstein")));
 			Assert.assertEquals(LeerProperties.getInstance().prop.getProperty("distanciaLeveinstein"),"2");
 		}
 
