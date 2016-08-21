@@ -24,18 +24,18 @@ import Helpers.LeerProperties;
 
 
 public class EnviarEmail {
-	LeerProperties instance;
+	LeerProperties instance=LeerProperties.getInstance();
 	  
 
 
 	
 	public boolean mandarCorreoXSegundos(String nombreDeBusqueda,double segundos) throws MessagingException {
-		instance = new LeerProperties();
+		
 		
 		String correoEnvia = LeerProperties.prop.getProperty("email");
 		String claveCorreo = LeerProperties.prop.getProperty("emailPassword");
 		String correoRecibe=LeerProperties.prop.getProperty("emailAdmin");
-		System.out.println(correoEnvia+claveCorreo+correoRecibe+LeerProperties.prop.getProperty("emailServer")+LeerProperties.prop.getProperty("SMTP_Port"));
+		
 		String texto="Busqueda "+nombreDeBusqueda+" demoro mas de "+segundos+" segundos.";
 		String titulo="Demora de busqueda";
 		
@@ -43,7 +43,7 @@ public class EnviarEmail {
 		return enviado;
 	}
 	public boolean mandarCorreo(String texto,String titulo,String correoRecibe,String correoEnvia,String claveCorreo) throws MessagingException{
-       
+		
         
         Authenticator authenticator = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
