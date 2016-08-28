@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 
 public class registroHistorico {
 
+	private long id;
 	private DateTime time;
 	private long userID;
 	private String busqueda;
@@ -47,6 +48,25 @@ public class registroHistorico {
 	}
 
 	public void setTiempoDeConsulta(double tiempoDeConsulta) {
+		this.tiempoDeConsulta = tiempoDeConsulta;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public registroHistorico(long id, DateTime time, long userID, String busqueda, long cantResultados,
+			double tiempoDeConsulta) {
+		super();
+		this.id = id;
+		this.time = time;
+		this.userID = userID;
+		this.busqueda = busqueda;
+		this.cantResultados = cantResultados;
 		this.tiempoDeConsulta = tiempoDeConsulta;
 	}
 

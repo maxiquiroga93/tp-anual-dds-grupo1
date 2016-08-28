@@ -17,7 +17,6 @@ public class LeerProperties {
 		try (InputStream input = new FileInputStream("config.properties")) {
 
 			// load a properties file
-			// Properties prop = new Properties();
 			prop.load(input);
 
 		} catch (IOException ex) {
