@@ -21,8 +21,10 @@ public class testLogin {
 		prueba.setUsername("usuario");
 		
 		Autenticador = new AuthAPI();
+		Autenticador.ListaUsuarios.add(prueba);
 		
 	}
+	
 	
 	@Test
 	public void probarHasherLongitud() throws NoSuchAlgorithmException{
@@ -39,18 +41,43 @@ public class testLogin {
 	
 	@Test
 	public void probarTokenLongitud() throws NoSuchAlgorithmException{
-		String token = Autenticador.generarToken(prueba.getUsername(),Autenticador.hashear(prueba.getPassword()));
+		String token = Autenticador.generarToken(prueba.getUsername(),prueba.getPassword());
 		
 		Assert.assertEquals(64, token.length());
 	}
 	
 	@Test
 	public void probarRandomToken() throws NoSuchAlgorithmException, InterruptedException{
-		String token1 = Autenticador.generarToken(prueba.getUsername(), Autenticador.hashear(prueba.getPassword()));
+		String token1 = Autenticador.generarToken(prueba.getUsername(), prueba.getPassword());
 		TimeUnit.SECONDS.sleep(3); // espero a que cambie la hora
-		String token2 = Autenticador.generarToken(prueba.getUsername(), Autenticador.hashear(prueba.getPassword()));
+		String token2 = Autenticador.generarToken(prueba.getUsername(), prueba.getPassword());
 		
 		Assert.assertFalse(token1.equals(token2));
+	}
+	
+	@Test
+	public void testInicioDeSesionCorrecto() throws NoSuchAlgorithmException{
+		String token = Autenticador.iniciarSesion(prueba.getUsername(), prueba.getPassword());
+		Assert.assertFalse(token == null);//esto con equals rompe
+	}
+	
+	@Test
+	public void testInicioDeSesionIncorrecto() throws NoSuchAlgorithmException{
+		String token = Autenticador.iniciarSesion("unUsuario", "unaPass");
+		Assert.assertTrue(token == null); // idem
+	}
+	
+	@Test
+	public void testvalidarTokenCorrecto() throws NoSuchAlgorithmException{
+		
+		String token = Autenticador.iniciarSesion(prueba.getUsername(), prueba.getPassword());
+		Assert.assertTrue(Autenticador.validarToken(token));
+	}
+	
+	@Test
+	public void testvalidarTokenIncorrecto() throws NoSuchAlgorithmException{
+		String token = Autenticador.iniciarSesion("random", "contrasenia");
+		Assert.assertFalse(Autenticador.validarToken(token));
 	}
 	
 	

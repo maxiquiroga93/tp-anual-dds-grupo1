@@ -12,10 +12,12 @@ import javax.xml.bind.DatatypeConverter;
 
 public class AuthAPI {
 	
+	
+	
 	Map<String,String> diccionarioTokenUser = new HashMap<String,String>();
 	
 	//ESTA LISTA DE USUARIOS DEBERIA SER LA BASE DE DATOS
-	ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
+	public ArrayList<Usuario> ListaUsuarios = new ArrayList<Usuario>();
 
 	public String iniciarSesion(String user, String pass) throws NoSuchAlgorithmException{
 
@@ -23,7 +25,7 @@ public class AuthAPI {
 		//LA PASS YA DEBERIA LLEGAR HASHEADA AL ENTRAR A ESTA FUNCION, preguntarme si no captan el por que
 		
 		for(Usuario usuario : ListaUsuarios){
-			if(usuario.getUsername() == user || usuario.getPassword() == pass){
+			if(usuario.getUsername().equals(user) && usuario.getPassword().equals(pass)){
 				String token =  generarToken(user,pass);
 				diccionarioTokenUser.put(token, user);
 				return token;
