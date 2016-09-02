@@ -1,6 +1,6 @@
 package userInterface;
 
-import POI.POI;
+import poi.POI;
 
 public class administrador {
 

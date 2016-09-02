@@ -2,7 +2,7 @@
 <class-diagram version="1.1.9" icons="true" automaticImage="JPEG" always-add-relationships="false" 
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
   router="FAN">  
-  <class id="1" language="java" name="POI.Banco" project="tp-anual" file="/tp-anual/src/main/java/POI/Banco.java" 
+  <class id="1" language="java" name="poi.Banco" project="tp-anual" file="/tp-anual/src/main/java/poi/Banco.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="547" y="36"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -11,7 +11,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="POI.CGP" project="tp-anual" file="/tp-anual/src/main/java/POI/CGP.java" 
+  <class id="2" language="java" name="poi.CGP" project="tp-anual" file="/tp-anual/src/main/java/poi/CGP.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="546" y="-296"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -20,7 +20,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="POI.POI" project="tp-anual" file="/tp-anual/src/main/java/POI/POI.java" 
+  <class id="3" language="java" name="poi.POI" project="tp-anual" file="/tp-anual/src/main/java/poi/POI.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="179" y="152"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -29,8 +29,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="POI.LocalComercial" project="tp-anual" 
-    file="/tp-anual/src/main/java/POI/LocalComercial.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="poi.LocalComercial" project="tp-anual" 
+    file="/tp-anual/src/main/java/poi/LocalComercial.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="603" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -38,17 +38,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="POI.nodoServicioCGP" project="tp-anual" 
-    file="/tp-anual/src/main/java/POI/nodoServicioCGP.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="880" y="-297"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="POI.ParadaColectivo" project="tp-anual" 
-    file="/tp-anual/src/main/java/POI/ParadaColectivo.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="5" language="java" name="poi.ParadaColectivo" project="tp-anual" 
+    file="/tp-anual/src/main/java/poi/ParadaColectivo.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="584" y="594"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -56,16 +47,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="POI.POIcontroller" project="tp-anual" 
-    file="/tp-anual/src/main/java/POI/POIcontroller.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1083" y="-160"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="POI.Rubro" project="tp-anual" file="/tp-anual/src/main/java/POI/Rubro.java" 
+  <class id="6" language="java" name="poi.Rubro" project="tp-anual" file="/tp-anual/src/main/java/poi/Rubro.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="828" y="51"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -74,8 +56,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="Geolocation.GeoLocation" project="tp-anual" 
-    file="/tp-anual/src/main/java/Geolocation/GeoLocation.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="geolocation.GeoLocation" project="tp-anual" 
+    file="/tp-anual/src/main/java/geolocation/GeoLocation.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="302" y="1027"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -83,16 +65,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="Helpers.LevenshteinDistance" project="tp-anual" 
-    file="/tp-anual/src/main/java/Helpers/LevenshteinDistance.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="988" y="241"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="userInterface.administrador" project="tp-anual" 
+  <class id="8" language="java" name="userInterface.administrador" project="tp-anual" 
     file="/tp-anual/src/main/java/userInterface/administrador.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="847" y="793"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -101,16 +74,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="userInterface.Buscador" project="tp-anual" 
-    file="/tp-anual/src/main/java/userInterface/Buscador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="596" y="808"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="DB.DB_Server" project="tp-anual" file="/tp-anual/src/main/java/DB/DB_Server.java" 
+  <class id="9" language="java" name="db.DB_Server" project="tp-anual" file="/tp-anual/src/main/java/db/DB_Server.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="940" y="583"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -119,60 +83,56 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="14">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="15" name="terminal"/>      
-      <multiplicity id="16" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="17">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="18" name="Servicios"/>      
-      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="21" name="Ubicacion"/>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="23">    
+  <generalization id="10">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <generalization id="24">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="25">    
+  <association id="11">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="26" name="rubro"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
+      <attribute id="12" name="rubro">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="4"/>    
+  <generalization id="14">    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="30" name="listadoPOI"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+  <association id="15">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="16" name="listadoPOI">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="6"/>    
+  <generalization id="18">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="19">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="20" name="Ubicacion">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="22">    
+    <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
